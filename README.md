@@ -4,14 +4,14 @@
 
 #### `yarn install`
 ou
-### `npm install`
+#### `npm install`
 
 ## Installer Bootstrap 5.1.0
 
-### `yarn add react-bootstrap@next bootstrap@5.1.0`
+#### `yarn add react-bootstrap@next bootstrap@5.1.0`
 ou
-### `npm install react-bootstrap@next bootstrap@5.1.0`
+#### `npm install react-bootstrap@next bootstrap@5.1.0`
 
 ## Installer propTypes
 
-### `yarn add prop-types`
+#### `yarn add prop-types`
