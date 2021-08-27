@@ -2,7 +2,7 @@
 
 ## Installer les dépendences
 
-### `yarn add`
+### `yarn install`
 ou
 ### `npm install`
 
