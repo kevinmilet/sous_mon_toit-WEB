@@ -1,21 +1,25 @@
 # Getting Started 
 
-## Installer les dépendences
+## Installer le projet
 
 #### `yarn install`
-ou
-#### `npm install`
+
+# Installer les dépendances si nécessaire
 
 ## Installer react-flexbox-grid
 
 #### `yarn add react-flexbox-grid`
-ou
-#### `npm install --save react-flexbox-grid`
+
+Documentation: https://www.npmjs.com/package/react-flexbox-grid
 
 ## Installer propTypes
 
 #### `yarn add prop-types`
 
+Documentation: https://www.npmjs.com/package/prop-types
+
 ## Installer styled-components
 
-#### `npm install --save styled-components`
+#### `yarn add styled-components`
+
+Documentation: https://styled-components.com/
