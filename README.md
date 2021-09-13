@@ -6,12 +6,16 @@
 ou
 #### `npm install`
 
-## Installer Bootstrap 5.1.0
+## Installer react-flexbox-grid
 
-#### `yarn add react-bootstrap@next bootstrap@5.1.0`
+#### `yarn add react-flexbox-grid`
 ou
-#### `npm install react-bootstrap@next bootstrap@5.1.0`
+#### `npm install --save react-flexbox-grid`
 
 ## Installer propTypes
 
 #### `yarn add prop-types`
+
+## Installer styled-components
+
+#### `npm install --save styled-components`
