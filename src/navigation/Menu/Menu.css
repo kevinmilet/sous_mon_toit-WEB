@@ -1,5 +1,10 @@
 .menu {
     margin: 0 auto;
+    height: 80px;
+}
+
+.navbar {
+    padding: 0!important;
 }
 
 .container-fluid {
