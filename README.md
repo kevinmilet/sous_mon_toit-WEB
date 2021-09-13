@@ -10,6 +10,8 @@
 
 #### `npm install react-bootstrap@next bootstrap@5.1.0`
 
+Documentation: https://react-bootstrap.github.io/
+
 ## Installer propTypes
 
 #### `yarn add prop-types`
