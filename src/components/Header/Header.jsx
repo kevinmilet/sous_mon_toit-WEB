@@ -6,7 +6,7 @@ import './Header.css';
 const Header = () => {
     return (
         <Container fluid>
-            <Row>
+            <Row className="rowHeader">
                 <Col className="logoCol">
                     <img src={logo} className="logo" alt="Logo Sous Mon Toit"/>
                 </Col>

@@ -1,8 +1,12 @@
 .container-fluid {
     padding: 0!important;
+    margin: 0!important;
     height: 80px;
 }
 
+.rowHeader {
+    margin: 0!important;
+}
 .connectLink {
     font-family: Spartan, sans-serif;
     font-size: 20px;
@@ -22,6 +26,7 @@
 
 .linkCol {
     padding: 0!important;
-    margin: 30px 150px 0 0!important;
+    margin-top: 30px !important;
+    margin-right: 7rem;
     text-align: right;
 }
