@@ -1,0 +1,26 @@
+.navbar {
+    padding: 0!important;
+}
+
+.connectLink {
+    font-family: Spartan, sans-serif;
+    font-size: 20px;
+    color: #707070!important;
+    text-decoration: none;
+}
+
+.connectLink:hover {
+     color: #E85A70!important;
+}
+
+.logo {
+    width: 275px;
+    height: auto;
+    margin-left: 150px;
+}
+
+.linkCol {
+    padding: 0!important;
+    margin: 30px 150px 0 0!important;
+    text-align: right;
+}
