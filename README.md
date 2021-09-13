@@ -6,11 +6,11 @@
 
 # Installer les dépendances si nécessaire
 
-## Installer react-flexbox-grid
+## Installer bootstrap
 
-#### `yarn add react-flexbox-grid`
+#### `npm install react-bootstrap@next bootstrap@5.1.0`
 
-Documentation: https://www.npmjs.com/package/react-flexbox-grid
+Documentation: https://react-bootstrap.github.io/
 
 ## Installer propTypes
 

@@ -1,10 +1,11 @@
 import './styles/App.css';
 import React from 'react';
+import Home from "./screens/Home/Home";
 
 const App = () => {
   return (
       <div>
-        
+        <Home/>
       </div>
   );
 };
