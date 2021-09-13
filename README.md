@@ -8,7 +8,7 @@
 
 ## Installer bootstrap
 
-#### `yarn add bootstrap`
+#### `npm install react-bootstrap@next bootstrap@5.1.0`
 
 ## Installer propTypes
 
