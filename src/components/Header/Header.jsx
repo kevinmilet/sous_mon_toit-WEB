@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // import {Link} from "react-router-dom";
-import logo from '../../assets/img/logo_sousMonToit_Long.png'
+import logo from '../../assets/img/logo_sousMonToit_Long.png';
 
 const HomeLogo = styled.img`
     width: 390px;
