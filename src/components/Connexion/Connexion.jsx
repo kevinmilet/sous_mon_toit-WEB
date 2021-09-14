@@ -11,11 +11,11 @@ const Connexion = () => {
                 </div>
                 <div className="mb-3">
                     <label for="password" className="form-label text-light">Mot de passe</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" name="password"/>
+                    <input type="password" className="form-control" id="password" name="password"/>
                 </div>
                 <div className="mb-3 form-check">
-                    <input type="stayConnected" className="form-check-input text-light" id="stayConnected"/>
-                    <label className="form-check-label text-light" for="stayConnected" name="stayConnected">Resté connecté</label>
+                    <input type="checkbox" className="form-check-input text-light" id="stayConnected" name="stayConnected"/>
+                    <label className="form-check-label text-light" for="stayConnected" >Resté connecté</label>
                 </div>
                 <button type="submit" className="btn btn-primary">Connexion</button>
             </form>
