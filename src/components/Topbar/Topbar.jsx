@@ -1,31 +1,28 @@
 import React from 'react';
 import styled from "styled-components";
 import logo from '../../assets/img/logo_sousMonToit_Long.png'
-import colors from '../../utils/colors';
+import colors from '../../utils/styles/colors';
 
 const Container = styled.div`
     padding: 0;
     margin: 0;
     height: 80px;
+    border-bottom: 1px solid ${colors.backgroundSecondary};
 `
-
 const RowHeader = styled.div`
     margin: 0;
 `
-
 const Logo = styled.img`
     width: 275px;
     height: auto;
     margin-left: 150px;
 `
-
 const LinkCol = styled.div`
     padding: 0;
-    margin-top: 30px;
+    margin-top: 25px;
     margin-right: 7rem;
     text-align: right;
 `
-
 const ConnectLink = styled.a`
     font-size: 20px;
     color: ${colors.primary};

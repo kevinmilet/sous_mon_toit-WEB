@@ -5,7 +5,7 @@ import twitter from '../../assets/icons/twitter.png';
 import linkedin from '../../assets/icons/linkedin.png';
 import youtube from '../../assets/icons/youtube.png';
 import instagram from '../../assets/icons/instagram.png';
-import colors from "../../utils/colors";
+import colors from "../../utils/styles/colors";
 
 const Text = styled.p`
     color: ${colors.backgroundPrimary};
@@ -13,19 +13,16 @@ const Text = styled.p`
     margin-bottom: 2px;
     margin-left: 15px;
 `
-
 const SocialList = styled.ul`
     list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
 `
-
 const SocialItem = styled.li`
     float: left;
     padding-right: 20px;
 `
-
 const Logo = styled.img`
     width: 40px;
     height: 40px;
