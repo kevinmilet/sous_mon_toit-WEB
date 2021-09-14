@@ -2,21 +2,20 @@ import React from 'react';
 import './Footer.css'
 import NewsLetter from "./Newsletter";
 import Socials from "./Socials";
-import {Col, Container, Row} from "react-bootstrap";
 
 const Footer = () => {
     return (
         <footer>
-            <Container className="justify-content-around">
-                <Row className="rowFooter">
-                    <Col>
+            <div className="container-fluid justify-content-around">
+                <div className=" row rowFooter">
+                    <div className="col">
                         <NewsLetter/>
-                    </Col>
-                    <Col>
+                    </div>
+                    <div className="col">
                         <Socials className="socials"/>
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
             <div className="copyright">2021 Sous mon toit</div>
         </footer>
     );
