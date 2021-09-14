@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import colors from "../../utils/colors";
+import colors from "../../utils/styles/colors";
 
 const NewsletterLabel = styled.label`
     font-size: 16px;

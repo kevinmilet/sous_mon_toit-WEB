@@ -5,7 +5,7 @@ import twitter from '../../assets/icons/twitter.png';
 import linkedin from '../../assets/icons/linkedin.png';
 import youtube from '../../assets/icons/youtube.png';
 import instagram from '../../assets/icons/instagram.png';
-import colors from "../../utils/colors";
+import colors from "../../utils/styles/colors";
 
 const Text = styled.p`
     color: ${colors.backgroundPrimary};

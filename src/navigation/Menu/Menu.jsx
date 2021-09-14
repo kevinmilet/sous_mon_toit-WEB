@@ -6,7 +6,7 @@ import sell from '../../assets/icons/sell_pink.png';
 import rent from '../../assets/icons/rent_pink.png';
 import agency from '../../assets/icons/agency_pink.png';
 import contact from '../../assets/icons/contact_pink.png';
-import colors from "../../utils/colors";
+import colors from "../../utils/styles/colors";
 
 const Navbar = styled.nav`
     padding: 0;

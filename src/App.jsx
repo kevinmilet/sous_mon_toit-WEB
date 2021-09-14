@@ -1,4 +1,3 @@
-import './styles/App.css';
 import React from 'react';
 import styled from "styled-components";
 import Home from "./screens/Home/Home";

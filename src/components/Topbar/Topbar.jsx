@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import logo from '../../assets/img/logo_sousMonToit_Long.png'
-import colors from '../../utils/colors';
+import colors from '../../utils/styles/colors';
 
 const Container = styled.div`
     padding: 0;

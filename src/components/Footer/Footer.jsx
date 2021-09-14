@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import NewsLetter from "./Newsletter";
 import Socials from "./Socials";
-import colors from "../../utils/colors";
+import colors from "../../utils/styles/colors";
 
 const FooterContainer = styled.footer`
     display: flex;
