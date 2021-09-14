@@ -186,14 +186,14 @@ const EstateCard = () => {
                             <Slider slides={Slides}/>
                         </div>
                     </SliderStyle>
-                    <div className="card-footer">
-                        <CardFooter>
+                    <CardFooter>
+                        <div className="card-footer">
                             <p className={"m-2"}>60240 Chaumont</p>
                             <p className={"m-2"}>
                                 À vendre maison 10 pièces 230 m<sup>2</sup>
                             </p>
-                        </CardFooter>
-                    </div>
+                        </div>
+                    </CardFooter>
                 </div>
             </div>
         </div>
