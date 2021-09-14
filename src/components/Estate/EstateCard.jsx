@@ -7,6 +7,45 @@ const CardImage = styled.img`
   width: 100%;
 `
 
+const FavoriteButton = styled.div`
+  .add-fav {
+    cursor: pointer;
+    transition: all .5s ease;
+    
+  .fa-heart {
+    font-size: 24px;
+    color: #666;
+    position: relative;
+    transition: all .5s ease-in-out;
+  }
+  .fa-plus-circle {
+    font-size: 7px;
+    color: #000;
+    background: #ffffff00;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 0px;
+    right: 2px;
+    line-height: 11px;
+    text-align: center;
+    -webkit-transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    transition: all .5s ease-in-out;
+  }
+  input[type="checkbox"] { 
+    position: absolute;
+    opacity: 0;
+    &:checked + .fa-heart {
+      color: #E85A70;
+      .fa-plus-circle {
+        opacity: 0;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
+}
+`
+
 const EstateCard = () => {
     return (
         <div>
@@ -14,10 +53,18 @@ const EstateCard = () => {
                 <div className="card-header">
                     <div className={"d-flex justify-content-between"}>
                         299 000 €
-                        <i className="far fa-heart"/>
+                        <FavoriteButton>
+                            <label className="add-fav">
+                                <input type="checkbox"/>
+                                <i className="fas fa-heart">
+                                    <i className="fas fa-plus-circle"/>
+                                </i>
+                            </label>
+                        </FavoriteButton>
                     </div>
                 </div>
-                <CardImage src={"https://i.ibb.co/4WN1sny/pexels-binyamin-mellish-106399.jpg"} alt="bien immobilier n° 1469" />
+                <CardImage src={"https://i.ibb.co/4WN1sny/pexels-binyamin-mellish-106399.jpg"}
+                           alt="bien immobilier n° 1469"/>
                 <div className="card-body">
                     {/* TODO slider */}
                 </div>
