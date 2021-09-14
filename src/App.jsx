@@ -1,13 +1,21 @@
-import './styles/App.css';
 import React from 'react';
 import Home from "./screens/Home/Home";
+import EstateCard from "./components/Estate/EstateCard";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 const App = () => {
-  return (
-      <div>
-        <Home/>
-      </div>
-  );
+    return (
+        <div>
+            <Router>
+                <Route exact path="/">
+                    <Home/>
+                </Route>
+                <Route exact path="/liste-des-biens">
+                    <EstateCard/>
+                </Route>
+            </Router>
+        </div>
+    );
 };
 
 export default App;
