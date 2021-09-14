@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 const CardImage = styled.img`
   height: auto;
   width: 100%;
-  align-self: center;
 `
 
 const EstateCard = () => {
@@ -13,7 +12,7 @@ const EstateCard = () => {
         <div>
             <div className="card text-center w-25">
                 <div className="card-header">
-                    <div className={"d-flex justify-content-around"}>
+                    <div className={"d-flex justify-content-between"}>
                         299 000 €
                         <i className="far fa-heart"/>
                     </div>
