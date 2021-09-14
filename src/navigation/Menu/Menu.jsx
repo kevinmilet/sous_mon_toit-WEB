@@ -18,39 +18,39 @@ const Menu = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item" ref="#">
+                        <li className="nav-item">
                             <div>
                                 <img src={home} className='menuIcons' alt="Accueil"/>
                             </div>
                             Accueil
                         </li>
-                        <li className="nav-item" ref="#">
+                        <li className="nav-item">
                             <div className="justify-content-center">
-                                <img src={buy} className='menuIcons' alt="Accueil"/>
+                                <img src={buy} className='menuIcons' alt="Acheter"/>
                             </div>
                             Acheter
                         </li>
-                        <li className="nav-item" ref="#">
+                        <li className="nav-item">
                             <div className="justify-content-center">
-                                <img src={sell} className='menuIcons' alt="Accueil"/>
+                                <img src={sell} className='menuIcons' alt="Vendre"/>
                             </div>
                             Vendre
                         </li>
-                        <li className="nav-item" ref="#">
+                        <li className="nav-item">
                             <div className="justify-content-center">
-                                <img src={rent} className='menuIcons' alt="Accueil"/>
+                                <img src={rent} className='menuIcons' alt="Louer"/>
                             </div>
                             Louer
                         </li>
-                        <li className="nav-item" ref="#">
+                        <li className="nav-item">
                             <div className="justify-content-center">
-                                <img src={agency} className='menuIcons' alt="Accueil"/>
+                                <img src={agency} className='menuIcons' alt="Notre agence"/>
                             </div>
                             Notre agence
                         </li>
-                        <li className="nav-item" ref="#">
+                        <li className="nav-item">
                             <div>
-                                <img src={contact} className='menuIcons' alt="Accueil"/>
+                                <img src={contact} className='menuIcons' alt="Contact"/>
                             </div>
                             Nous contacter
                         </li>
