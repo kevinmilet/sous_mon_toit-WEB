@@ -1,12 +1,11 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
 import './MainHome.css'
 
 const MainHome = () => {
     return (
-        <Container fluid className="main">
+        <div className="container-fluid main">
 
-        </Container>
+        </div>
     );
 };
 
