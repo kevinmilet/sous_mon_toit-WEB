@@ -11,11 +11,11 @@ const Socials = () => {
         <div>
             <p>Suivez-nous sur</p>
             <ul>
-                <li><a href="#"><img src={facebook} alt="Logo Facebook"/></a></li>
-                <li><a href="#"><img src={twitter} alt="Logo Facebook"/></a></li>
-                <li><a href="#"><img src={linkedin} alt="Logo Facebook"/></a></li>
-                <li><a href="#"><img src={youtube} alt="Logo Facebook"/></a></li>
-                <li><a href="#"><img src={instagram} alt="Logo Facebook"/></a></li>
+                <li><a href="https://facebook.fr"><img src={facebook} alt="Logo Facebook"/></a></li>
+                <li><a href="https://twitter.fr"><img src={twitter} alt="Logo Twitter"/></a></li>
+                <li><a href="https://linkedin.fr"><img src={linkedin} alt="Logo Linkedin"/></a></li>
+                <li><a href="https://youtube.fr"><img src={youtube} alt="Logo Youtube"/></a></li>
+                <li><a href="https://instagram.fr"><img src={instagram} alt="Logo Instagram"/></a></li>
             </ul>
         </div>
     );
