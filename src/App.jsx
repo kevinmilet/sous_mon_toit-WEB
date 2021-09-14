@@ -1,4 +1,3 @@
-import './styles/App.css';
 import React from 'react';
 import Home from "./screens/Home/Home";
 import EstateCard from "./components/Estate/EstateCard";
