@@ -13,6 +13,7 @@ const NewsletterInput = styled.input`
     height: 40px;
     border: none;
     border-radius: 50px;
+    text-align: center;
     &::placeholder {
         text-align: center;
        }
