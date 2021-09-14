@@ -1,22 +1,57 @@
 import React from 'react';
+import styled from "styled-components";
 import facebook from '../../assets/icons/facebook.png';
 import twitter from '../../assets/icons/twitter.png';
 import linkedin from '../../assets/icons/linkedin.png';
 import youtube from '../../assets/icons/youtube.png';
 import instagram from '../../assets/icons/instagram.png';
-import './Socials.css';
+import colors from "../../utils/colors";
+
+const Text = styled.p`
+    color: ${colors.backgroundPrimary};
+    font-size: 16px;
+    margin-bottom: 2px;
+    margin-left: 15px;
+`
+
+const SocialList = styled.ul`
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+`
+
+const SocialItem = styled.li`
+    float: left;
+    padding-right: 20px;
+`
+
+const Logo = styled.img`
+    width: 40px;
+    height: 40px;
+`
 
 const Socials = () => {
     return (
         <div>
-            <p>Suivez-nous sur</p>
-            <ul>
-                <li><a href="https://facebook.fr"><img src={facebook} alt="Logo Facebook"/></a></li>
-                <li><a href="https://twitter.fr"><img src={twitter} alt="Logo Twitter"/></a></li>
-                <li><a href="https://linkedin.fr"><img src={linkedin} alt="Logo Linkedin"/></a></li>
-                <li><a href="https://youtube.fr"><img src={youtube} alt="Logo Youtube"/></a></li>
-                <li><a href="https://instagram.fr"><img src={instagram} alt="Logo Instagram"/></a></li>
-            </ul>
+            <Text>Suivez-nous sur</Text>
+            <SocialList>
+                <SocialItem>
+                    <a href="https://facebook.fr" target="_blank" rel="noreferrer"><Logo src={facebook} alt="Logo Facebook"/></a>
+                </SocialItem>
+                <SocialItem>
+                    <a href="https://twitter.fr" target="_blank" rel="noreferrer"><Logo src={twitter} alt="Logo Twitter"/></a>
+                </SocialItem>
+                <SocialItem>
+                    <a href="https://linkedin.fr" target="_blank" rel="noreferrer"><Logo src={linkedin} alt="Logo Linkedin"/></a>
+                </SocialItem>
+                <SocialItem>
+                    <a href="https://youtube.fr" target="_blank" rel="noreferrer"><Logo src={youtube} alt="Logo Youtube"/></a>
+                </SocialItem>
+                <SocialItem>
+                    <a href="https://instagram.fr" target="_blank" rel="noreferrer"><Logo src={instagram} alt="Logo Instagram"/></a>
+                </SocialItem>
+            </SocialList>
         </div>
     );
 };
