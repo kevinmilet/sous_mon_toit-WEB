@@ -1,17 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
 import Header from "../../components/Header/Header";
-
-const HomeWrapper = styled.div`
-    // display: flex;
-    // justify-content: center;
-`
+import Menu from "../../navigation/Menu/Menu";
+import Footer from "../../components/Footer/Footer";
+import MainHome from "../../components/MainHome/MainHome";
 
 const Home = () => {
     return (
-        <HomeWrapper>
+        <div>
             <Header/>
-        </HomeWrapper>
+            <Menu/>
+            <MainHome/>
+            <Footer/>
+        </div>
     );
 };
 

@@ -1,0 +1,19 @@
+.newsLetterText {
+    font-family: Spartan, sans-serif;
+    font-size: 16px;
+    color: #FFF;
+    margin-left: 20px;
+    margin-bottom: 2px!important;
+}
+
+.inputText {
+    font-family: Spartan, sans-serif;
+    width: 320px!important;
+    height: 40px!important;
+    border: none!important;
+    border-radius: 50px!important;
+}
+
+.inputText::placeholder {
+    text-align: center;
+}

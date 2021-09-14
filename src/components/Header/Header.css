@@ -1,0 +1,32 @@
+.container-fluid {
+    padding: 0!important;
+    margin: 0!important;
+    height: 80px;
+}
+
+.rowHeader {
+    margin: 0!important;
+}
+.connectLink {
+    font-family: Spartan, sans-serif;
+    font-size: 20px;
+    color: #707070!important;
+    text-decoration: none;
+}
+
+.connectLink:hover {
+     color: #E85A70!important;
+}
+
+.logo {
+    width: 275px;
+    height: auto;
+    margin-left: 150px;
+}
+
+.linkCol {
+    padding: 0!important;
+    margin-top: 30px !important;
+    margin-right: 7rem;
+    text-align: right;
+}
