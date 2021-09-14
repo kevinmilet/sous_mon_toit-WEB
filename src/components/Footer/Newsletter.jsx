@@ -1,15 +1,14 @@
 import React from 'react';
-import {Form} from "react-bootstrap";
 import './Newsletter.css'
 
 const NewsLetter = () => {
     return (
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="newsLetterText">Inscription à la newsletter</Form.Label>
-                <Form.Control type="email" placeholder="Adresse email" className="inputText"/>
-            </Form.Group>
-        </Form>
+        <form>
+            <div className="mb-3">
+                <label className="form-label">Inscription à la newsletter</label>
+                <input type="email" placeholder="Adresse email" className="form-control inputText" name="newsletterEmail" id="newsletterEmail"/>
+            </div>
+        </form>
     );
 };
 

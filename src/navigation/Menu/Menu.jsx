@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container, Nav, Navbar} from "react-bootstrap";
 import './Menu.css';
 import home from '../../assets/icons/home_pink.png';
 import buy from '../../assets/icons/buy_pink.png';
@@ -10,51 +9,55 @@ import contact from '../../assets/icons/contact_pink.png';
 
 const Menu = () => {
     return (
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-            <Container fluid>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto menu">
-                        <Nav.Link href="#" className="menuLink">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"/>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item" ref="#">
                             <div>
                                 <img src={home} className='menuIcons' alt="Accueil"/>
                             </div>
                             Accueil
-                        </Nav.Link>
-                        <Nav.Link href="#" className="menuLink">
+                        </li>
+                        <li className="nav-item" ref="#">
                             <div className="justify-content-center">
                                 <img src={buy} className='menuIcons' alt="Accueil"/>
                             </div>
                             Acheter
-                        </Nav.Link>
-                        <Nav.Link href="#" className="menuLink">
+                        </li>
+                        <li className="nav-item" ref="#">
                             <div className="justify-content-center">
                                 <img src={sell} className='menuIcons' alt="Accueil"/>
                             </div>
                             Vendre
-                        </Nav.Link>
-                        <Nav.Link href="#" className="menuLink">
+                        </li>
+                        <li className="nav-item" ref="#">
                             <div className="justify-content-center">
                                 <img src={rent} className='menuIcons' alt="Accueil"/>
                             </div>
                             Louer
-                        </Nav.Link>
-                        <Nav.Link href="#" className="menuLink">
+                        </li>
+                        <li className="nav-item" ref="#">
                             <div className="justify-content-center">
                                 <img src={agency} className='menuIcons' alt="Accueil"/>
                             </div>
                             Notre agence
-                        </Nav.Link>
-                        <Nav.Link href="#" className="menuLink">
+                        </li>
+                        <li className="nav-item" ref="#">
                             <div>
                                 <img src={contact} className='menuIcons' alt="Accueil"/>
                             </div>
                             Nous contacter
-                        </Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     );
 };
 
