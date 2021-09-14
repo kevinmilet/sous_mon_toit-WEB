@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
-import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 
 const EstateCard = () => {
     return (
@@ -12,7 +11,7 @@ const EstateCard = () => {
                 </li>
             </ul>
 
-            <Container>
+            <div className={"container"}>
                 <div className={"card w-25"}>
                     <div className={"card-top"}>
                         <img src="/images/heart.png" alt="favoris"/>
@@ -29,7 +28,7 @@ const EstateCard = () => {
                         </p>
                     </div>
                 </div>
-            </Container>
+            </div>
         </div>
     );
 };
