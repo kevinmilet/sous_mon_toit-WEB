@@ -19,12 +19,15 @@ const NewsletterInput = styled.input`
 `
 const NewsLetter = () => {
     return (
-        <form>
-            <div className="mb-3">
-                <NewsletterLabel className="form-label">Inscription à la newsletter</NewsletterLabel>
-                <NewsletterInput type="email" placeholder="Adresse email" className="form-control inputText" name="newsletterEmail" id="newsletterEmail"/>
-            </div>
-        </form>
+        <div>
+            <form>
+                <div className="mb-3">
+                    <NewsletterLabel className="form-label">Inscription à la newsletter</NewsletterLabel>
+                    <NewsletterInput type="email" placeholder="Adresse email" className="form-control inputText"
+                                     name="newsletterEmail" id="newsletterEmail"/>
+                </div>
+            </form>
+        </div>
     );
 };
 

@@ -5,18 +5,20 @@ import Socials from "./Socials";
 import colors from "../../utils/colors";
 
 const FooterContainer = styled.footer`
+    display: flex;
+    margin-top: 50px;
     width: 100%;
     height: 200px;
+    flex-direction: column;
+    justify-content: center;
     background-color: ${colors.primary};
-    margin-top: 50px;
 `
 const RowFooter = styled.div`
-    padding-top: 50px;
+    margin: 0 auto;
 `
 const SocialsCol = styled.div`
-    margin-left: 19em;
+    margin: 0 auto;
 `
-
 const Copyright = styled.p`
     color: ${colors.backgroundPrimary};
     font-size: 18px;
@@ -27,17 +29,18 @@ const Copyright = styled.p`
 const Footer = () => {
     return (
         <FooterContainer>
-            <div className="container-fluid justify-content-around">
+            <div className="container-fluid">
                 <RowFooter className="row">
-                    <div className="col">
+                    <div className="col-12 col-md-6 d-flex justify-content-center">
                         <NewsLetter/>
                     </div>
-                    <SocialsCol className="col">
+
+                    <SocialsCol className="col-12 col-md-6 d-flex justify-content-center">
                         <Socials className="socials"/>
                     </SocialsCol>
+                    <Copyright>2021 Sous mon toit</Copyright>
                 </RowFooter>
             </div>
-            <Copyright>2021 Sous mon toit</Copyright>
         </FooterContainer>
     );
 };

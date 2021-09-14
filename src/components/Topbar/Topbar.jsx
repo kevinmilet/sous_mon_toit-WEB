@@ -7,6 +7,7 @@ const Container = styled.div`
     padding: 0;
     margin: 0;
     height: 80px;
+    border-bottom: 1px solid ${colors.backgroundSecondary};
 `
 const RowHeader = styled.div`
     margin: 0;
@@ -18,7 +19,7 @@ const Logo = styled.img`
 `
 const LinkCol = styled.div`
     padding: 0;
-    margin-top: 30px;
+    margin-top: 25px;
     margin-right: 7rem;
     text-align: right;
 `

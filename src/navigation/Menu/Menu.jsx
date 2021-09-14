@@ -15,12 +15,18 @@ const Container = styled.div`
     background-color: ${colors.backgroundPrimary};
     margin: 0 auto;
     height: 80px;
+    &.bottom {
+        -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        -moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.16);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
+    }
 `
 const MenuMenuItemst = styled.ul`
     margin: 0 auto;
 `
 const MenuItem = styled.li`
-    margin: 0 25px;
+    margin: 0 35px;
 `
 const MenuMenuItemnk = styled.a`
     color: ${colors.secondary};
@@ -33,14 +39,14 @@ const MenuMenuItemnk = styled.a`
     }
 `
 const Icons = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 `
 
 const Menu = () => {
     return (
         <Navbar className="navbar navbar-expand-lg navbar-MenuItemght bg-MenuItemght">
-            <Container className="container-fluid">
+            <Container className="container-fluid bottom">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">

@@ -6,10 +6,10 @@ const Main = styled.div`
     width: 100%;
     height: 730px;
     background: no-repeat center;
-    margin-top: 15px;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    0px 2px 5px 0px rgba(50, 50, 50, 0.75);
-    box-shadow:         0px 2px 5px 0px rgba(50, 50, 50, 0.75);
+    
+    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow:         0px 3px 6px rgba(0, 0, 0, 0.16);
 `
 
 const MainHome = () => {
