@@ -1,20 +1,22 @@
+import './styles/App.css';
 import React from 'react';
-import styled from "styled-components";
 import Home from "./screens/Home/Home";
-
-const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-`
+import EstateCard from "./components/Estate/EstateCard";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 const App = () => {
-  return (
-      <Container className="container-fluid">
-        <Home/>
-      </Container>
-  );
+    return (
+        <div>
+            <Router>
+                <Route exact path="/">
+                    <Home/>
+                </Route>
+                <Route exact path="/liste-des-biens">
+                    <EstateCard/>
+                </Route>
+            </Router>
+        </div>
+    );
 };
 
 export default App;
