@@ -13,19 +13,16 @@ const Text = styled.p`
     margin-bottom: 2px;
     margin-left: 15px;
 `
-
 const SocialList = styled.ul`
     list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
 `
-
 const SocialItem = styled.li`
     float: left;
     padding-right: 20px;
 `
-
 const Logo = styled.img`
     width: 40px;
     height: 40px;

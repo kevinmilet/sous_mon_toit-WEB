@@ -8,7 +8,6 @@ const NewsletterLabel = styled.label`
     margin-left: 20px;
     margin-bottom: 2px;
 `
-
 const NewsletterInput = styled.input`
     width: 320px;
     height: 40px;
@@ -18,7 +17,6 @@ const NewsletterInput = styled.input`
         text-align: center;
        }
 `
-
 const NewsLetter = () => {
     return (
         <form>

@@ -11,21 +11,17 @@ import colors from "../../utils/colors";
 const Navbar = styled.nav`
     padding: 0;
 `
-
 const Container = styled.div`
     background-color: ${colors.backgroundPrimary};
     margin: 0 auto;
     height: 80px;
 `
-
 const MenuMenuItemst = styled.ul`
     margin: 0 auto;
 `
-
 const MenuItem = styled.li`
     margin: 0 25px;
 `
-
 const MenuMenuItemnk = styled.a`
     color: ${colors.secondary};
     font-size: 14px;

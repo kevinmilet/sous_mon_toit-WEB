@@ -8,24 +8,20 @@ const Container = styled.div`
     margin: 0;
     height: 80px;
 `
-
 const RowHeader = styled.div`
     margin: 0;
 `
-
 const Logo = styled.img`
     width: 275px;
     height: auto;
     margin-left: 150px;
 `
-
 const LinkCol = styled.div`
     padding: 0;
     margin-top: 30px;
     margin-right: 7rem;
     text-align: right;
 `
-
 const ConnectLink = styled.a`
     font-size: 20px;
     color: ${colors.primary};
