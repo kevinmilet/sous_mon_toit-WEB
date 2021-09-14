@@ -14,22 +14,23 @@ const FavoriteButton = styled.div`
     
   .fa-heart {
     font-size: 24px;
-    color: #666;
+    color: #454552;
     position: relative;
     transition: all .5s ease-in-out;
   }
   .fa-plus-circle {
-    font-size: 7px;
-    color: #000;
-    background: #ffffff00;
+    font-size: 9px;
+    color: #454552;
+    background: #ffffff;
     border-radius: 100%;
     position: absolute;
-    bottom: 0px;
+    bottom: 5px;
     right: 2px;
-    line-height: 11px;
+    line-height: 9px;
     text-align: center;
     -webkit-transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
   }
   input[type="checkbox"] { 
