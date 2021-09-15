@@ -33,7 +33,6 @@ const SearchBar = () => {
     const [estatesTypes, setEstatesTypes] = useState({});
     useEffect(() => {
         axios.get(URL).then(response => {
-            console.log(response.data);
             setEstatesTypes(response.data);
         }).catch(error => {
             console.log(error.message)
@@ -51,7 +50,7 @@ const SearchBar = () => {
                 <div className="col">
                     <Type name="estateType" id="estateType">
                         <option value="">Type de bien</option>
-                        {!loading && estatesTypes.map(item => (<option value={item.id}>{item.estate_type_name}</option>))}
+                        {!loading && estatesTypes.map(item => (<option value={item.id} key={item.id}>{item.estate_type_name}</option>))}
                     </Type>
                 </div>
                 <div className="col">
