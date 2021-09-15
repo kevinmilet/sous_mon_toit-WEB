@@ -19,6 +19,7 @@ const Sector = styled.input`
     height: 65px;
     background: transparent;
     border: none;
+    border-right: 2px solid ${colors.backgroundPrimary};
     text-align: center;
     color: ${colors.backgroundPrimary};
     font-weight: bold;
@@ -36,6 +37,7 @@ const Sector = styled.input`
 `
 const SelectDiv = styled.div`
     position: relative;
+    border-right: 2px solid ${colors.backgroundPrimary};
     &:after {
         content: '>';
         font-family: "Consolas", monospace;
@@ -143,17 +145,17 @@ const SearchBar = () => {
     return (
         <form>
             <SearchContainer className="row">
-                <div className="col">
+                <div className="col-12 col-md-3">
                     <Sector type="text" placeholder="Secteur recherché" name="estateSector" id="estateSector"/>
                 </div>
-                <SelectDiv className="col">
+                <SelectDiv className="col-12 col-md-3">
                     <Select name="estateType" id="estateType" className="form-select">
                         <Option value="">Type de bien</Option>
                         {!loading && estatesTypes.map(item => (
                             <Option value={item.id} key={item.id}>{item.estate_type_name}</Option>))}
                     </Select>
                 </SelectDiv>
-                <SelectDiv className="col">
+                <SelectDiv className="col-12 col-md-3">
                     <Select name="nbRooms" id="nbRooms" className="form-select">
                         <Option value="">Nombre de pièces</Option>
                         <Option value="1">1</Option>
@@ -163,7 +165,7 @@ const SearchBar = () => {
                         <Option value="5">5+</Option>
                     </Select>
                 </SelectDiv>
-                <div className="col">
+                <div className="col-12 col-md-3">
                     <Budget type="text" placeholder="Budget"/>
                 </div>
             </SearchContainer>
