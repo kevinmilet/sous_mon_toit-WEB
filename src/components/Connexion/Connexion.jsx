@@ -18,6 +18,7 @@ const Connexion = () => {
                     <label className="form-check-label text-light" for="stayConnected" >Resté connecté</label>
                 </div>
                 <button type="submit" className="btn btn-primary">Connexion</button>
+                
             </form>
         </div>
     );
