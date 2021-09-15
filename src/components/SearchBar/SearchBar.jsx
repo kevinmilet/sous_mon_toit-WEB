@@ -4,7 +4,7 @@ import colors from "../../utils/styles/colors";
 import axios from "axios";
 import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
 import ApiRoutes from "../../utils/const/ApiRoutes";
-import Switch from "react-switch";
+import Switch from "../Switch/Switch";
 
 const SearchContainer = styled.div`
     width: 1000px;
@@ -127,10 +127,8 @@ const SearchBar = () => {
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
 
+    //false = 'Acheter', true = 'Louer'
     const [checked, setChecked] = useState(false);
-    const handleChange = nextChecked => {
-        setChecked(nextChecked);
-    };
 
     useEffect(() => {
         axios.get(API_URL + ApiRoutes.estates_types).then(response => {
@@ -149,15 +147,15 @@ const SearchBar = () => {
                     <Sector type="text" placeholder="Secteur recherché" name="estateSector" id="estateSector"/>
                 </div>
                 <SelectDiv className="col">
-                    <Select name="estateType" id="estateType" class="form-select">
-                        <Option selected>Type de bien</Option>
+                    <Select name="estateType" id="estateType" className="form-select">
+                        <Option value="">Type de bien</Option>
                         {!loading && estatesTypes.map(item => (
                             <Option value={item.id} key={item.id}>{item.estate_type_name}</Option>))}
                     </Select>
                 </SelectDiv>
                 <SelectDiv className="col">
-                    <Select name="nbRooms" id="nbRooms" class="form-select">
-                        <Option selected>Nombre de pièces</Option>
+                    <Select name="nbRooms" id="nbRooms" className="form-select">
+                        <Option value="">Nombre de pièces</Option>
                         <Option value="1">1</Option>
                         <Option value="2">2</Option>
                         <Option value="3">3</Option>
@@ -172,9 +170,8 @@ const SearchBar = () => {
             <div className="row">
                 <div className="col d-flex justify-content-center">
                     <Switch
-                        onChange={handleChange}
-                        checked={checked}
-                        className="react-switch"
+                        isOn={checked}
+                        handleChange={() => setChecked(!checked)}
                     />
                 </div>
                 <div className="col d-flex justify-content-center">
@@ -182,7 +179,8 @@ const SearchBar = () => {
                 </div>
             </div>
         </form>
-    );
+    )
+        ;
 };
 
 SearchBar.propTypes = {}
