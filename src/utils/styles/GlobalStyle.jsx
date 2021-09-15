@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components'
+import colors from "./colors";
 
 const StyledGlobalStyle = createGlobalStyle`
     * {
@@ -8,6 +9,7 @@ const StyledGlobalStyle = createGlobalStyle`
     html, body {
         margin: 0;
         padding: 0;
+        background-color: ${colors.backgroundSecondary};
     }
 `
 
