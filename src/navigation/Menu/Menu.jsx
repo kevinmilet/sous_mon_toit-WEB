@@ -55,7 +55,7 @@ const Menu = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <MenuMenuItemst className="navbar-nav me-auto mb-2 mb-lg-0">
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="#">
+                            <MenuMenuItemnk href="/">
                                 <div>
                                     <Icons src={home} alt="Accueil"/>
                                 </div>
@@ -87,7 +87,7 @@ const Menu = () => {
                             </MenuMenuItemnk>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="#">
+                            <MenuMenuItemnk href="/our-agency">
                                 <div className="justify-content-center">
                                     <Icons src={agency} alt="Notre agence"/>
                                 </div>

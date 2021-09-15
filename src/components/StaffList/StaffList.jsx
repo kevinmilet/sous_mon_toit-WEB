@@ -40,10 +40,14 @@ useEffect(()=>{
         
         <div className="container ">
             <div className="row">
+                <div className="my-3 text-center">
+                    <h1>Notre équipe</h1>
+                </div>
+                
                 {!loading && staffData.map(item => (
 
-                    <div className="card m-auto col-3" >
-                        <img src={item.avatar} className="card-img-top img-fluid" alt="..." />
+                    <div className="card m-auto col-2" >
+                        <img src={item.avatar} className="card-img-top img-fluid" alt="Photo staff" />
                         <div className="card-body">
                             <h5 className="card-title">{item.firstname} {item.lastname}</h5>
                             <p className="card-text text-dark"></p>
