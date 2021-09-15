@@ -98,7 +98,8 @@ const SliderStyle = styled.div`
     }
 `
 
-{/* tableau des images */}
+{/* tableau des images */
+}
 const Slides = [
     {
         image:
@@ -182,34 +183,43 @@ const EstateCard = () => {
     }
     return (
         <div>
-            <div className="container my-5">
-                <div className="card text-center w-25">
-                    <div className="card-header">
-                        <div className={"d-flex justify-content-between"}>
-                            {EstateData[0].price} €
-                            <FavoriteButton>
-                                <label className="add-fav">
-                                    <input type="checkbox"/>
-                                    <i className="fas fa-heart">
-                                        <i className="fas fa-plus-circle"/>
-                                    </i>
-                                </label>
-                            </FavoriteButton>
-                        </div>
-                    </div>
-                    <SliderStyle>
-                        <div className="card-body position-relative">
-                            <Slider slides={Slides}/>
-                        </div>
-                    </SliderStyle>
-                    <CardFooter>
-                        <div className="card-footer">
-                            <p className={"m-2"}>60240 Chaumont</p>
-                            <p className={"m-2"}>
-                                À vendre maison 10 pièces 230 m<sup>2</sup>
-                            </p>
-                        </div>
-                    </CardFooter>
+            <div className="container">
+                <div className="row">
+                    {EstateData.map((item, i) => {
+                            return (
+                                <div key={i}>
+                                    <div className="float-end my-3 card text-center w-25">
+                                        <div className="card-header">
+                                            <div className={"d-flex justify-content-between"}>
+                                                {item.price} €
+                                                <FavoriteButton>
+                                                    <label className="add-fav">
+                                                        <input type="checkbox"/>
+                                                        <i className="fas fa-heart">
+                                                            <i className="fas fa-plus-circle"/>
+                                                        </i>
+                                                    </label>
+                                                </FavoriteButton>
+                                            </div>
+                                        </div>
+                                        <SliderStyle>
+                                            <div className="card-body position-relative">
+                                                <Slider slides={Slides}/>
+                                            </div>
+                                        </SliderStyle>
+                                        <CardFooter>
+                                            <div className="card-footer">
+                                                <p className={"m-2"}>{item.zipcode} {item.city}</p>
+                                                <p className={"m-2"}>
+                                                    À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
+                                                </p>
+                                            </div>
+                                        </CardFooter>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    )}
                 </div>
             </div>
         </div>
