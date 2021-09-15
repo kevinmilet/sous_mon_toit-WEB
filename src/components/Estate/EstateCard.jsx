@@ -1,6 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
+import axios from "axios";
+import React, {useState, useEffect} from 'react';
 
 const FavoriteButton = styled.div`
   .add-fav {
@@ -164,13 +164,29 @@ const Slider = ({slides}) => {
 };
 
 const EstateCard = () => {
+    const [EstateData, setEstateData] = useState({})
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        axios.get("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/estates").then(res => {
+            setEstateData(res.data)
+        }).catch(error => {
+            console.log(error.message)
+        }).finally(() => {
+            setLoading(false)
+        })
+    }, [])
+
+    if (loading) {
+        return <p>Chargement en cours</p>
+    }
     return (
         <div>
             <div className="container my-5">
                 <div className="card text-center w-25">
                     <div className="card-header">
                         <div className={"d-flex justify-content-between"}>
-                            299 000 €
+                            {EstateData[0].price} €
                             <FavoriteButton>
                                 <label className="add-fav">
                                     <input type="checkbox"/>
