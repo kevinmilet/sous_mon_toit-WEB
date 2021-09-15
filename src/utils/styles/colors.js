@@ -3,7 +3,7 @@ const colors = {
     secondaryBtn: '#4EA1D5', // bleu
     primary: '#454552', // gris foncé
     secondary: '#E85A70', // rose
-    backgroundPrimary: '#FFF', // gris très clair
+    backgroundPrimary: '#FFF', // blanc
     backgroundSecondary: '#EAEAEA' // gris clair
 }
 

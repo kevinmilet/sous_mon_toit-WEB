@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Contact.css'
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
+import axios from 'axios';
 
 const ContactForm = styled.form`
     background-color: ${colors.backgroundSecondary};
@@ -17,28 +18,47 @@ const ContactBtn = styled.button`
     color: #fff;
 `
 const Contact = () => {
+
+    const [userData, setUserData] = useState({})
+
+    axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
+    useEffect(()=>{
+        if(localStorage["token"] != null  ){
+
+            axios.post("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/api/c/me")
+            .then(res=>{
+                console.log(res.data)
+                setUserData(res.data);
+            }).catch(error=>{
+                console.log(error.message);
+            })
+        }
+    },[])
+
+    console.log(localStorage["token"]);
+
     return (
         <div className="container col-md-6 mx-auto mt-5">
             <ContactForm className="p-4 rounded row">
                 <ContactH1 className="text-center">Nous contactez</ContactH1>
-                <p className="text-dark">Merci de compléter le formulaire ci-après. Vous serez recontacté par mail.</p>
+                <p className="text-dark">Merci de compléter le formulaire ci-après. Vous serez recontacté(e) par mail.</p>
                 <p className="text-dark">Si votre demande concerne des références particulières, merci de les indiquer.</p>
                 <div className="col-md-6">
                     <div className="mb-3">
                         <ContactLabel htmlFor="firstname" className="form-label">Prénom</ContactLabel>
-                        <input type="text" className="form-control" id="firstname" name="firstname" required />
+                        <input type="text" className="form-control" id="firstname" value={userData.firstname}  name="firstname" required />
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="lastname" className="form-label">Nom</ContactLabel>
-                        <input type="text" className="form-control" id="lastname" name="lastname" required />
+                        <input type="text" className="form-control" id="lastname" value={userData.lastname} name="lastname" required />
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="mail" className="form-label">Adresse mail</ContactLabel>
-                        <input type="email" className="form-control" id="mail" name="mail" required />
+                        <input type="email" className="form-control" id="mail" value={userData.mail} name="mail" required />
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="tel" className="form-label">Téléphone</ContactLabel>
-                        <input type="tel" className="form-control" id="tel" name="tel"/>
+                        <input type="tel" className="form-control" id="tel" value={userData.phone} name="tel"/>
                     </div>
                 </div>
                 <div className="col-md-6">
