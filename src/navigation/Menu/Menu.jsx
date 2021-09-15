@@ -42,12 +42,14 @@ const Menu = () => {
                             </div>
                             Louer
                         </li>
-                        <li className="nav-item">
-                            <div className="justify-content-center">
-                                <img src={agency} className='menuIcons' alt="Notre agence"/>
-                            </div>
-                            Notre agence
-                        </li>
+                        <a href="/our-agency">
+                            <li className="nav-item" >
+                                <div className="justify-content-center">
+                                    <img src={agency} href="/our-agency" className='menuIcons' alt="Notre agence"/>
+                                </div>
+                                Notre agence
+                            </li>
+                        </a>
                         <li className="nav-item">
                             <div>
                                 <img src={contact} className='menuIcons' alt="Contact"/>
