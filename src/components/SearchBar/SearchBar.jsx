@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled from "styled-components";
 import colors from "../../utils/styles/colors";
 import axios from "axios";
+import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import ApiRoutes from "../../utils/const/ApiRoutes";
 
-const URL = 'http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/estates_types';
+
 
 const SearchContainer = styled.div`
     width: 1100px;
@@ -29,10 +31,11 @@ const Type = styled.select`
 `
 
 const SearchBar = () => {
-    const [loading, setLoading] = useState(true)
+    const API_URL = useContext(ApiUrlsContext).apiUrl;
+    const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
     useEffect(() => {
-        axios.get(URL).then(response => {
+        axios.get(API_URL+ApiRoutes.estates_types).then(response => {
             setEstatesTypes(response.data);
         }).catch(error => {
             console.log(error.message)
