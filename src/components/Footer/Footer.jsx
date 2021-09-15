@@ -28,8 +28,8 @@ const Copyright = styled.p`
 
 const Footer = () => {
     return (
-        <FooterContainer>
-            <div className="container-fluid">
+        <FooterContainer className="bottom-0">
+            <div className="container-fluid ">
                 <RowFooter className="row">
                     <div className="col-12 col-md-6 d-flex justify-content-center">
                         <NewsLetter/>
