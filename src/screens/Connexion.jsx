@@ -6,9 +6,9 @@ import Header from "../components/Header/Header";
 const ConnexionView = () => {
     return (
         <div>
-            
+            <Header/>
             <Connexion />
-            
+            <Footer/>
         </div>
     );
 };

@@ -6,9 +6,9 @@ import Header from "../components/Header/Header";
 const ContactView = () => {
     return (
         <div>
-            
+            <Header/>
             <Contact />
-            
+            <Footer/>
         </div>
     );
 };

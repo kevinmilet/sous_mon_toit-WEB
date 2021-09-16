@@ -63,7 +63,7 @@ const Connexion = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Connexion</button>
                 
-            </form>
+            </ConnexionForm>
         </div>
     );
 };
