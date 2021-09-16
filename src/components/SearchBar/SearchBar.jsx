@@ -126,6 +126,8 @@ const SearchBtn = styled.button`
 
 const SearchBar = () => {
     const API_URL = useContext(ApiUrlsContext).apiUrl;
+    console.log(API_URL);
+
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
 

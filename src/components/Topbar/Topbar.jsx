@@ -43,6 +43,7 @@ const Topbar = () => {
                 <LinkCol className="col linkCol">
                     {/*<Link href="#" className="connectLink">Se connecter</Link>*/}
                     <ConnectLink href="#" className="connectLink">Se connecter</ConnectLink>
+                    <a href="/my-account" class="btn btn-primary">Mon compte</a>
                 </LinkCol>
             </RowHeader>
         </Container>
