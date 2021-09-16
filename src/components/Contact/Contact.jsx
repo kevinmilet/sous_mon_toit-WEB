@@ -20,10 +20,7 @@ const ContactBtn = styled.button`
 `
 const Contact = () => {
 
-    const [userData, setUserData] = useState({
-        firstname: undefined,
-        lastname: undefined
-    })
+    const [userData, setUserData] = useState({})
     const API_URL = useContext(ApiUrlsContext).apiUrl;
 
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}

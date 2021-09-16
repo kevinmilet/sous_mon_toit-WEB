@@ -5,6 +5,7 @@ import axios from "axios";
 import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import Switch from "../Switch/Switch";
+import PropTypes from "prop-types";
 
 const SearchContainer = styled.div`
     width: 1000px;
@@ -185,6 +186,11 @@ const SearchBar = () => {
         ;
 };
 
-SearchBar.propTypes = {}
+SearchBar.propTypes = {
+    estates_types_name: PropTypes.string.isRequired
+}
 
+SearchBar.defaultProps = {
+    estates_types_name: ''
+}
 export default SearchBar;

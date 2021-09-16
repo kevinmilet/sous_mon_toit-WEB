@@ -1,8 +1,10 @@
 import React, {useContext} from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import DefaultPicture from '../../assets/img/user_defualt.png';
 import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
 import ApiRoutes from "../../utils/const/ApiRoutes";
+import PropTypes from "prop-types";
 
 const Agency = () => {
 
@@ -78,5 +80,17 @@ const Agency = () => {
         </div>
     );
 };
+
+Agency.propTypes = {
+    avatar: PropTypes.string.isRequired,
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+}
+
+Agency.defaultProps = {
+    picture: DefaultPicture,
+    firstname: '',
+    lastname: ''
+}
 
 export default Agency;
