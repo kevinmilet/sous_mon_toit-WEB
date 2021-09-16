@@ -141,7 +141,8 @@ const SliderStyle = styled.div`
     }
 `
 
-{/* tableau des images */}
+{/* tableau des images */
+}
 const Slides = [
     {
         image:
@@ -236,7 +237,7 @@ const EstateCard = () => {
                             />
                             <Marker position={[48.866667, 2.333333]}>
                                 <Popup>
-                                    KiKOU <br /> 🤙
+                                    KiKOU <br/> 🤙
                                 </Popup>
                             </Marker>
                         </MapContainer>
