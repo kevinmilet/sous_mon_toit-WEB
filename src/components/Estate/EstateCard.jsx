@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import axios from "axios";
 import React, {useState, useEffect} from 'react';
+import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 
 const FavoriteButton = styled.div`
   .add-fav {
@@ -40,6 +41,47 @@ const FavoriteButton = styled.div`
     }
   }
 }
+`
+
+const BlockListing = styled.div`
+  .listing {
+    zoom: 1;
+    clear: both;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    
+        &:before {
+            content: "";
+            display: table;
+        }
+        
+        &:after {
+            content: "";
+            display: table;
+        }
+        
+        &:after {
+            clear: both;
+        }
+    
+        .leaflet-container {
+            height: 100vh;
+        }
+        
+        .left-side {
+            height: calc(100vh);
+            float: left;
+            width: 41.66666667%;
+        }
+        
+        .right-side {
+            height: calc(100vh);
+            border: 1px solid #E85A70;
+            border-radius: 1px;
+            overflow: auto;
+        }
+  }
 `
 
 const CardFooter = styled.p`
@@ -98,8 +140,7 @@ const SliderStyle = styled.div`
     }
 `
 
-{/* tableau des images */
-}
+{/* tableau des images */}
 const Slides = [
     {
         image:
@@ -183,45 +224,60 @@ const EstateCard = () => {
     }
     return (
         <div>
-            <div className="container">
-                <div className="row">
-                    {EstateData.map((item, i) => {
-                            return (
-                                <div key={i}>
-                                    <div className="float-end my-3 card text-center w-25">
-                                        <div className="card-header">
-                                            <div className={"d-flex justify-content-between"}>
-                                                {item.price} €
-                                                <FavoriteButton>
-                                                    <label className="add-fav">
-                                                        <input type="checkbox"/>
-                                                        <i className="fas fa-heart">
-                                                            <i className="fas fa-plus-circle"/>
-                                                        </i>
-                                                    </label>
-                                                </FavoriteButton>
+            <BlockListing>
+                <div className="listing">
+                    <div className="left-side">
+                        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                            <TileLayer
+                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+                            <Marker position={[51.505, -0.09]}>
+                                <Popup>
+                                    KiKOU <br /> 🤙
+                                </Popup>
+                            </Marker>
+                        </MapContainer>
+                    </div>
+                    <div className="right-side">
+                        {EstateData.map((item, i) => {
+                                return (
+                                    <div key={i}>
+                                        <div className="float-end my-3 card text-center w-25">
+                                            <div className="card-header">
+                                                <div className={"d-flex justify-content-between"}>
+                                                    {item.price} €
+                                                    <FavoriteButton>
+                                                        <label className="add-fav">
+                                                            <input type="checkbox"/>
+                                                            <i className="fas fa-heart">
+                                                                <i className="fas fa-plus-circle"/>
+                                                            </i>
+                                                        </label>
+                                                    </FavoriteButton>
+                                                </div>
                                             </div>
+                                            <SliderStyle>
+                                                <div className="card-body position-relative">
+                                                    <Slider slides={Slides}/>
+                                                </div>
+                                            </SliderStyle>
+                                            <CardFooter>
+                                                <div className="card-footer">
+                                                    <p className={"m-2"}>{item.zipcode} {item.city}</p>
+                                                    <p className={"m-2"}>
+                                                        À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
+                                                    </p>
+                                                </div>
+                                            </CardFooter>
                                         </div>
-                                        <SliderStyle>
-                                            <div className="card-body position-relative">
-                                                <Slider slides={Slides}/>
-                                            </div>
-                                        </SliderStyle>
-                                        <CardFooter>
-                                            <div className="card-footer">
-                                                <p className={"m-2"}>{item.zipcode} {item.city}</p>
-                                                <p className={"m-2"}>
-                                                    À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
-                                                </p>
-                                            </div>
-                                        </CardFooter>
                                     </div>
-                                </div>
-                            )
-                        }
-                    )}
+                                )
+                            }
+                        )}
+                    </div>
                 </div>
-            </div>
+            </BlockListing>
         </div>
     );
 };
