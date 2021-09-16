@@ -186,48 +186,60 @@ const EstateCard = () => {
     }
     return (
         <div>
-            <div className="container">
-                <div className="row">
-                    {EstateData.map((item, i) => {
-                            item.living_surface = undefined;
-                            item.zipcode = undefined;
-
-                            return (
-                                <div key={i}>
-                                    <div className="float-end my-3 card text-center w-25">
-                                        <div className="card-header">
-                                            <div className={"d-flex justify-content-between"}>
-                                                {item.price} €
-                                                <FavoriteButton>
-                                                    <label className="add-fav">
-                                                        <input type="checkbox"/>
-                                                        <i className="fas fa-heart">
-                                                            <i className="fas fa-plus-circle"/>
-                                                        </i>
-                                                    </label>
-                                                </FavoriteButton>
+            <BlockListing>
+                <div className="listing">
+                    <div className="left-side">
+                        <MapContainer center={[48.866667, 2.333333]} zoom={10} scrollWheelZoom={false}>
+                            <TileLayer
+                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+                            <Marker position={[48.866667, 2.333333]}>
+                                <Popup>
+                                    KiKOU <br /> 🤙
+                                </Popup>
+                            </Marker>
+                        </MapContainer>
+                    </div>
+                    <div className="right-side">
+                        {EstateData.map((item, i) => {
+                                return (
+                                    <div key={i}>
+                                        <div className="float-end my-3 card text-center w-25">
+                                            <div className="card-header">
+                                                <div className={"d-flex justify-content-between"}>
+                                                    {item.price} €
+                                                    <FavoriteButton>
+                                                        <label className="add-fav">
+                                                            <input type="checkbox"/>
+                                                            <i className="fas fa-heart">
+                                                                <i className="fas fa-plus-circle"/>
+                                                            </i>
+                                                        </label>
+                                                    </FavoriteButton>
+                                                </div>
                                             </div>
+                                            <SliderStyle>
+                                                <div className="card-body position-relative">
+                                                    <Slider slides={Slides}/>
+                                                </div>
+                                            </SliderStyle>
+                                            <CardFooter>
+                                                <div className="card-footer">
+                                                    <p className={"m-2"}>{item.zipcode} {item.city}</p>
+                                                    <p className={"m-2"}>
+                                                        À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
+                                                    </p>
+                                                </div>
+                                            </CardFooter>
                                         </div>
-                                        <SliderStyle>
-                                            <div className="card-body position-relative">
-                                                <Slider slides={Slides}/>
-                                            </div>
-                                        </SliderStyle>
-                                        <CardFooter>
-                                            <div className="card-footer">
-                                                <p className={"m-2"}>{item.zipcode} {item.city}</p>
-                                                <p className={"m-2"}>
-                                                    À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
-                                                </p>
-                                            </div>
-                                        </CardFooter>
                                     </div>
-                                </div>
-                            )
-                        }
-                    )}
+                                )
+                            }
+                        )}
+                    </div>
                 </div>
-            </div>
+            </BlockListing>
         </div>
     );
 };
