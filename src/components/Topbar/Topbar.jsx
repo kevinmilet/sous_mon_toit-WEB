@@ -20,30 +20,39 @@ const Logo = styled.img`
 `
 const LinkCol = styled.div`
     padding: 0;
-    margin-top: 25px;
+    margin: auto 0;
     margin-right: 7rem;
-    text-align: right;
+    text-align: center;
 `
 const ConnectLink = styled.a`
-    font-size: 20px;
-    color: ${colors.primary};
+    width: 200px;
+    height: 40px;
+    border: 2px solid ${colors.secondaryBtn};
+    border-radius: 50px;
+    font-size: 16px;
+    padding-top: 6px;
+    color: ${colors.secondaryBtn};
     text-decoration: none;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     &:hover {
-        color: ${colors.secondary}
+        color: ${colors.secondary};
+        border-color: ${colors.secondary};
     }
 `
 
 const Topbar = () => {
     return (
         <Container className="container-fluid">
-            <RowHeader className="row rowHeader">
+            <RowHeader className="row rowHeader d-flex justify-content-start">
                 <div className="col">
                     <Logo src={logo} className="logo" alt="Logo Sous Mon Toit"/>
                 </div>
-                <LinkCol className="col linkCol">
-                    {/*<Link href="#" className="connectLink">Se connecter</Link>*/}
-                    <ConnectLink href="#" className="connectLink">Se connecter</ConnectLink>
-                    <a href="/my-account" class="btn btn-primary">Mon compte</a>
+                <LinkCol className="col linkCol d-flex justify-content-end">
+                    {localStorage['token'] != null ?
+                            <ConnectLink href="/my-account" type="button" className="connectLink">Mon compte</ConnectLink>
+                            :
+                            <ConnectLink href="/connexion" type="button" className="connectLink">Se connecter</ConnectLink>
+                    }
                 </LinkCol>
             </RowHeader>
         </Container>

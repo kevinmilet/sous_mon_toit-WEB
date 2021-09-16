@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import './Contact.css'
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
@@ -23,7 +22,7 @@ const Contact = () => {
 
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
     useEffect(()=>{
-        if(localStorage["token"] != null  ){
+        if(localStorage["token"] != null){
 
             axios.post("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/api/c/me")
             .then(res=>{

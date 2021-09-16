@@ -95,7 +95,7 @@ const Menu = () => {
                             </MenuMenuItemnk>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="#">
+                            <MenuMenuItemnk href="/contact">
                                 <div>
                                     <Icons src={contact} alt="Contact"/>
                                 </div>

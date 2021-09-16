@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import './Connexion.css';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';

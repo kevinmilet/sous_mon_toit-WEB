@@ -1,5 +1,4 @@
 import React from 'react';
-import './Inscription.css';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 
