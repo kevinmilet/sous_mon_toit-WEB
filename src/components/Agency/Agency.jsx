@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import DefaultPicture from '../../assets/img/user_defualt.png';
+import DefaultPicture from '../../assets/img/user_default.png';
 import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import PropTypes from "prop-types";
