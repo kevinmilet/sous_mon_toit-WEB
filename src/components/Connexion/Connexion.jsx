@@ -41,7 +41,7 @@ const Connexion = () => {
 
             alert("vous etes connecté !")// a changer 
 
-        }).catch(error=>{
+        }).catch(error => {
             console.log(error.message);
         })
 
