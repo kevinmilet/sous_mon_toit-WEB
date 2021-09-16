@@ -6,9 +6,7 @@ import Header from "../components/Header/Header";
 const InscriptionView = () => {
     return (
         <div>
-            <Header/>
             <Inscription />
-            <Footer/>
         </div>
     );
 };
