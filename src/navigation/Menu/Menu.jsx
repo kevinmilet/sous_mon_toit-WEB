@@ -22,13 +22,13 @@ const Container = styled.div`
 
     }
 `
-const MenuMenuItemst = styled.ul`
+const MenuItems = styled.ul`
     margin: 0 auto;
 `
 const MenuItem = styled.li`
     margin: 0 35px;
 `
-const MenuMenuItemnk = styled.a`
+const MenuItemLink = styled.a`
     color: ${colors.secondary};
     font-size: 14px;
     font-weight: bold;
@@ -53,56 +53,56 @@ const Menu = () => {
                     <span className="navbar-toggler-icon"/>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <MenuMenuItemst className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <MenuItems className="navbar-nav me-auto mb-2 mb-lg-0">
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="/">
+                            <MenuItemLink href="/">
                                 <div>
                                     <Icons src={home} alt="Accueil"/>
                                 </div>
                                 Accueil
-                            </MenuMenuItemnk>
+                            </MenuItemLink>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="/liste-des-biens">
+                            <MenuItemLink href="/liste-des-biens">
                                 <div className="justify-content-center">
                                     <Icons src={buy} alt="Acheter"/>
                                 </div>
                                 Acheter
-                            </MenuMenuItemnk>
+                            </MenuItemLink>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="#">
+                            <MenuItemLink href="#">
                                 <div className="justify-content-center">
                                     <Icons src={sell} alt="Vendre"/>
                                 </div>
                                 Vendre
-                            </MenuMenuItemnk>
+                            </MenuItemLink>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="#">
+                            <MenuItemLink href="#">
                                 <div className="justify-content-center">
                                     <Icons src={rent} alt="Louer"/>
                                 </div>
                                 Louer
-                            </MenuMenuItemnk>
+                            </MenuItemLink>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="/our-agency">
+                            <MenuItemLink href="/our-agency">
                                 <div className="justify-content-center">
                                     <Icons src={agency} alt="Notre agence"/>
                                 </div>
                                 Notre agence
-                            </MenuMenuItemnk>
+                            </MenuItemLink>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="/contact">
+                            <MenuItemLink href="/contact">
                                 <div>
                                     <Icons src={contact} alt="Contact"/>
                                 </div>
                                 Nous contacter
-                            </MenuMenuItemnk>
+                            </MenuItemLink>
                         </MenuItem>
-                    </MenuMenuItemst>
+                    </MenuItems>
                 </div>
             </Container>
         </Navbar>

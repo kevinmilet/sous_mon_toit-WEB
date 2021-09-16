@@ -21,12 +21,13 @@ const ConnexionBtn = styled.button`
 
 const Connexion = () => {
     const API_URL = useContext(ApiUrlsContext).apiUrl;
-    const [mail, setMail] = useState("pass@gmail.com")
-    const [password, setPassword] = useState("pouet")
+    const [mail, setMail] = useState("pass@gmail.com");
+    const [password, setPassword] = useState("pouet");
+    const setIsAuth = useContext(ApiUrlsContext).setIsAuth;
 
     const handleChange = (event)=>{
 
-        if(event.target.id == "mail"){
+        if(event.target.id === "mail") {
             setMail(event.target.value);  
         }else{
             setPassword(event.target.value)
@@ -36,13 +37,11 @@ const Connexion = () => {
     const login = (e)=>{
 
         e.preventDefault();
-        console.log("test");
         axios.post(API_URL + ApiRoutes.login, { mail, password })
         .then(res=>{
             localStorage['token'] = res.data.token; // enregistrement du token dans le local storage
-
-            alert("vous etes connecté !")// a changer 
-
+            setIsAuth(true);
+            window.location.pathname = "/";
         }).catch(error => {
             console.log(error.message);
         })

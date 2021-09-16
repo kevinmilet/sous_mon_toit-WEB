@@ -221,7 +221,7 @@ const EstateCard = () => {
         }).finally(() => {
             setLoading(false)
         })
-    }, [])
+    }, [API_URL])
 
     if (loading) {
         return <p>Chargement en cours</p>
@@ -294,7 +294,7 @@ EstateCard.propTypes = {
 
 EstateCard.defaultProps = {
     price: 0,
-    zipcode: undefined,
+    zipcode: '',
     living_surface: 0
 }
 
