@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import axios from "axios";
 import React, {useState, useEffect, useContext} from 'react';
+import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 
@@ -44,6 +45,47 @@ const FavoriteButton = styled.div`
 }
 `
 
+const BlockListing = styled.div`
+  .listing {
+    zoom: 1;
+    clear: both;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    
+        &:before {
+            content: "";
+            display: table;
+        }
+        
+        &:after {
+            content: "";
+            display: table;
+        }
+        
+        &:after {
+            clear: both;
+        }
+    
+        .leaflet-container {
+            height: 100vh;
+        }
+        
+        .left-side {
+            height: calc(100vh);
+            float: left;
+            width: 41.66666667%;
+        }
+        
+        .right-side {
+            height: calc(100vh);
+            border: 1px solid #E85A70;
+            border-radius: 1px;
+            overflow: auto;
+        }
+  }
+`
+
 const CardFooter = styled.p`
   p {
     font-size: 13px;
@@ -76,7 +118,6 @@ const SliderStyle = styled.div`
     .slide.active {
         opacity: 1;
     }
-
     .slide .slide__image {
         position: absolute;
         left: 0;
@@ -100,8 +141,7 @@ const SliderStyle = styled.div`
     }
 `
 
-{/* tableau des images */
-}
+{/* tableau des images */}
 const Slides = [
     {
         image:
@@ -167,9 +207,9 @@ const Slider = ({slides}) => {
 };
 
 const EstateCard = () => {
+    const API_URL = useContext(ApiUrlsContext).apiUrl;
     const [EstateData, setEstateData] = useState({})
     const [loading, setLoading] = useState(true)
-    const API_URL = useContext(ApiUrlsContext).apiUrl;
 
     useEffect(() => {
         axios.get(API_URL + ApiRoutes.estates).then(res => {
@@ -179,7 +219,7 @@ const EstateCard = () => {
         }).finally(() => {
             setLoading(false)
         })
-    }, [API_URL])
+    }, [])
 
     if (loading) {
         return <p>Chargement en cours</p>
