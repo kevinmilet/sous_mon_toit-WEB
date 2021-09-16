@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import axios from "axios";
 import React, {useState, useEffect} from 'react';
 import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
+import L from 'leaflet';
+import marker from "../../assets/icons/marker.png";
 
 const FavoriteButton = styled.div`
   .add-fav {
@@ -73,6 +75,12 @@ const BlockListing = styled.div`
             height: calc(100vh);
             float: left;
             width: 41.66666667%;
+            
+            img { 
+                max-width: 135px;
+                float: left;
+                margin-right: 8px;
+            }
         }
         
         .right-side {
@@ -147,6 +155,13 @@ const SliderStyle = styled.div`
         color: black;
     }
 `
+
+const myIcon = new L.icon({
+   iconUrl: marker,
+   iconRetinaUrl: marker,
+   popupAnchor: [-0, -0],
+   iconSize: [35, 35]
+});
 
 {/* tableau des images */}
 const Slides = [
@@ -240,52 +255,61 @@ const EstateCard = () => {
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
-                            <Marker position={[48.866667, 2.333333]}>
-                                <Popup>
-                                    KiKOU <br /> 🤙
-                                </Popup>
-                            </Marker>
-                        </MapContainer>
-                    </div>
-                        <div className="right-side">
                             {EstateData.map((item, i) => {
                                     return (
                                         <div key={i}>
-                                            <a className={"cardLink"} href="#">
-                                                <div className="my-3 card text-center">
-                                                    <div className="card-header">
-                                                        <div className={"d-flex justify-content-between"}>
-                                                            {item.price} €
-                                                            <FavoriteButton>
-                                                                <label className="add-fav">
-                                                                    <input type="checkbox"/>
-                                                                    <i className="fas fa-heart">
-                                                                        <i className="fas fa-plus-circle"/>
-                                                                    </i>
-                                                                </label>
-                                                            </FavoriteButton>
-                                                        </div>
-                                                    </div>
-                                                    <SliderStyle>
-                                                        <div className="card-body position-relative">
-                                                            <Slider slides={Slides}/>
-                                                        </div>
-                                                    </SliderStyle>
-                                                    <CardFooter>
-                                                        <div className="card-footer">
-                                                            <p className={"m-2"}>{item.zipcode} {item.city}</p>
-                                                            <p className={"m-2"}>
-                                                                À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
-                                                            </p>
-                                                        </div>
-                                                    </CardFooter>
-                                                </div>
-                                            </a>
+                                            <Marker icon={myIcon} position={[item.estate_latitude, item.estate_longitude]}>
+                                                <Popup>
+                                                    <img src="https://i.ibb.co/rf2TbH8/home-office-5006842-1280.png" alt=""/>
+                                                    <p>Maison (type estate) 4 pièces (nb pieces) {item.living_surface} m<sup>2</sup></p>
+                                                    <p>{item.price} €</p>
+                                                </Popup>
+                                            </Marker>
                                         </div>
                                     )
                                 }
                             )}
-                        </div>
+                        </MapContainer>
+                    </div>
+                    <div className="right-side">
+                        {EstateData.map((item, i) => {
+                                return (
+                                    <div key={i}>
+                                        <a className={"cardLink"} href="#">
+                                            <div className="my-3 card text-center">
+                                                <div className="card-header">
+                                                    <div className={"d-flex justify-content-between"}>
+                                                        {item.price} €
+                                                        <FavoriteButton>
+                                                            <label className="add-fav">
+                                                                <input type="checkbox"/>
+                                                                <i className="fas fa-heart">
+                                                                    <i className="fas fa-plus-circle"/>
+                                                                </i>
+                                                            </label>
+                                                        </FavoriteButton>
+                                                    </div>
+                                                </div>
+                                                <SliderStyle>
+                                                    <div className="card-body position-relative">
+                                                        <Slider slides={Slides}/>
+                                                    </div>
+                                                </SliderStyle>
+                                                <CardFooter>
+                                                    <div className="card-footer">
+                                                        <p className={"m-2"}>{item.zipcode} {item.city}</p>
+                                                        <p className={"m-2"}>
+                                                            À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
+                                                        </p>
+                                                    </div>
+                                                </CardFooter>
+                                            </div>
+                                        </a>
+                                    </div>
+                                )
+                            }
+                        )}
+                    </div>
                 </div>
             </BlockListing>
         </div>
