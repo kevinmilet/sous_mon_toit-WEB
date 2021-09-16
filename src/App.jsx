@@ -9,6 +9,9 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import {ApiUrlsContext} from "./utils/context/ApiUrlsContext";
 import ApiRoutes from "./utils/const/ApiRoutes";
+import ConnexionView from './screens/Connexion';
+import ContactView from './screens/Contact';
+import InscriptionView from './screens/Inscription';
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
@@ -31,6 +34,15 @@ const App = () => {
                     </Route>
                     <Route exact path="/my-account/detail">
                         <DetailUser/>
+                    </Route>
+                    <Route exact path="/connexion">
+                        <ConnexionView/>
+                    </Route>
+                    <Route exact path="/contact">
+                        <ContactView/>
+                    </Route>
+                    <Route exact path="/inscription">
+                        <InscriptionView/>
                     </Route>
                     <Footer/>
                 </Router>
