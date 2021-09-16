@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
+import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import ApiRoutes from "../../utils/const/ApiRoutes";
 
 const ConnexionForm = styled.form`
     background-color: ${colors.backgroundPrimary};
@@ -18,7 +20,7 @@ const ConnexionBtn = styled.button`
 `
 
 const Connexion = () => {
-
+    const API_URL = useContext(ApiUrlsContext).apiUrl;
     const [mail, setMail] = useState("pass@gmail.com")
     const [password, setPassword] = useState("pouet")
 
@@ -35,7 +37,7 @@ const Connexion = () => {
 
         e.preventDefault();
         console.log("test");
-        axios.post("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/login/customer", { mail, password })
+        axios.post(API_URL + ApiRoutes.login, { mail, password })
         .then(res=>{
             localStorage['token'] = res.data.token; // enregistrement du token dans le local storage
 

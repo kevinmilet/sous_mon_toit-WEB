@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import axios from "axios";
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import ApiRoutes from "../../utils/const/ApiRoutes";
 
 const FavoriteButton = styled.div`
   .add-fav {
@@ -167,16 +169,17 @@ const Slider = ({slides}) => {
 const EstateCard = () => {
     const [EstateData, setEstateData] = useState({})
     const [loading, setLoading] = useState(true)
+    const API_URL = useContext(ApiUrlsContext).apiUrl;
 
     useEffect(() => {
-        axios.get("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/estates").then(res => {
+        axios.get(API_URL + ApiRoutes.estates).then(res => {
             setEstateData(res.data)
         }).catch(error => {
             console.log(error.message)
         }).finally(() => {
             setLoading(false)
         })
-    }, [])
+    }, [API_URL])
 
     if (loading) {
         return <p>Chargement en cours</p>
@@ -186,6 +189,9 @@ const EstateCard = () => {
             <div className="container">
                 <div className="row">
                     {EstateData.map((item, i) => {
+                            item.living_surface = undefined;
+                            item.zipcode = undefined;
+
                             return (
                                 <div key={i}>
                                     <div className="float-end my-3 card text-center w-25">

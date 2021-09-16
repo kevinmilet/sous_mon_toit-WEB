@@ -1,6 +1,6 @@
 const API_URL = {
     API_URL: 'http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/',
-    login: 'login/customers',
+    login: 'login/customer',
     logout: 'api/c/logout',
     me: 'api/c/me',
     refresh: 'api/c/refresh',
