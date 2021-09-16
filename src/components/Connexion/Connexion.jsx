@@ -61,7 +61,8 @@ const Connexion = () => {
                     <ConnexionLabel htmlFor="password" className="form-label">Mot de passe</ConnexionLabel>
                     <input type="password" className="form-control" id="password" name="password" onChange={handleChange}/>
                 </div>
-                <button type="submit" className="btn btn-primary">Connexion</button>
+                <p>( password : pouet )</p>
+                <ConnexionBtn type="submit" onClick={login} className="btn btn-primary">Connexion</ConnexionBtn>
                 
             </ConnexionForm>
         </div>
