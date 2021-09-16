@@ -7,6 +7,7 @@ const Container = styled.div`
     padding: 0;
     margin: 0;
     height: 80px;
+    background-color: ${colors.backgroundPrimary};
     border-bottom: 1px solid ${colors.backgroundSecondary};
 `
 const RowHeader = styled.div`
@@ -42,6 +43,7 @@ const Topbar = () => {
                 <LinkCol className="col linkCol">
                     {/*<Link href="#" className="connectLink">Se connecter</Link>*/}
                     <ConnectLink href="#" className="connectLink">Se connecter</ConnectLink>
+                    <a href="/my-account" class="btn btn-primary">Mon compte</a>
                 </LinkCol>
             </RowHeader>
         </Container>
