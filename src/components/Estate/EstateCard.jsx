@@ -80,6 +80,14 @@ const BlockListing = styled.div`
             border: 1px solid #E85A70;
             border-radius: 1px;
             overflow: auto;
+            display: grid;
+            grid-template-columns: repeat(2,auto);
+            grid-gap: 20px;
+        }
+        
+        .cardLink {
+            text-decoration: none;
+            color: black;
         }
   }
 `
@@ -239,43 +247,45 @@ const EstateCard = () => {
                             </Marker>
                         </MapContainer>
                     </div>
-                    <div className="right-side">
-                        {EstateData.map((item, i) => {
-                                return (
-                                    <div key={i}>
-                                        <div className="float-end my-3 card text-center w-25">
-                                            <div className="card-header">
-                                                <div className={"d-flex justify-content-between"}>
-                                                    {item.price} €
-                                                    <FavoriteButton>
-                                                        <label className="add-fav">
-                                                            <input type="checkbox"/>
-                                                            <i className="fas fa-heart">
-                                                                <i className="fas fa-plus-circle"/>
-                                                            </i>
-                                                        </label>
-                                                    </FavoriteButton>
+                        <div className="right-side">
+                            {EstateData.map((item, i) => {
+                                    return (
+                                        <div key={i}>
+                                            <a className={"cardLink"} href="#">
+                                                <div className="my-3 card text-center">
+                                                    <div className="card-header">
+                                                        <div className={"d-flex justify-content-between"}>
+                                                            {item.price} €
+                                                            <FavoriteButton>
+                                                                <label className="add-fav">
+                                                                    <input type="checkbox"/>
+                                                                    <i className="fas fa-heart">
+                                                                        <i className="fas fa-plus-circle"/>
+                                                                    </i>
+                                                                </label>
+                                                            </FavoriteButton>
+                                                        </div>
+                                                    </div>
+                                                    <SliderStyle>
+                                                        <div className="card-body position-relative">
+                                                            <Slider slides={Slides}/>
+                                                        </div>
+                                                    </SliderStyle>
+                                                    <CardFooter>
+                                                        <div className="card-footer">
+                                                            <p className={"m-2"}>{item.zipcode} {item.city}</p>
+                                                            <p className={"m-2"}>
+                                                                À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
+                                                            </p>
+                                                        </div>
+                                                    </CardFooter>
                                                 </div>
-                                            </div>
-                                            <SliderStyle>
-                                                <div className="card-body position-relative">
-                                                    <Slider slides={Slides}/>
-                                                </div>
-                                            </SliderStyle>
-                                            <CardFooter>
-                                                <div className="card-footer">
-                                                    <p className={"m-2"}>{item.zipcode} {item.city}</p>
-                                                    <p className={"m-2"}>
-                                                        À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
-                                                    </p>
-                                                </div>
-                                            </CardFooter>
+                                            </a>
                                         </div>
-                                    </div>
-                                )
-                            }
-                        )}
-                    </div>
+                                    )
+                                }
+                            )}
+                        </div>
                 </div>
             </BlockListing>
         </div>
