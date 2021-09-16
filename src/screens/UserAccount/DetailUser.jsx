@@ -8,9 +8,9 @@ import DetailUser from '../../components/User/DetailUser';
 const UserAccount = () => {
     return (
         <div>
-            <Header/>
+           
             <DetailUser/>
-            <Footer/>
+            
         </div>
     );
 };

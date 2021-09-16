@@ -7,6 +7,7 @@ const Container = styled.div`
     padding: 0;
     margin: 0;
     height: 80px;
+    background-color: ${colors.backgroundPrimary};
     border-bottom: 1px solid ${colors.backgroundSecondary};
 `
 const RowHeader = styled.div`

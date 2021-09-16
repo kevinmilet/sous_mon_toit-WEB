@@ -63,7 +63,7 @@ const Menu = () => {
                             </MenuMenuItemnk>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuMenuItemnk href="#">
+                            <MenuMenuItemnk href="/liste-des-biens">
                                 <div className="justify-content-center">
                                     <Icons src={buy} alt="Acheter"/>
                                 </div>
