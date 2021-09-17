@@ -7,9 +7,9 @@ import UserAccountComponent from '../../components/User/UserAccountMenu';
 const UserAccount = () => {
     return (
         <div>
-            <Header/>
+           
             <UserAccountComponent/>
-            <Footer/>
+           
         </div>
     );
 };
