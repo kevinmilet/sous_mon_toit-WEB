@@ -16,7 +16,7 @@ const InscriptionBtn = styled.button`
     color: #fff;
 `
 
-const Inscription = () => {
+const SignUp = () => {
     return (
         <div className="w-25 mx-auto mt-5">
             <InscriptionForm className="p-4 rounded">
@@ -43,4 +43,4 @@ const Inscription = () => {
     );
 };
 
-export default Inscription;
+export default SignUp;

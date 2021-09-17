@@ -4,7 +4,7 @@ import logo from '../../assets/img/logo_sousMonToit_Long.png'
 import colors from '../../utils/styles/colors';
 import axios from "axios";
 import ApiRoutes from "../../utils/const/ApiRoutes";
-import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import {Context} from "../../utils/context/Context";
 
 const Container = styled.div`
     padding: 0;
@@ -51,7 +51,7 @@ const Logout = styled.a`
 `
 
 const Topbar = () => {
-    const API_URL = useContext(ApiUrlsContext).apiUrl;
+    const API_URL = useContext(Context).apiUrl;
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
 
     const logout = () => {

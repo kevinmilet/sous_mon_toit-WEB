@@ -7,7 +7,7 @@ import axios from 'axios';
 // })
 
 
-const DetailUser= () => {
+const UserDetails= () => {
 
     const [customerData, setCustomerData] = useState({})
     const [loading, setLoading] =  useState(true)
@@ -52,4 +52,4 @@ useEffect(()=>{
     );
 };
 
-export default DetailUser
+export default UserDetails

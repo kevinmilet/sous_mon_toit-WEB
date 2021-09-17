@@ -1,4 +1,4 @@
 import React, { useState, createContext } from 'react';
 
-export const ApiUrlsContext = createContext('');
+export const Context = createContext('');
 

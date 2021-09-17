@@ -1,14 +1,16 @@
 import React, {useContext} from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import DefaultPicture from '../../assets/img/user_default.png';
+import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
+import PropTypes from "prop-types";
 
 const Agency = () => {
 
     const [staffData, setStaffData] = useState({});
     const [loading, setLoading] = useState(true);
-    const API_URL = useContext(ApiUrlsContext).apiUrl;
+    const API_URL = useContext(Context).apiUrl;
 
 
     useEffect(() => {
@@ -78,5 +80,17 @@ const Agency = () => {
         </div>
     );
 };
+
+Agency.propTypes = {
+    avatar: PropTypes.string.isRequired,
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+}
+
+Agency.defaultProps = {
+    picture: DefaultPicture,
+    firstname: '',
+    lastname: ''
+}
 
 export default Agency;

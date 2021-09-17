@@ -1,27 +1,27 @@
 import React, {useState} from 'react';
-import Home from "./screens/Home/Home";
+import HomeView from "./screens/Home/HomeView";
 import EstateCard from "./components/Estate/EstateCard";
-import Agency from "./screens/Agency/Agency";
+import Agency from "./screens/Agency/AgencyView";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import UserAccount from './screens/UserAccount/UserAccount';
-import DetailUser from './screens/UserAccount/DetailUser';
+import UserAccountView from './screens/UserAccount/UserAccountView';
+import DetailUser from './screens/UserAccount/UserDetailsView';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import {ApiUrlsContext} from "./utils/context/ApiUrlsContext";
+import {Context} from "./utils/context/Context";
 import ApiRoutes from "./utils/const/ApiRoutes";
-import ConnexionView from './screens/Connexion';
-import ContactView from './screens/Contact';
-import InscriptionView from './screens/Inscription';
+import SignInView from './screens/SignIn/SignInView';
+import ContactView from './screens/Contact/ContactView';
+import SignUpView from './screens/SignUp/SignUpView';
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
     return (
-        <ApiUrlsContext.Provider value={{apiUrl, setApiUrl}}>
+        <Context.Provider value={{apiUrl, setApiUrl}}>
             <div>
                 <Router>
                     <Header/>
                     <Route exact path="/">
-                        <Home/>
+                        <HomeView/>
                     </Route>
                     <Route exact path="/liste-des-biens">
                         <EstateCard/>
@@ -30,24 +30,24 @@ const App = () => {
                         <Agency/>
                     </Route>
                     <Route exact path="/my-account">
-                        <UserAccount/>
+                        <UserAccountView/>
                     </Route>
                     <Route exact path="/my-account/detail">
                         <DetailUser/>
                     </Route>
                     <Route exact path="/connexion">
-                        <ConnexionView/>
+                        <SignInView/>
                     </Route>
                     <Route exact path="/contact">
                         <ContactView/>
                     </Route>
                     <Route exact path="/inscription">
-                        <InscriptionView/>
+                        <SignUpView/>
                     </Route>
                     <Footer/>
                 </Router>
             </div>
-        </ApiUrlsContext.Provider>
+        </Context.Provider>
     );
 };
 
