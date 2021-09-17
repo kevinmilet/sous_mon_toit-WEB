@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
-import {init} from 'emailjs-com';
 import PropTypes from "prop-types";
 
 const ContactForm = styled.form`
@@ -26,7 +25,6 @@ const ContactEtoile = styled.span`
     color:${colors.secondary};
 `
 const Contact = () => {
-    init("user_pW0ayrCHH6EEcXrLmaCkR");
 
     // Données de l'utilisateur connecté
     const [userData, setUserData] = useState({})
