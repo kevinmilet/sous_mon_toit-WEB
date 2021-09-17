@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import React, {useState, useEffect, useContext} from 'react';
 import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
-import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import PropTypes from "prop-types";
 
@@ -209,7 +209,7 @@ const Slider = ({slides}) => {
 };
 
 const EstateCard = () => {
-    const API_URL = useContext(ApiUrlsContext).apiUrl;
+    const API_URL = useContext(Context).apiUrl;
     const [EstateData, setEstateData] = useState({})
     const [loading, setLoading] = useState(true)
 

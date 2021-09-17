@@ -3,7 +3,7 @@ import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
 import ApiRoutes from "../../utils/const/ApiRoutes";
-import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import {Context} from "../../utils/context/Context";
 
 const ContactForm = styled.form`
     background-color: ${colors.backgroundSecondary};
@@ -20,8 +20,11 @@ const ContactBtn = styled.button`
 `
 const Contact = () => {
 
-    const [userData, setUserData] = useState({})
-    const API_URL = useContext(ApiUrlsContext).apiUrl;
+    const [userData, setUserData] = useState({
+        firstname: undefined,
+        lastname: undefined
+    })
+    const API_URL = useContext(Context).apiUrl;
 
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
     useEffect(() => {

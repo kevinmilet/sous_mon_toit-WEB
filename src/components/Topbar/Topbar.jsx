@@ -4,8 +4,7 @@ import logo from '../../assets/img/logo_sousMonToit_Long.png'
 import colors from '../../utils/styles/colors';
 import axios from "axios";
 import ApiRoutes from "../../utils/const/ApiRoutes";
-import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
-import {NavLink, Redirect} from "react-router-dom";
+import {Context} from "../../utils/context/Context";
 
 const Container = styled.div`
     padding: 0;
@@ -52,16 +51,13 @@ const Logout = styled.a`
 `
 
 const Topbar = () => {
-    const API_URL = useContext(ApiUrlsContext).apiUrl;
-    const setIsAuth = useContext(ApiUrlsContext).setIsAuth;
+    const API_URL = useContext(Context).apiUrl;
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
 
     const logout = () => {
         axios.post(API_URL + ApiRoutes.logout)
             .then(() => {
                 localStorage.removeItem('token');
-                setIsAuth(false);
-                window.location.pathname = "/";
             }).catch(e => {
             console.log(e.message);
         })
@@ -71,9 +67,7 @@ const Topbar = () => {
         <Container className="container-fluid">
             <RowHeader className="row rowHeader">
                 <div className="col-sm-12 col-md-6 d-flex justify-content-center">
-                    <NavLink exact to="/">
-                        <Logo src={logo} className="logo" alt="Logo Sous Mon Toit"/>
-                    </NavLink>
+                    <Logo src={logo} className="logo" alt="Logo Sous Mon Toit"/>
                 </div>
                 <LinkCol className="col-sm-12 col-md-6 linkCol d-flex justify-content-center">
                     {localStorage['token'] != null ?

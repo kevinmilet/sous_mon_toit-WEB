@@ -1,12 +1,14 @@
 import React from 'react';
 import UserAccountComponent from '../../components/User/UserAccountMenu';
 
-const UserAccount = () => {
+const UserAccountView = () => {
     return (
         <div>
+           
             <UserAccountComponent/>
+           
         </div>
     );
 };
 
-export default UserAccount;
+export default UserAccountView;

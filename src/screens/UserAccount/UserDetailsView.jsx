@@ -1,10 +1,12 @@
 import React from 'react';
-import DetailUser from '../../components/User/DetailUser';
+import UserDetails from '../../components/User/UserDetails';
 
 const UserAccount = () => {
     return (
         <div>
-            <DetailUser/>
+           
+            <UserDetails/>
+            
         </div>
     );
 };

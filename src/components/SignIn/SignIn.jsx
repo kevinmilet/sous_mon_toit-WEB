@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
-import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 
 const ConnexionForm = styled.form`
@@ -19,15 +19,14 @@ const ConnexionBtn = styled.button`
     color: #fff;
 `
 
-const Connexion = () => {
-    const API_URL = useContext(ApiUrlsContext).apiUrl;
-    const [mail, setMail] = useState("pass@gmail.com");
-    const [password, setPassword] = useState("pouet");
-    const setIsAuth = useContext(ApiUrlsContext).setIsAuth;
+const SignIn = () => {
+    const API_URL = useContext(Context).apiUrl;
+    const [mail, setMail] = useState("pass@gmail.com")
+    const [password, setPassword] = useState("pouet")
 
     const handleChange = (event)=>{
 
-        if(event.target.id === "mail") {
+        if(event.target.id === "mail"){
             setMail(event.target.value);  
         }else{
             setPassword(event.target.value)
@@ -37,11 +36,13 @@ const Connexion = () => {
     const login = (e)=>{
 
         e.preventDefault();
+        console.log("test");
         axios.post(API_URL + ApiRoutes.login, { mail, password })
         .then(res=>{
             localStorage['token'] = res.data.token; // enregistrement du token dans le local storage
-            setIsAuth(true);
-            window.location.pathname = "/";
+
+            alert("vous etes connecté !")// a changer 
+
         }).catch(error => {
             console.log(error.message);
         })
@@ -69,4 +70,4 @@ const Connexion = () => {
     );
 };
 
-export default Connexion;
+export default SignIn;
