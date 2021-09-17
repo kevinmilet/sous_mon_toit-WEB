@@ -5,6 +5,7 @@ import colors from '../../utils/styles/colors';
 import axios from "axios";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import {Context} from "../../utils/context/Context";
+import {Link} from "react-router-dom";
 
 const Container = styled.div`
     padding: 0;
@@ -67,9 +68,9 @@ const Topbar = () => {
     return (
         <Container className="container-fluid">
             <RowHeader className="row rowHeader">
-                <div className="col-sm-12 col-md-6 d-flex justify-content-center">
+                <Link to="/" className="col-sm-12 col-md-6 d-flex justify-content-center">
                     <Logo src={logo} className="logo" alt="Logo Sous Mon Toit"/>
-                </div>
+                </Link>
                 <LinkCol className="col-sm-12 col-md-6 linkCol d-flex justify-content-center">
                     {localStorage['token'] != null ?
                         <span>
