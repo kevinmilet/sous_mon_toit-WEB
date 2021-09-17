@@ -49,3 +49,7 @@ export const StyledTextarea = styled.textarea`
     resize: none;
     border: 2px solid ${colors.secondaryBtn};
 `
+export const ErrorMsg = styled.p`
+    color: ${colors.secondary}
+    font-style: italic;
+`

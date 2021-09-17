@@ -59,6 +59,7 @@ const Topbar = () => {
         axios.post(API_URL + ApiRoutes.logout)
             .then(() => {
                 localStorage.removeItem('token');
+                localStorage.removeItem('userId');
                 window.location.href = '/';
             }).catch(e => {
             console.log(e.message);
