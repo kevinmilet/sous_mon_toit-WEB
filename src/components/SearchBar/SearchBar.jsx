@@ -2,9 +2,10 @@ import React, {useContext, useEffect, useState} from 'react';
 import styled from "styled-components";
 import colors from "../../utils/styles/colors";
 import axios from "axios";
-import {ApiUrlsContext} from "../../utils/context/ApiUrlsContext";
+import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import Switch from "../Switch/Switch";
+import PropTypes from "prop-types";
 
 const SearchContainer = styled.div`
     width: 1000px;
@@ -125,9 +126,7 @@ const SearchBtn = styled.button`
 `
 
 const SearchBar = () => {
-    const API_URL = useContext(ApiUrlsContext).apiUrl;
-    console.log(API_URL);
-
+    const API_URL = useContext(Context).apiUrl;
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
 
@@ -187,6 +186,12 @@ const SearchBar = () => {
         ;
 };
 
-SearchBar.propTypes = {}
+SearchBar.propTypes = {
+    estates_types_name: PropTypes.string.isRequired
+}
+
+SearchBar.defaultProps = {
+    estates_types_name: ''
+}
 
 export default SearchBar;
