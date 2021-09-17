@@ -40,7 +40,7 @@ const SignIn = () => {
         axios.post(API_URL + ApiRoutes.login, { mail, password })
         .then(res=>{
             localStorage['token'] = res.data.token; // enregistrement du token dans le local storage
-
+            window.location.href = '/';
             alert("vous etes connecté !")// a changer 
 
         }).catch(error => {
