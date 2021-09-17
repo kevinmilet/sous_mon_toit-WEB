@@ -35,7 +35,7 @@ const Contact = () => {
         }
     },[])
 
-    console.log(localStorage["token"]);
+    console.log(localStorage);
 
     return (
         <div className="container col-md-6 mx-auto mt-5">

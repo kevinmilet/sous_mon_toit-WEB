@@ -39,7 +39,9 @@ const Connexion = () => {
         axios.post("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/login/customer", { mail, password })
         .then(res=>{
             localStorage['token'] = res.data.token; // enregistrement du token dans le local storage
-
+            localStorage['id'] = res.data.id;
+            console.log(res.data)
+            
             alert("vous etes connecté !")// a changer 
 
         }).catch(error=>{
