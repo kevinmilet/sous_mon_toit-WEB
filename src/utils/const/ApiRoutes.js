@@ -6,7 +6,7 @@ const API_URL = {
     refresh: 'api/c/refresh',
     estates: 'estates',
     estates_types: 'estates_types',
-    staff: 'staff/',
+    staff: 'staff',
     create_customer: 'customer/create',
     customer: 'customer',
     update_customer: 'customer/update',
