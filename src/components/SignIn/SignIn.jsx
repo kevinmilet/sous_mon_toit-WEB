@@ -1,10 +1,12 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
 import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import {StyledBtnPrimary, StyledInput} from "../../utils/styles/Atoms";
+import {useFormik} from "formik";
+import * as Yup from "yup";
 
 const ConnexionForm = styled.form`
     background-color: ${colors.backgroundPrimary};
@@ -21,47 +23,69 @@ const ConnexionLabel = styled.label`
 
 const SignIn = () => {
     const API_URL = useContext(Context).apiUrl;
-    const [mail, setMail] = useState("pass@gmail.com")
-    const [password, setPassword] = useState("pouet")
+    const formik = useFormik({
+        initialValues: {
+            mail: '',
+            password: ''
+        },
+        validationSchema: Yup.object({
+            mail: Yup.string()
+                .email('Adresse email invalide')
+                .required('Champ requis'),
+            password: Yup.string()
+                .required('Champ requis'),
+        }),
+        onSubmit: async (values) => {
+            await new Promise(r => {
+                login(values)
+            })
+        }
+    })
 
-    const handleChange = (event)=>{
-
-        if(event.target.id === "mail"){
-            setMail(event.target.value);  
-        }else{
-            setPassword(event.target.value)
-        }        
-    }
-    
-    const login = (e)=>{
-
-        e.preventDefault();
-        console.log("test");
-        axios.post(API_URL + ApiRoutes.login, { mail, password })
-        .then(res=>{
-            localStorage['token'] = res.data.token; // enregistrement du token dans le local storage
-            window.location.href = '/';
-        }).catch(error => {
+    const login = (values) => {
+        console.log(values);
+        axios.post(API_URL + ApiRoutes.login, values)
+            .then(res => {
+                console.log(res)
+                localStorage['token'] = res.data.token; // enregistrement du token dans le local storage
+                localStorage['userId'] = res.data.user.id; // neregistrement de l'id user
+                window.location.href = '/';
+            }).catch(error => {
             console.log(error.message);
         })
-
     };
 
     return (
         <div className="w-25 mx-auto mt-5">
-            <ConnexionForm className="p-4 rounded">
+            <ConnexionForm onSubmit={formik.handleSubmit} className="p-4 rounded">
                 <ConnexiontH1 className="text-center">Connectez-vous</ConnexiontH1>
                 <div className="mb-3">
-                    <ConnexionLabel htmlFor="mail" className="form-label">Adresse mail</ConnexionLabel>
-                    <StyledInput type="email" className="form-control" id="mail" name="mail" onChange={handleChange}/>
+                    <ConnexionLabel htmlFor="email" className="form-label">Adresse email</ConnexionLabel>
+                    <StyledInput id="mail"
+                                 name="mail"
+                                 type="email"
+                                 className="form-control"
+                                 onChange={formik.handleChange}
+                                 onBlur={formik.handleBlur}
+                                 value={formik.values.email}
+                    />
                 </div>
-                <p>( mail : pass@gmail.com )</p>
+                {formik.errors.mail ? <div style={{color: "#E85A70", fontStyle: 'italic'}} className="mb-2">{formik.errors.mail}</div> :null}
+
                 <div className="mb-3">
                     <ConnexionLabel htmlFor="password" className="form-label">Mot de passe</ConnexionLabel>
-                    <StyledInput type="password" className="form-control" id="password" name="password" onChange={handleChange}/>
+                    <StyledInput id="password"
+                                 name="password"
+                                 type="password"
+                                 className="form-control"
+                                 onChange={formik.handleChange}
+                                 onBlur={formik.handleBlur}
+                                 value={formik.values.password}
+                    />
                 </div>
-                <p>( password : pouet )</p>
-                <StyledBtnPrimary type="submit" onClick={login} className="btn">Connexion</StyledBtnPrimary>
+                {formik.errors.password ? <div style={{color: "#E85A70", fontStyle: 'italic'}} className="mb-2">{formik.errors.password}</div> : null}
+
+                <StyledBtnPrimary type="submit" className="btn">Connexion</StyledBtnPrimary>
             </ConnexionForm>
         </div>
     );
