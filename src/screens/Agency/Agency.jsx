@@ -9,9 +9,9 @@ import StaffList from '../../components/StaffList/StaffList';
 const Home = () => {
     return (
         <div>
-            <Header/>
+            
             <StaffList/>
-            <Footer/>
+           
         </div>
     );
 };
