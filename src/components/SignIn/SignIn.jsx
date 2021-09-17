@@ -41,8 +41,6 @@ const SignIn = () => {
         .then(res=>{
             localStorage['token'] = res.data.token; // enregistrement du token dans le local storage
             window.location.href = '/';
-            alert("vous etes connecté !")// a changer 
-
         }).catch(error => {
             console.log(error.message);
         })
