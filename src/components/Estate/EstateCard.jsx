@@ -221,7 +221,7 @@ const EstateCard = () => {
         }).finally(() => {
             setLoading(false)
         })
-    }, [])
+    }, [API_URL])
 
     if (loading) {
         return <p>Chargement en cours</p>
