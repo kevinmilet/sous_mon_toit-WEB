@@ -70,7 +70,7 @@ const Contact = () => {
     // Fonction au submit du formulaire
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (document.getElementById("notRobot").checked == true)
+        if (document.getElementById("notRobot").checked === true)
         {
             if(isMail() && message){
                 sendMsg( "template_y77xg6s" , {
@@ -83,7 +83,7 @@ const Contact = () => {
             }else{
                 if(!mail || !message){// il manque message ou mail ou les 2 
                     document.querySelector('.form-message').innerHTML = "Merci de remplir les champs requis"  
-                    var labelField = document.getElementsByClassName('obligatoire')
+                    let labelField = document.getElementsByClassName('obligatoire')
                     labelField.forEach(element => {
                         element.style.color = colors.secondary
                     });
@@ -128,7 +128,7 @@ const Contact = () => {
 
     return (
         <div className="container col-12 col-sm-10 col-md-8 col-lg-7 mx-auto mt-5">
-            <ContactSuccess className="text-center" id="msgSuccess"></ContactSuccess>
+            <ContactSuccess className="text-center" id="msgSuccess"/>
             <ContactForm className="p-4 rounded row">
                 <ContactH1 className="text-center">Nous contactez</ContactH1>
                 <p className="text-dark">Merci de compléter le formulaire ci-après. Vous serez recontacté(e) par mail.</p>
@@ -145,7 +145,7 @@ const Contact = () => {
                     <div className="mb-3">
                         <ContactLabel htmlFor="mail" className="form-label obligatoire">Adresse mail<ContactEtoile>*</ContactEtoile></ContactLabel>
                         <input type="email" className="form-control" id="mail" value={userData.mail ? userData.mail : mail} name="mail" onChange={(e)=> setMail(e.target.value)} required />
-                        <div className="mail-error text-danger text-center"></div>
+                        <div className="mail-error text-danger text-center"/>
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="Phone" className="form-label">Téléphone</ContactLabel>
@@ -155,7 +155,7 @@ const Contact = () => {
                 <div className="col-md-6">
                     <div className="mb-3">
                         <ContactLabel htmlFor="message" className="form-label obligatoire">Votre message<ContactEtoile>*</ContactEtoile></ContactLabel>
-                        <textarea className="form-control" id="message" name="message" rows="5" value={message} onChange={(e)=> setMessage(e.target.value)} required ></textarea>
+                        <textarea className="form-control" id="message" name="message" rows="5" value={message} onChange={(e) => setMessage(e.target.value)} required />
                     </div>
                     <div className="mb-3 form-check">
                         <input type="checkbox" className="form-check-input text-light" id="newsletter" onChange={(e)=> setNewsletter(e.target.value)} name="newsletter"/>
@@ -168,7 +168,7 @@ const Contact = () => {
                     <div className="text-danger fs-6"><ContactEtoile>*</ContactEtoile>Champs obligatoires</div>
                     <ContactBtn type="submit" onClick={handleSubmit} className="btn float-end">Envoyer</ContactBtn>
                 </div>
-                <div className="form-message text-danger fs-5 text-center"></div>
+                <div className="form-message text-danger fs-5 text-center"/>
             </ContactForm>
             
         </div>
