@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
-import{ init } from 'emailjs-com';
+import {init} from 'emailjs-com';
 import PropTypes from "prop-types";
-import DefaultPicture from "../../assets/img/user_default.png";
-import Agency from "../Agency/Agency";
 
 const ContactForm = styled.form`
     background-color: ${colors.backgroundPrimary};
