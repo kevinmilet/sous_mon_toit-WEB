@@ -11,6 +11,9 @@ const StyledGlobalStyle = createGlobalStyle`
         padding: 0;
         background-color: ${colors.backgroundSecondary};
     }
+    .btn {
+        
+    }
 `
 
 const GlobalStyle = () => {
