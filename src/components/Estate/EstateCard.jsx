@@ -253,7 +253,11 @@ const EstateCard = () => {
             <BlockListing>
                 <div className="listing">
                     <div className="left-side">
-                        <MapContainer center={[48.866667, 2.333333]} zoom={10} scrollWheelZoom={false}>
+                        <MapContainer
+                            center={[46.603354, 1.888334]}
+                            zoom={5.5}
+                            scrollWheelZoom={false}
+                        >
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -261,7 +265,10 @@ const EstateCard = () => {
                             {EstateData.map((item, i) => {
                                     return (
                                         <div key={i}>
-                                            <Marker icon={myIcon} position={[item.estate_latitude, item.estate_longitude]}>
+                                            <Marker
+                                                icon={myIcon}
+                                                position={[item.estate_latitude, item.estate_longitude]}
+                                            >
                                                 <Popup>
                                                     <img src="https://i.ibb.co/rf2TbH8/home-office-5006842-1280.png" alt=""/>
                                                     <p>Maison (type estate) 4 pièces (nb pieces) {item.living_surface} m<sup>2</sup></p>
