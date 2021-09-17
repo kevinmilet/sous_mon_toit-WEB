@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './Contact.css'
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
-
+import{ init } from 'emailjs-com';
+import PropTypes from "prop-types";
+import DefaultPicture from "../../assets/img/user_default.png";
+import Agency from "../Agency/Agency";
 
 const ContactForm = styled.form`
     background-color: ${colors.backgroundPrimary};
@@ -26,6 +28,7 @@ const ContactEtoile = styled.span`
     color:${colors.secondary};
 `
 const Contact = () => {
+    init("user_pW0ayrCHH6EEcXrLmaCkR");
 
     // Données de l'utilisateur connecté
     const [userData, setUserData] = useState({})
@@ -174,5 +177,23 @@ const Contact = () => {
         </div>
     );
 };
+
+Contact.propTypes = {
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    mail : PropTypes.string.isRequired,
+    phone : PropTypes.string,
+    message : PropTypes.string.isRequired,
+    newsletter: PropTypes.bool.isRequired
+}
+
+Contact.defaultProps = {
+    firstname: '',
+    lastname: '',
+    mail : '',
+    phone : '',
+    message : '',
+    newsletter: false
+}
 
 export default Contact;
