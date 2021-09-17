@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import axios from "axios";
 import React, {useState, useEffect, useContext} from 'react';
 import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
+import L from 'leaflet';
+import marker from "../../assets/icons/marker.png";
 import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import PropTypes from "prop-types";
@@ -76,6 +78,12 @@ const BlockListing = styled.div`
             height: calc(100vh);
             float: left;
             width: 41.66666667%;
+            
+            img { 
+                max-width: 135px;
+                float: left;
+                margin-right: 8px;
+            }
         }
         
         .right-side {
@@ -83,6 +91,14 @@ const BlockListing = styled.div`
             border: 1px solid #E85A70;
             border-radius: 1px;
             overflow: auto;
+            display: grid;
+            grid-template-columns: repeat(2,auto);
+            grid-gap: 20px;
+        }
+        
+        .cardLink {
+            text-decoration: none;
+            color: black;
         }
   }
 `
@@ -119,6 +135,7 @@ const SliderStyle = styled.div`
     .slide.active {
         opacity: 1;
     }
+
     .slide .slide__image {
         position: absolute;
         left: 0;
@@ -142,8 +159,14 @@ const SliderStyle = styled.div`
     }
 `
 
-{/* tableau des images */
-}
+const myIcon = new L.icon({
+   iconUrl: marker,
+   iconRetinaUrl: marker,
+   popupAnchor: [-0, -0],
+   iconSize: [35, 35]
+});
+
+{/* tableau des images */}
 const Slides = [
     {
         image:
@@ -209,19 +232,18 @@ const Slider = ({slides}) => {
 };
 
 const EstateCard = () => {
-    const API_URL = useContext(Context).apiUrl;
     const [EstateData, setEstateData] = useState({})
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(API_URL + ApiRoutes.estates).then(res => {
+        axios.get("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/estates").then(res => {
             setEstateData(res.data)
         }).catch(error => {
             console.log(error.message)
         }).finally(() => {
             setLoading(false)
         })
-    }, [API_URL])
+    }, [])
 
     if (loading) {
         return <p>Chargement en cours</p>
@@ -236,45 +258,56 @@ const EstateCard = () => {
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
-                            <Marker position={[48.866667, 2.333333]}>
-                                <Popup>
-                                    KiKOU <br/> 🤙
-                                </Popup>
-                            </Marker>
+                            {EstateData.map((item, i) => {
+                                    return (
+                                        <div key={i}>
+                                            <Marker icon={myIcon} position={[item.estate_latitude, item.estate_longitude]}>
+                                                <Popup>
+                                                    <img src="https://i.ibb.co/rf2TbH8/home-office-5006842-1280.png" alt=""/>
+                                                    <p>Maison (type estate) 4 pièces (nb pieces) {item.living_surface} m<sup>2</sup></p>
+                                                    <p>{item.price} €</p>
+                                                </Popup>
+                                            </Marker>
+                                        </div>
+                                    )
+                                }
+                            )}
                         </MapContainer>
                     </div>
                     <div className="right-side">
                         {EstateData.map((item, i) => {
                                 return (
                                     <div key={i}>
-                                        <div className="float-end my-3 card text-center w-25">
-                                            <div className="card-header">
-                                                <div className={"d-flex justify-content-between"}>
-                                                    {item.price} €
-                                                    <FavoriteButton>
-                                                        <label className="add-fav">
-                                                            <input type="checkbox"/>
-                                                            <i className="fas fa-heart">
-                                                                <i className="fas fa-plus-circle"/>
-                                                            </i>
-                                                        </label>
-                                                    </FavoriteButton>
+                                        <a className={"cardLink"} href="#">
+                                            <div className="my-3 card text-center">
+                                                <div className="card-header">
+                                                    <div className={"d-flex justify-content-between"}>
+                                                        {item.price} €
+                                                        <FavoriteButton>
+                                                            <label className="add-fav">
+                                                                <input type="checkbox"/>
+                                                                <i className="fas fa-heart">
+                                                                    <i className="fas fa-plus-circle"/>
+                                                                </i>
+                                                            </label>
+                                                        </FavoriteButton>
+                                                    </div>
                                                 </div>
+                                                <SliderStyle>
+                                                    <div className="card-body position-relative">
+                                                        <Slider slides={Slides}/>
+                                                    </div>
+                                                </SliderStyle>
+                                                <CardFooter>
+                                                    <div className="card-footer">
+                                                        <p className={"m-2"}>{item.zipcode} {item.city}</p>
+                                                        <p className={"m-2"}>
+                                                            À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
+                                                        </p>
+                                                    </div>
+                                                </CardFooter>
                                             </div>
-                                            <SliderStyle>
-                                                <div className="card-body position-relative">
-                                                    <Slider slides={Slides}/>
-                                                </div>
-                                            </SliderStyle>
-                                            <CardFooter>
-                                                <div className="card-footer">
-                                                    <p className={"m-2"}>{item.zipcode} {item.city}</p>
-                                                    <p className={"m-2"}>
-                                                        À vendre maison 10 pièces {item.living_surface} m<sup>2</sup>
-                                                    </p>
-                                                </div>
-                                            </CardFooter>
-                                        </div>
+                                        </a>
                                     </div>
                                 )
                             }
