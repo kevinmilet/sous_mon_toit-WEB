@@ -4,6 +4,7 @@ import colors from '../../utils/styles/colors';
 import axios from 'axios';
 import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
+import {StyledBtnPrimary, StyledInput} from "../../utils/styles/Atoms";
 
 const ConnexionForm = styled.form`
     background-color: ${colors.backgroundPrimary};
@@ -55,16 +56,15 @@ const SignIn = () => {
                 <ConnexiontH1 className="text-center">Connectez-vous</ConnexiontH1>
                 <div className="mb-3">
                     <ConnexionLabel htmlFor="mail" className="form-label">Adresse mail</ConnexionLabel>
-                    <input type="email" className="form-control" id="mail" name="mail" onChange={handleChange}/>
+                    <StyledInput type="email" className="form-control" id="mail" name="mail" onChange={handleChange}/>
                 </div>
                 <p>( mail : pass@gmail.com )</p>
                 <div className="mb-3">
                     <ConnexionLabel htmlFor="password" className="form-label">Mot de passe</ConnexionLabel>
-                    <input type="password" className="form-control" id="password" name="password" onChange={handleChange}/>
+                    <StyledInput type="password" className="form-control" id="password" name="password" onChange={handleChange}/>
                 </div>
                 <p>( password : pouet )</p>
-                <ConnexionBtn type="submit" onClick={login} className="btn btn-primary">Connexion</ConnexionBtn>
-                
+                <StyledBtnPrimary type="submit" onClick={login} className="btn">Connexion</StyledBtnPrimary>
             </ConnexionForm>
         </div>
     );

@@ -3,9 +3,13 @@ import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
 import PropTypes from "prop-types";
+import {StyledBtnPrimary, StyledInput, StyledTextarea} from '../../utils/styles/Atoms';
 
 const ContactForm = styled.form`
     background-color: ${colors.backgroundPrimary};
+    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `
 const ContactSuccess = styled.p`
     color : green;
@@ -16,10 +20,6 @@ const ContactH1 = styled.h1`
 `
 const ContactLabel = styled.label`
     color: ${colors.secondaryBtn};
-`
-const ContactBtn = styled.button`
-    background-color: ${colors.primaryBtn};
-    color: #fff;
 `
 const ContactEtoile = styled.span`
     color:${colors.secondary};
@@ -135,37 +135,37 @@ const Contact = () => {
                 <div className="col-md-6">
                     <div className="mb-3">
                         <ContactLabel htmlFor="firstname" className="form-label">Prénom</ContactLabel>
-                        <input type="text" className="form-control" id="firstname" value={userData.firstname ? userData.firstname : firstname}  name="firstname" onChange={(e)=> setFirstname(e.target.value)} />
+                        <StyledInput type="text" className="form-control" id="firstname" value={userData.firstname ? userData.firstname : firstname}  name="firstname" onChange={(e)=> setFirstname(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="lastname" className="form-label">Nom</ContactLabel>
-                        <input type="text" className="form-control" id="lastname" value={userData.lastname ? userData.lastname : lastname} name="lastname" onChange={(e)=> setLastname(e.target.value)} />
+                        <StyledInput type="text" className="form-control" id="lastname" value={userData.lastname ? userData.lastname : lastname} name="lastname" onChange={(e)=> setLastname(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="mail" className="form-label obligatoire">Adresse mail<ContactEtoile>*</ContactEtoile></ContactLabel>
-                        <input type="email" className="form-control" id="mail" value={userData.mail ? userData.mail : mail} name="mail" onChange={(e)=> setMail(e.target.value)} required />
+                        <StyledInput type="email" className="form-control" id="mail" value={userData.mail ? userData.mail : mail} name="mail" onChange={(e)=> setMail(e.target.value)} required />
                         <div className="mail-error text-danger text-center"/>
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="Phone" className="form-label">Téléphone</ContactLabel>
-                        <input type="Phone" className="form-control" id="Phone" value={userData.phone ? userData.phone : phone} onChange={(e)=> setPhone(e.target.value)} name="Phone"/>
+                        <StyledInput type="Phone" className="form-control" id="Phone" value={userData.phone ? userData.phone : phone} onChange={(e)=> setPhone(e.target.value)} name="Phone"/>
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="mb-3">
                         <ContactLabel htmlFor="message" className="form-label obligatoire">Votre message<ContactEtoile>*</ContactEtoile></ContactLabel>
-                        <textarea className="form-control" id="message" name="message" rows="5" value={message} onChange={(e) => setMessage(e.target.value)} required />
+                        <StyledTextarea className="form-control" id="message" name="message" rows="5" value={message} onChange={(e) => setMessage(e.target.value)} required />
                     </div>
                     <div className="mb-3 form-check">
-                        <input type="checkbox" className="form-check-input text-light" id="newsletter" onChange={(e)=> setNewsletter(e.target.value)} name="newsletter"/>
+                        <StyledInput type="checkbox" className="form-check-input text-light" id="newsletter" onChange={(e)=> setNewsletter(e.target.value)} name="newsletter"/>
                         <label className="form-check-label text-dark" htmlFor="newsletter" >J’accepte de recevoir les lettres d’information de la société Sous Mon Toit.</label>
                     </div>
                     <div className="mb-3 form-check">
-                        <input type="checkbox" className="form-check-input text-light" id="notRobot" name="notRobot" required/>
+                        <StyledInput type="checkbox" className="form-check-input text-light" id="notRobot" name="notRobot" required/>
                         <label className="form-check-label text-dark" htmlFor="notRobot" >Je confirme que je ne suis pas un robot<ContactEtoile>*</ContactEtoile></label>
                     </div>
                     <div className="text-danger fs-6"><ContactEtoile>*</ContactEtoile>Champs obligatoires</div>
-                    <ContactBtn type="submit" onClick={handleSubmit} className="btn float-end">Envoyer</ContactBtn>
+                    <StyledBtnPrimary type="submit" onClick={handleSubmit} className="btn float-end">Envoyer</StyledBtnPrimary>
                 </div>
                 <div className="form-message text-danger fs-5 text-center"/>
             </ContactForm>
