@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import HomeView from "./screens/Home/HomeView";
-import EstateCard from "./components/Estate/EstateCard";
 import Agency from "./screens/Agency/AgencyView";
 import {BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import UserAccountView from './screens/UserAccount/UserAccountView';
@@ -12,6 +11,7 @@ import ApiRoutes from "./utils/const/ApiRoutes";
 import SignInView from './screens/SignIn/SignInView';
 import ContactView from './screens/Contact/ContactView';
 import SignUpView from './screens/SignUp/SignUpView';
+import Estates from "./screens/Estates/Estates";
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
@@ -39,7 +39,7 @@ const App = () => {
                         <HomeView/>
                     </Route>
                     <Route exact path="/liste-des-biens">
-                        <EstateCard/>
+                        <Estates/>
                     </Route>
                     <Route exact path="/our-agency">
                         <Agency/>
