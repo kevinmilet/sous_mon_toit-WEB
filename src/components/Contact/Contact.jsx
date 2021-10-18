@@ -28,6 +28,14 @@ const Contact = () => {
 
     // Données de l'utilisateur connecté
     const [userData, setUserData] = useState({})
+    // Données du formulaire
+    const [firstname, setFirstname] = useState("")
+    const [lastname, setLastname] = useState("")
+    const [mail, setMail] = useState("")
+    const [phone, setPhone] = useState("")
+    const [message, setMessage] = useState("")
+    const [newsletter, setNewsletter] = useState(false) // fonctionnalité a développer
+    // const [notRobot, setNotRobot] = useState(false)
 
     // Récupération des données de l'utilisateur connecté
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
@@ -37,20 +45,16 @@ const Contact = () => {
             axios.post("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/api/c/me")
             .then(res=>{
                 setUserData(res.data);
+                setFirstname(res.data.firstname)
+                setLastname(res.data.lastname)
+                setMail(res.data.mail)
+                setPhone(res.data.phone)
+
             }).catch(error=>{
                 console.log(error.message);
             })
         }
     },[])
-
-    // Données du formulaire
-    const [firstname, setFirstname] = useState("")
-    const [lastname, setLastname] = useState("")
-    const [mail, setMail] = useState("")
-    const [phone, setPhone] = useState("")
-    const [message, setMessage] = useState("")
-    const [newsletter, setNewsletter] = useState(false) // fonctionnalité a développer
-    // const [notRobot, setNotRobot] = useState(false)
 
     //Fonction de contrôle de la validité de l'adresse mail
     const isMail = () =>{
@@ -135,20 +139,20 @@ const Contact = () => {
                 <div className="col-md-6">
                     <div className="mb-3">
                         <ContactLabel htmlFor="firstname" className="form-label">Prénom</ContactLabel>
-                        <StyledInput type="text" className="form-control" id="firstname" value={userData.firstname ? userData.firstname : firstname}  name="firstname" onChange={(e)=> setFirstname(e.target.value)} />
+                        <StyledInput type="text" className="form-control" id="firstname" value={firstname}  name="firstname" onChange={(e)=> setFirstname(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="lastname" className="form-label">Nom</ContactLabel>
-                        <StyledInput type="text" className="form-control" id="lastname" value={userData.lastname ? userData.lastname : lastname} name="lastname" onChange={(e)=> setLastname(e.target.value)} />
+                        <StyledInput type="text" className="form-control" id="lastname" value={lastname} name="lastname" onChange={(e)=> setLastname(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="mail" className="form-label obligatoire">Adresse mail<ContactEtoile>*</ContactEtoile></ContactLabel>
-                        <StyledInput type="email" className="form-control" id="mail" value={userData.mail ? userData.mail : mail} name="mail" onChange={(e)=> setMail(e.target.value)} required />
+                        <StyledInput type="email" className="form-control" id="mail" value={mail} name="mail" onChange={(e)=> setMail(e.target.value)} required />
                         <div className="mail-error text-danger text-center"/>
                     </div>
                     <div className="mb-3">
                         <ContactLabel htmlFor="Phone" className="form-label">Téléphone</ContactLabel>
-                        <StyledInput type="Phone" className="form-control" id="Phone" value={userData.phone ? userData.phone : phone} onChange={(e)=> setPhone(e.target.value)} name="Phone"/>
+                        <StyledInput type="Phone" className="form-control" id="Phone" value={phone} onChange={(e)=> setPhone(e.target.value)} name="Phone"/>
                     </div>
                 </div>
                 <div className="col-md-6">

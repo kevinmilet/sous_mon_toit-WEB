@@ -12,6 +12,7 @@ import ApiRoutes from "./utils/const/ApiRoutes";
 import SignInView from './screens/SignIn/SignInView';
 import ContactView from './screens/Contact/ContactView';
 import SignUpView from './screens/SignUp/SignUpView';
+import DetailEstateView from './screens/Estates/DetailEstateView';
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
@@ -40,6 +41,9 @@ const App = () => {
                     </Route>
                     <Route exact path="/liste-des-biens">
                         <EstateCard/>
+                    </Route>
+                    <Route exact path="/detail_biens">
+                        <DetailEstateView/>
                     </Route>
                     <Route exact path="/our-agency">
                         <Agency/>
