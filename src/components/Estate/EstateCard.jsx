@@ -40,7 +40,7 @@ const EstateCard = () => {
                     return (
                         <div key={i}>
                             <a className={"cardLink"} href="#">
-                                <div className="my-3 card text-center">
+                                <div className="my-3 card shadow-sm text-center">
                                     <div className="card-header">
                                         <div className={"d-flex justify-content-between"}>
                                             <EstateRef>{item.reference}</EstateRef> {item.price} €
