@@ -110,19 +110,19 @@ const SignupForm = () => {
           }}
           validationSchema={Yup.object({
             firstname: Yup.string()
-              .max(15, "Must be 15 characters or less")
-              .required("Required"),
+              .max(15, "15 caractères maximum")
+              .required("Champs requis"),
             lastname: Yup.string()
-              .max(20, "Must be 20 characters or less")
-              .required("Required"),
+              .max(20, "20 caractères maximum")
+              .required("Champs requis"),
             mail: Yup.string()
-              .email("Invalid email addresss`")
-              .required("Required"),
+              .email("Adresse mail invalide")
+              .required("Champs requis"),
             password: Yup.string()
-              .required("Required"),
+              .required("Champs requis"),
             acceptedTerms: Yup.boolean()
-              .required("Required")
-              .oneOf([true], "You must accept the terms and conditions."),
+              .required("Champs requis")
+              .oneOf([true], "Vous devez accepter les conditions d'utilisation"),
           })}
           onSubmit={async (values, { setSubmitting }) => {
             await new Promise(r => setTimeout(r, 500));
@@ -134,31 +134,31 @@ const SignupForm = () => {
           <Form>
             <InscriptionH1 className="text-center" > Inscrivez-vous </InscriptionH1>
             <MyTextInput
-              label="First Name"
+              label="Prénom"
               name="firstname"
               type="text"
               placeholder=""
             />
             <MyTextInput
-              label="Last Name"
+              label="Nom"
               name="lastname"
               type="text"
               placeholder=""
             />
             <MyTextInput
-              label="Email Address"
+              label="Adresse mail"
               name="mail"
               type="mail"
               placeholder=""
             />
             <MyTextInput
-              label="Password Address"
+              label="Mot de passe"
               name="password"
               type="password"
               placeholder=""
             />
             <MyCheckbox name="acceptedTerms">
-              I accept the terms and conditions
+              J'accepte les conditions d'utilisations du site SousMonToit
             </MyCheckbox>
             <button type="submit" className="btn btn-primary">Inscription</button>
           </Form>
