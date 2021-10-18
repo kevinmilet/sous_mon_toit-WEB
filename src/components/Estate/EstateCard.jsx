@@ -1,12 +1,15 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import PropTypes from "prop-types";
-import {FavoriteButton, SliderStyle} from "../../utils/styles/Atoms";
-import Slider from "../Tools/Slider/Slider";
-import slides from "../../utils/styles/slidesArray";
+import {FavoriteButton} from "../../utils/styles/Atoms";
 import colors from "../../utils/styles/colors";
+import {Context} from "../../utils/context/Context";
+import axios from "axios";
+import ApiRoutes from "../../utils/const/ApiRoutes";
+import Loader from "../Tools/Loader/Loader";
+import defaultCover from '../../assets/img/estate_default.jpg';
 
-const CardFooter = styled.p`
+const CardBody = styled.p`
     font-size: 13px;
     color: ${colors.primary}
 `
@@ -17,60 +20,67 @@ const EstateRef = styled.span`
 `
 
 const EstateCard = ({estateData}) => {
+    const API_URL = useContext(Context).apiUrl;
+    const [estateCover, setEstateCover] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        axios.get(API_URL + ApiRoutes.estates_cover + "/" + estateData.id).then(res => {
+            setEstateCover(res.data)
+        }).catch(error => {
+            setEstateCover(defaultCover);
+            console.log(error.message)
+        }).finally(() => {
+            setLoading(false)
+        })
+    }, [API_URL, estateData.id])
 
     return (
-        <div>
-            {estateData.map((item, i) => {
-                    return (
-                        <div key={i}>
-                            <a className={"cardLink"} href="#">
-                                <div className="my-3 card shadow-sm text-center">
-                                    <div className="card-header">
-                                        <div className={"d-flex justify-content-between"}>
-                                            <EstateRef>{item.reference}</EstateRef> {item.price} €
-                                            <FavoriteButton>
-                                                <label className="add-fav">
-                                                    <input type="checkbox"/>
-                                                    <i className="fas fa-heart">
-                                                        <i className="fas fa-plus-circle"/>
-                                                    </i>
-                                                </label>
-                                            </FavoriteButton>
-                                        </div>
+        loading ? <Loader/> :
+
+            estateData.map((item, i) => {
+                return (<div className='col-sm-12 col-md-4 col-lg-4'>
+                    <a className={"cardLink"} href="#" key={i}>
+                        <div className="my-3 card shadow-sm text-center" style={{width: 18 + 'rem'}}>
+                            <img src={estateCover} alt="" className="card-img-top img-fluid" height="200px"/>
+                            <CardBody>
+                                <div className="card-body">
+                                    <div className={"d-flex justify-content-between"}>
+                                        <EstateRef>{item.reference}</EstateRef> {item.price} €
+                                        <FavoriteButton>
+                                            <label className="add-fav">
+                                                <input type="checkbox"/>
+                                                <i className="fas fa-heart">
+                                                    <i className="fas fa-plus-circle"/>
+                                                </i>
+                                            </label>
+                                        </FavoriteButton>
                                     </div>
-                                    <SliderStyle>
-                                        <div className="card-body position-relative">
-                                            <Slider slides={slides}/>
-                                        </div>
-                                    </SliderStyle>
-                                    <CardFooter>
-                                        <div className="card-footer">
-                                            <p className={"m-2"}>{item.zipcode} {item.city}</p>
-                                            <p className={"m-2"}>
-                                               {item.title} {item.living_surface} m<sup>2</sup>
-                                            </p>
-                                        </div>
-                                    </CardFooter>
+                                    <p className={"m-2"}>{item.zipcode} {item.city}</p>
+                                    <p className={"m-2"}>
+                                        {item.title} {item.living_surface} m<sup>2</sup>
+                                    </p>
                                 </div>
-                            </a>
+                            </CardBody>
                         </div>
-                    )
-                }
-            )}
-        </div>
-    );
+                    </a>
+                </div>)
+            })
+    )
 };
 
 EstateCard.propTypes = {
     price: PropTypes.number.isRequired,
     zipcode: PropTypes.string.isRequired,
-    living_surface: PropTypes.number.isRequired
+    living_surface: PropTypes.number.isRequired,
+    estateCover: PropTypes.string.isRequired
 }
 
 EstateCard.defaultProps = {
     price: 0,
     zipcode: '',
-    living_surface: 0
+    living_surface: 0,
+    estateCover: defaultCover
 }
 
 export default EstateCard;

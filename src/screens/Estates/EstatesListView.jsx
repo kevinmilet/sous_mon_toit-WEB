@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import EstateMap from "../../components/Estate/EstateMap";
 import EstateCard from "../../components/Estate/EstateCard";
 import axios from "axios";
 import Loader from "../../components/Tools/Loader/Loader";
+import ApiRoutes from "../../utils/const/ApiRoutes";
+import {Context} from "../../utils/context/Context";
 
 const BlockListing = styled.div`
   .listing {
@@ -61,18 +63,19 @@ const BlockListing = styled.div`
 `
 
 const EstatesListView = () => {
+    const API_URL = useContext(Context).apiUrl;
     const [estateData, setEstateData] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/estates").then(res => {
+        axios.get(API_URL + ApiRoutes.estates).then(res => {
             setEstateData(res.data)
         }).catch(error => {
             console.log(error.message)
         }).finally(() => {
             setLoading(false)
         })
-    }, [])
+    }, [API_URL])
 
     return (
         loading ? <Loader/> :
