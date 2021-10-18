@@ -71,7 +71,7 @@ const Menu = () => {
                             </MenuItemLink>
                         </MenuItem>
                         <MenuItem className="nav-item">
-                            <MenuItemLink href="#">
+                            <MenuItemLink href="for-sale">
                                 <div className="justify-content-center">
                                     <Icons src={sell} alt="Vendre"/>
                                 </div>
