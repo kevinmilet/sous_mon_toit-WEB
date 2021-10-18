@@ -36,7 +36,7 @@ const Agency = () => {
                 </div>
                 <div className="col-12  d-flex">
                     <div>
-                        <img src="/public/ms-icon-310x310.png" alt=""/>
+                        <img src="ms-icon-310x310.png" alt=""/>
                     </div>
                     <p className="col-8">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aliquam minima magni
