@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import L from 'leaflet';
 import marker from "../../assets/icons/marker.png";
 import PropTypes from "prop-types";
-import axios from "axios";
 import EstateCard from "./EstateCard";
 
 const myIcon = new L.icon({
@@ -13,23 +12,8 @@ const myIcon = new L.icon({
     iconSize: [35, 35]
 });
 
-const EstateMap = () => {
-    const [estateData, setEstateData] = useState({});
-    const [loading, setLoading] = useState(true);
+const EstateMap = ({estateData}) => {
 
-    useEffect(() => {
-        axios.get("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/estates").then(res => {
-            setEstateData(res.data)
-        }).catch(error => {
-            console.log(error.message)
-        }).finally(() => {
-            setLoading(false)
-        })
-    }, [])
-
-    if (loading) {
-        return <p>Chargement en cours</p>
-    }
     return (
         <MapContainer
             center={[46.603354, 1.888334]}

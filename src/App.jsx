@@ -11,7 +11,8 @@ import ApiRoutes from "./utils/const/ApiRoutes";
 import SignInView from './screens/SignIn/SignInView';
 import ContactView from './screens/Contact/ContactView';
 import SignUpView from './screens/SignUp/SignUpView';
-import Estates from "./screens/Estates/Estates";
+import EstatesListView from "./screens/Estates/EstatesListView";
+import Loader from "./components/Tools/Loader/Loader";
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
@@ -26,11 +27,9 @@ const App = () => {
         setLoading(false);
     }, []);
 
-    if (loading) {
-        return <></>;
-    }
-
     return (
+        loading ? <Loader/> :
+
         <Context.Provider value={{apiUrl, setApiUrl}}>
             <div>
                 <Router>
@@ -39,7 +38,7 @@ const App = () => {
                         <HomeView/>
                     </Route>
                     <Route exact path="/liste-des-biens">
-                        <Estates/>
+                        <EstatesListView/>
                     </Route>
                     <Route exact path="/our-agency">
                         <Agency/>

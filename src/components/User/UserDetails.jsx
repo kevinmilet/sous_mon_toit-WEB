@@ -3,6 +3,7 @@ import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
+import Loader from "../Tools/Loader/Loader";
 
 
 const NavAccount = styled.div`
@@ -75,7 +76,7 @@ const UserDetails= () => {
  
     if(loading){
 
-        return <p>Chargement en cours..</p>
+        return <Loader/>
 
     }
     return (

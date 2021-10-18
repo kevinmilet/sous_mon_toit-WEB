@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import axios from "axios";
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import {FavoriteButton, SliderStyle} from "../../utils/styles/Atoms";
 import Slider from "../Tools/Slider/Slider";
@@ -17,23 +16,8 @@ const EstateRef = styled.span`
     font-weight: 700 
 `
 
-const EstateCard = () => {
-    const [estateData, setEstateData] = useState({});
-    const [loading, setLoading] = useState(true);
+const EstateCard = ({estateData}) => {
 
-    useEffect(() => {
-        axios.get("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/estates").then(res => {
-            setEstateData(res.data)
-        }).catch(error => {
-            console.log(error.message)
-        }).finally(() => {
-            setLoading(false)
-        })
-    }, [])
-
-    if (loading) {
-        return <p>Chargement en cours</p>
-    }
     return (
         <div>
             {estateData.map((item, i) => {

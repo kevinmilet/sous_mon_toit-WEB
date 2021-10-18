@@ -5,6 +5,7 @@ import DefaultPicture from '../../assets/img/user_default.png';
 import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import PropTypes from "prop-types";
+import Loader from "../Tools/Loader/Loader";
 
 const Agency = () => {
 
@@ -24,11 +25,9 @@ const Agency = () => {
         })
     }, [API_URL]);
 
-    if (loading) {
-        return <p>Chargement en cours..</p>
-    }
-
     return (
+        loading ? <Loader/> :
+
         <div className="container ">
             <div className="row">
                 <div className="my-3 text-center">

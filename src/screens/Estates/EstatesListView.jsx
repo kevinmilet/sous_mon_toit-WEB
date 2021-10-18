@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import EstateMap from "../../components/Estate/EstateMap";
 import EstateCard from "../../components/Estate/EstateCard";
+import axios from "axios";
+import Loader from "../../components/Tools/Loader/Loader";
 
 const BlockListing = styled.div`
   .listing {
@@ -58,16 +60,31 @@ const BlockListing = styled.div`
   }
 `
 
-const Estates = () => {
+const EstatesListView = () => {
+    const [estateData, setEstateData] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        axios.get("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/estates").then(res => {
+            setEstateData(res.data)
+        }).catch(error => {
+            console.log(error.message)
+        }).finally(() => {
+            setLoading(false)
+        })
+    }, [])
+
     return (
+        loading ? <Loader/> :
+
         <div>
             <BlockListing>
                 <div className="listing">
                     <div className="left-side">
-                        <EstateMap/>
+                        <EstateMap estateData={estateData}/>
                     </div>
                     <div className="left-side">
-                        <EstateCard/>
+                        <EstateCard estateData={estateData}/>
                     </div>
                 </div>
             </BlockListing>
@@ -75,4 +92,4 @@ const Estates = () => {
     );
 };
 
-export default Estates;
+export default EstatesListView;

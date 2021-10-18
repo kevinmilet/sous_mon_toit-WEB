@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Loader from "../Tools/Loader/Loader";
 
 // fetch('http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/staff').then((response) => {
 //     console.log(response);
@@ -31,13 +32,9 @@ useEffect(()=>{
     })
 },[])
 
-    if(loading){
-
-        return <p>Chargement en cours..</p>
-
-    }
     return (
-        
+        loading ? <Loader/> :
+
         <div className="container ">
             <div className="row">
                 <div className="my-3 text-center">
