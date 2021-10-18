@@ -14,6 +14,8 @@ import ContactView from './screens/Contact/ContactView';
 import SignUpView from './screens/SignUp/SignUpView';
 import DetailEstateView from './screens/Estates/DetailEstateView';
 
+import ForSaleView from './screens/ForSale/ForSaleView';
+
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
     const [token, setToken] = useState(null);
@@ -47,6 +49,9 @@ const App = () => {
                     </Route>
                     <Route exact path="/our-agency">
                         <Agency/>
+                    </Route>
+                    <Route exact path="/for-sale">
+                        <ForSaleView/>
                     </Route>
                     <Route exact path="/contact">
                         <ContactView/>
