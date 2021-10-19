@@ -122,19 +122,20 @@ const SearchBar = () => {
     const API_URL = useContext(Context).apiUrl;
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
+    const [cityList, setCityList] = useState('');
 
     //false = 'Achat', true = 'Location'
     const [checked, setChecked] = useState(false);
 
     const formik = useFormik({
         initialValues: {
-            estateSector: '',
+            city: '',
             estateType: '',
             nbRooms: '',
             budget: undefined,
         },
         validationSchema : Yup.object({
-            estateSector: Yup.string()
+            city: Yup.string()
                 .trim()
                 .matches(/^[a-zA-Z\-'.\s]+$/),
             estatesTypes: Yup.string()
@@ -177,15 +178,24 @@ const SearchBar = () => {
         })
     }, [API_URL])
 
+    useEffect((city) => {
+        axios.get('https://geo.api.gouv.fr/communes?nom=' + city + '&fields=departement&limit=5')
+            .then(response => {
+                setCityList(response.data);
+            }).catch(error => {
+            console.log(error.message)
+        })
+    },[formik.values.city])
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <SearchContainer className="row">
                 <div className="col-12 col-md-3">
                     <Sector type="text" 
                             placeholder="Secteur recherché" 
-                            name="estateSector" 
-                            id="estateSector" 
-                            value={formik.values.estateSector}
+                            name="city"
+                            id="city"
+                            value={formik.values.city}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
 
@@ -238,7 +248,7 @@ const SearchBar = () => {
 
 SearchBar.propTypes = {
     estates_types_name: PropTypes.string.isRequired,
-    estateSector: PropTypes.string,
+    city: PropTypes.string,
     estateType: PropTypes.string,
     nbRooms: PropTypes.string,
     budget: PropTypes.number,
@@ -247,7 +257,7 @@ SearchBar.propTypes = {
 
 SearchBar.defaultProps = {
     estates_types_name: '',
-    estateSector: '',
+    city: '',
     estateType: '',
     nbRooms: '',
     budget: undefined,
