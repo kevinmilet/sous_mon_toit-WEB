@@ -86,6 +86,7 @@ const SignIn = () => {
                 {formik.errors.password ? <div style={{color: "#E85A70", fontStyle: 'italic'}} className="mb-2">{formik.errors.password}</div> : null}
 
                 <StyledBtnPrimary type="submit" className="btn">Connexion</StyledBtnPrimary>
+                <p className="mt-4">Pas encore inscrit ? <a href="/inscription"> Inscrivez-vous !</a></p>
             </ConnexionForm>
         </div>
     );

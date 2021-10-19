@@ -1,14 +1,19 @@
-import React, {useContext} from "react";
-import {Form, Formik, useField} from "formik";
+import React, { useContext, useEffect,  useState } from "react";
+import { Formik, Form, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import {Context} from "../../utils/context/Context";
+import {StyledBtnPrimary, StyledInput} from "../../utils/styles/Atoms";
+import { Redirect } from "react-router-dom";
 
-const InscriptionForm = styled.form`
-    background-color: ${colors.backgroundSecondary};
+const InscriptionFormDiv = styled.div`
+    background-color: ${colors.backgroundPrimary};
+    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `
 const InscriptionH1 = styled.h1`
     color: ${colors.secondary};
@@ -16,11 +21,6 @@ const InscriptionH1 = styled.h1`
 const InscriptionLabel = styled.label`
     color: ${colors.secondaryBtn};
 `
-const InscriptionBtn = styled.button`
-    background-color: ${colors.primaryBtn};
-    color: #fff;
-`
-
 const MyTextInput = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input> and alse replace ErrorMessage entirely.
@@ -28,8 +28,8 @@ const MyTextInput = ({ label, ...props }) => {
   return (
     <>
       <div className="mb-3">
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="text-input form-control" {...field} {...props} />
+      <InscriptionLabel className="form-label">{label}</InscriptionLabel>
+      <StyledInput className="text-input form-control" {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
@@ -76,6 +76,8 @@ const StyledLabel = styled.label`
 // And now we can use these
 const SignupForm = () => {
 
+  const [errorMail, setErrorMail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("")
   const API_URL = useContext(Context).apiUrl;
   const InsertCustomer = (values)=>{
 
@@ -89,12 +91,19 @@ const SignupForm = () => {
       var first_met = false;
 
       axios.post(API_URL + ApiRoutes.create_customer, { lastname , firstname , mail , phone ,gender,first_met ,password})
+      // axios.post("http://localhost:8000/customer/create", { lastname , firstname , mail , phone ,gender,first_met ,password})
       .then(res=>{
   
           alert("vous etes inscrit !")// a changer 
-  
+          // window.location.href = '/connexion';
+
       }).catch(error => {
-          console.log(error.message);
+          if (error.response.data.mail == "The mail has already been taken."){
+              setErrorMail("Cette adresse mail est déja prise.");
+          }
+          if (error.response.data.password == "The password format is invalid."){
+              setErrorPassword("Le mot de passe doit comporter au minimum 8 caractères (dont masjuscule, minuscule , chiffre et caractères spéciaux).")
+          }
       })
   }
   return (
@@ -131,37 +140,41 @@ const SignupForm = () => {
             InsertCustomer(values);
           }}
         >
-          <Form>
-            <InscriptionH1 className="text-center" > Inscrivez-vous </InscriptionH1>
-            <MyTextInput
-              label="Prénom"
-              name="firstname"
-              type="text"
-              placeholder=""
-            />
-            <MyTextInput
-              label="Nom"
-              name="lastname"
-              type="text"
-              placeholder=""
-            />
-            <MyTextInput
-              label="Adresse mail"
-              name="mail"
-              type="mail"
-              placeholder=""
-            />
-            <MyTextInput
-              label="Mot de passe"
-              name="password"
-              type="password"
-              placeholder=""
-            />
-            <MyCheckbox name="acceptedTerms">
-              J'accepte les conditions d'utilisations du site SousMonToit
-            </MyCheckbox>
-            <button type="submit" className="btn btn-primary">Inscription</button>
-          </Form>
+          <InscriptionFormDiv className="p-4 rounded">
+            <Form>
+              <InscriptionH1 className="text-center" > Inscrivez-vous </InscriptionH1>
+              <MyTextInput
+                label="Prénom"
+                name="firstname"
+                type="text"
+                placeholder=""
+              />
+              <MyTextInput
+                label="Nom"
+                name="lastname"
+                type="text"
+                placeholder=""
+              />
+              <MyTextInput
+                label="Adresse mail"
+                name="mail"
+                type="mail"
+                placeholder=""
+              />
+              <div className="error">{errorMail}</div>
+              <MyTextInput
+                label="Mot de passe"
+                name="password"
+                type="password"
+                placeholder=""
+              />
+              <div className="error">{errorPassword}</div>
+              <MyCheckbox name="acceptedTerms">
+                  J'accepte les conditions d'utilisations du site SousMonToit
+              </MyCheckbox>
+              <StyledBtnPrimary type="submit" className="btn">Inscription</StyledBtnPrimary>
+            </Form>
+          </InscriptionFormDiv>
         </Formik>
       </div>
     </>
