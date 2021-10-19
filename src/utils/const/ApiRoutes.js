@@ -19,7 +19,9 @@ const API_URL = {
     customer_delete_search: 'customer_search/c/delete',
     customers_types: 'customer_type',
     estates_pictures: 'estates_pictures',
-    estates_cover: 'estates_pictures/cover'
+    estates_cover: 'estates_pictures/cover',
+    search: 'search'
+
 }
 
 export default API_URL;

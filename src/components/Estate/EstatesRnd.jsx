@@ -24,8 +24,6 @@ const EstatesRnd = () => {
             setLoading(false)
         })
     }, [API_URL])
-    console.log('Coucou ++++++')
-    console.log(estateData)
 
     return (
 
