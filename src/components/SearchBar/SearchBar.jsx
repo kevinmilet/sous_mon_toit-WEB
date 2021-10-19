@@ -4,7 +4,7 @@ import colors from "../../utils/styles/colors";
 import axios from "axios";
 import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
-import Switch from "../Switch/Switch";
+import Switch from "../Tools/Switch/Switch";
 import PropTypes from "prop-types";
 
 const SearchContainer = styled.div`
@@ -72,26 +72,17 @@ const Select = styled.select`
     color: ${colors.backgroundPrimary};
     &:focus {
         outline: none;
+        box-shadow: none;
+        border-color: none
     }
     &:focus-visible {
         outline: none;
     }
 `
 const Option = styled.option`
-    margin: 15px 0;
-    min-height: 100px;
-    display:flex;
-    align-items:center;
-    top:15px;
-    width: 100%;
-    overflow:hidden;
-    white-space:nowrap;
-    color: ${colors.primary};
-    &:hover {
-        color: ${colors.backgroundPrimary};
-        background-color: ${colors.secondaryBtn};
-    }
+  color: ${colors.secondaryBtn};
 `
+
 const Budget = styled.input`
     width: 100%;
     height: 65px;
@@ -167,12 +158,13 @@ const SearchBar = () => {
                     </Select>
                 </SelectDiv>
                 <div className="col-12 col-md-3">
-                    <Budget type="text" placeholder="Budget"/>
+                    <Budget type="text" placeholder="Budget" name="budget"/>
                 </div>
             </SearchContainer>
             <div className="row">
                 <div className="col d-flex justify-content-center">
                     <Switch
+                        name="buyOnRent"
                         isOn={checked}
                         handleChange={() => setChecked(!checked)}
                     />

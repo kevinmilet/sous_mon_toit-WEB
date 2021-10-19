@@ -11,7 +11,7 @@ import {
 
 import { Context } from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
-import Switch from "../Switch/Switch";
+import Switch from "../Tools/Switch/Switch";
 
 
 const SelectDiv = styled.div`
