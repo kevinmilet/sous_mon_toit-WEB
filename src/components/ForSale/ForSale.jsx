@@ -12,18 +12,27 @@ import {
 import { Context } from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import Switch from "../Switch/Switch";
+import background from "../../assets/img/maison_interieur.jpg";
 
-
+const Container = styled.div``;
+const Head = styled.div`
+  width: 100%;
+  height: 730px;
+  background: no-repeat;
+`;
+const HeadH1 = styled.h1`
+  color: ${colors.primaryBtn};
+`;
 const SelectDiv = styled.div`
   color: ${colors.secondaryBtn};
 `;
 const Select = styled.select`
-border-radius: 50px;
-border: 2px solid ${colors.secondaryBtn};
-&:focus {
+  border-radius: 50px;
+  border: 2px solid ${colors.secondaryBtn};
+  &:focus {
     outline: none;
     box-shadow: none;
-}
+  }
 `;
 const Option = styled.option`
   color: ${colors.secondaryBtn};
@@ -35,13 +44,20 @@ const ForSaleForm = styled.form`
   -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
+const ContHeader = styled.form`
+  background-color: "${colors.backgroundPrimary}";
+  -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+`;
 const ForSaleSuccess = styled.p`
   color: green;
   font-size: 2rem;
 `;
-const ForSaleH1 = styled.h1`
+const ForSaleH1 = styled.h2`
   color: ${colors.secondary};
 `;
+
 const ForSaleLabel = styled.label`
   color: ${colors.secondaryBtn};
 `;
@@ -124,7 +140,6 @@ const ForSale = () => {
     e.preventDefault();
     if (document.getElementById("notRobot").checked === true) {
       if (isMail() && message) {
-       
         sendMsg("template_872e69q", {
           firstname: firstname,
           lastname: lastname,
@@ -173,7 +188,7 @@ const ForSale = () => {
         setAddress("");
         setCountry("");
         setEstateType("");
-        setPostalCode("")
+        setPostalCode("");
         setNewsletter(false);
         document.querySelector(".mail-error").innerHTML = "";
         document.querySelector(".form-message").innerHTML = "";
@@ -188,186 +203,215 @@ const ForSale = () => {
   };
 
   return (
-    <div className="container col-12 col-sm-10 col-md-8 col-lg-7 mx-auto mt-5">
-      <ForSaleSuccess className="text-center" id="msgSuccess" />
-      <ForSaleForm className="p-4 rounded row">
-        <ForSaleH1 className="text-center">Estimer votre bien</ForSaleH1>
-        <p className="text-dark">
-          Merci de compléter le formulaire ci-après. Vous serez recontacté(e)
-          par mail.
-        </p>
-        <p className="text-dark">
-          Si votre demande concerne des références particulières, merci de les
-          indiquer.
-        </p>
-        <div className="col-md-6">
-          <div className="mb-3">
-          <ForSaleLabel htmlFor="firstname" className="form-label">
-              Type de bien
-            </ForSaleLabel>
-            <Select name="estateType" id="estateType"  className="form-select"  onChange={(e) => setEstateType(e.target.value)}>
-            <Option value="">Type de bien</Option>
-              {!loading &&
-                estatesTypes.map((item) => (
-                  <Option value={item.estate_type_name} key={item.id}>
-                    {item.estate_type_name}
-                  </Option>
-                ))}
-            </Select>
+    <Container className="container  ">
+      <Head style={{ backgroundImage: `url(${background}` }}>
+        <ContHeader>
+          <div class="col-12 col-sm-10 col-md-8 col-lg-7 mx-auto mt-5">
+            <HeadH1 className="text-center">Estimer votre bien</HeadH1>
+            <div>
+              Une méthode fiable, fondée sur les données du marché et sur le
+              savoir-faire de votre conseiller Sous Mon Toit :
+              <ul>
+                <li>Connaissance de votre quartier</li>
+                <li>Compréhension des points forts de votre bien</li>
+                <li>Analyse du marché</li>
+              </ul>
+            </div>
           </div>
-          <div className="mb-3">
-            <ForSaleLabel htmlFor="address" className="form-label">
-              Adresse
-            </ForSaleLabel>
-            <StyledInput
-              type="text"
-              className="form-control"
-              id="address"
-              value={userData.address ? userData.address : address}
-              name="address"
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <ForSaleLabel htmlFor="country" className="form-label">
-              Ville
-            </ForSaleLabel>
-            <StyledInput
-              type="text"
-              className="form-control"
-              id="country"
-              value={userData.country ? userData.country : country}
-              name="country"
-              onChange={(e) => setCountry(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <ForSaleLabel htmlFor="postalCode" className="form-label">
-              Code Postal
-            </ForSaleLabel>
-            <StyledInput
-              type="text"
-              className="form-control"
-              id="postalCode"
-              value={userData.postalCode ? userData.postalCode : postalCode}
-              name="postalCode"
-              onChange={(e) => setPostalCode(e.target.value)}
-              maxLength="5"
-              
-            />
-          </div>
+        </ContHeader>
+      </Head>
+      <div className=" col-12 col-sm-10 col-md-8 col-lg-7 mx-auto mt-5">
+        <ForSaleSuccess className="text-center" id="msgSuccess" />
+        <ForSaleForm className="p-4 rounded row">
+          <ForSaleH1 className="text-center">Contactez nous pour une estimation</ForSaleH1>
         
-       
-        </div>
-        <div className="col-md-6">
-        <div className="mb-3">
-            <ForSaleLabel htmlFor="firstname" className="form-label">
-              Prénom
-            </ForSaleLabel>
-            <StyledInput
-              type="text"
-              className="form-control"
-              id="firstname"
-              value={userData.firstname ? userData.firstname : firstname}
-              name="firstname"
-              onChange={(e) => setFirstname(e.target.value)}
-            />
+          <p className="text-dark">
+            « Recevez une estimation personnalisée de votre bien par l'agence
+            Sous Mon Toit à Amiens, ayant une parfaite connaissance de votre
+            quartier et des particularités de son emplacement. »
+          </p>
+          <p className="text-dark">
+            Merci de compléter le formulaire ci-dessous. Vous serez recontacté(e)
+            par mail.
+          </p>
+          <h5>À TRÈS VITE DANS NOTRE AGENCE ! </h5>
+          <div className="col-md-6">
+            <div className="mb-3">
+              <ForSaleLabel htmlFor="firstname" className="form-label">
+                Type de bien
+              </ForSaleLabel>
+              <Select
+                name="estateType"
+                id="estateType"
+                className="form-select"
+                onChange={(e) => setEstateType(e.target.value)}
+              >
+                <Option value="">Type de bien</Option>
+                {!loading &&
+                  estatesTypes.map((item) => (
+                    <Option value={item.estate_type_name} key={item.id}>
+                      {item.estate_type_name}
+                    </Option>
+                  ))}
+              </Select>
+            </div>
+            <div className="mb-3">
+              <ForSaleLabel htmlFor="address" className="form-label">
+                Adresse
+              </ForSaleLabel>
+              <StyledInput
+                type="text"
+                className="form-control"
+                id="address"
+                value={userData.address ? userData.address : address}
+                name="address"
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <ForSaleLabel htmlFor="country" className="form-label">
+                Ville
+              </ForSaleLabel>
+              <StyledInput
+                type="text"
+                className="form-control"
+                id="country"
+                value={userData.country ? userData.country : country}
+                name="country"
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <ForSaleLabel htmlFor="postalCode" className="form-label">
+                Code Postal
+              </ForSaleLabel>
+              <StyledInput
+                type="text"
+                className="form-control"
+                id="postalCode"
+                value={userData.postalCode ? userData.postalCode : postalCode}
+                name="postalCode"
+                onChange={(e) => setPostalCode(e.target.value)}
+                maxLength="5"
+              />
+            </div>
           </div>
-          <div className="mb-3">
-            <ForSaleLabel htmlFor="lastname" className="form-label">
-              Nom
-            </ForSaleLabel>
-            <StyledInput
-              type="text"
-              className="form-control"
-              id="lastname"
-              value={userData.lastname ? userData.lastname : lastname}
-              name="lastname"
-              onChange={(e) => setLastname(e.target.value)}
-            />
+          <div className="col-md-6">
+            <div className="mb-3">
+              <ForSaleLabel htmlFor="firstname" className="form-label">
+                Prénom
+              </ForSaleLabel>
+              <StyledInput
+                type="text"
+                className="form-control"
+                id="firstname"
+                value={userData.firstname ? userData.firstname : firstname}
+                name="firstname"
+                onChange={(e) => setFirstname(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <ForSaleLabel htmlFor="lastname" className="form-label">
+                Nom
+              </ForSaleLabel>
+              <StyledInput
+                type="text"
+                className="form-control"
+                id="lastname"
+                value={userData.lastname ? userData.lastname : lastname}
+                name="lastname"
+                onChange={(e) => setLastname(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <ForSaleLabel htmlFor="mail" className="form-label obligatoire">
+                Adresse mail<ForSaleEtoile>*</ForSaleEtoile>
+              </ForSaleLabel>
+              <StyledInput
+                type="email"
+                className="form-control"
+                id="mail"
+                value={userData.mail ? userData.mail : mail}
+                name="mail"
+                onChange={(e) => setMail(e.target.value)}
+                required
+              />
+              <div className="mail-error text-danger text-center" />
+            </div>
+            <div className="mb-3">
+              <ForSaleLabel htmlFor="Phone" className="form-label">
+                Téléphone
+              </ForSaleLabel>
+              <StyledInput
+                type="Phone"
+                className="form-control"
+                id="Phone"
+                value={userData.phone ? userData.phone : phone}
+                onChange={(e) => setPhone(e.target.value)}
+                name="Phone"
+              />
+            </div>
+            <div className="mb-3">
+              <ForSaleLabel
+                htmlFor="message"
+                className="form-label obligatoire"
+              >
+                Votre message<ForSaleEtoile>*</ForSaleEtoile>
+              </ForSaleLabel>
+              <StyledTextarea
+                className="form-control"
+                id="message"
+                name="message"
+                rows="5"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3 form-check">
+              <StyledInput
+                type="checkbox"
+                className="form-check-input text-light"
+                id="newsletter"
+                onChange={(e) => setNewsletter(e.target.value)}
+                name="newsletter"
+              />
+              <label
+                className="form-check-label text-dark"
+                htmlFor="newsletter"
+              >
+                J’accepte de recevoir les lettres d’information de la société
+                Sous Mon Toit.
+              </label>
+            </div>
+            <div className="mb-3 form-check">
+              <StyledInput
+                type="checkbox"
+                className="form-check-input text-light"
+                id="notRobot"
+                name="notRobot"
+                required
+              />
+              <label className="form-check-label text-dark" htmlFor="notRobot">
+                Je confirme que je ne suis pas un robot
+                <ForSaleEtoile>*</ForSaleEtoile>
+              </label>
+            </div>
+            <div className="text-danger fs-6">
+              <ForSaleEtoile>*</ForSaleEtoile>Champs obligatoires
+            </div>
+            <StyledBtnPrimary
+              type="submit"
+              onClick={handleSubmit}
+              className="btn float-end"
+            >
+              Envoyer
+            </StyledBtnPrimary>
           </div>
-        <div className="mb-3">
-            <ForSaleLabel htmlFor="mail" className="form-label obligatoire">
-              Adresse mail<ForSaleEtoile>*</ForSaleEtoile>
-            </ForSaleLabel>
-            <StyledInput
-              type="email"
-              className="form-control"
-              id="mail"
-              value={userData.mail ? userData.mail : mail}
-              name="mail"
-              onChange={(e) => setMail(e.target.value)}
-              required
-            />
-            <div className="mail-error text-danger text-center" />
-          </div>
-          <div className="mb-3">
-            <ForSaleLabel htmlFor="Phone" className="form-label">
-              Téléphone
-            </ForSaleLabel>
-            <StyledInput
-              type="Phone"
-              className="form-control"
-              id="Phone"
-              value={userData.phone ? userData.phone : phone}
-              onChange={(e) => setPhone(e.target.value)}
-              name="Phone"
-            />
-          </div>
-          <div className="mb-3">
-            <ForSaleLabel htmlFor="message" className="form-label obligatoire">
-              Votre message<ForSaleEtoile>*</ForSaleEtoile>
-            </ForSaleLabel>
-            <StyledTextarea
-              className="form-control"
-              id="message"
-              name="message"
-              rows="5"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-3 form-check">
-            <StyledInput
-              type="checkbox"
-              className="form-check-input text-light"
-              id="newsletter"
-              onChange={(e) => setNewsletter(e.target.value)}
-              name="newsletter"
-            />
-            <label className="form-check-label text-dark" htmlFor="newsletter">
-              J’accepte de recevoir les lettres d’information de la société Sous
-              Mon Toit.
-            </label>
-          </div>
-          <div className="mb-3 form-check">
-            <StyledInput
-              type="checkbox"
-              className="form-check-input text-light"
-              id="notRobot"
-              name="notRobot"
-              required
-            />
-            <label className="form-check-label text-dark" htmlFor="notRobot">
-              Je confirme que je ne suis pas un robot
-              <ForSaleEtoile>*</ForSaleEtoile>
-            </label>
-          </div>
-          <div className="text-danger fs-6">
-            <ForSaleEtoile>*</ForSaleEtoile>Champs obligatoires
-          </div>
-          <StyledBtnPrimary
-            type="submit"
-            onClick={handleSubmit}
-            className="btn float-end"
-          >
-            Envoyer
-          </StyledBtnPrimary>
-        </div>
-        <div className="form-message text-danger fs-5 text-center" />
-      </ForSaleForm>
-    </div>
+          <div className="form-message text-danger fs-5 text-center" />
+        </ForSaleForm>
+      </div>
+    </Container>
   );
 };
 
