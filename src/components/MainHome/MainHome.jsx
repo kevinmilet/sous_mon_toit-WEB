@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import background from '../../assets/img/home_background.jpg'
+import background from '../../assets/img/home_background.jpg';
 import colors from "../../utils/styles/colors";
 import SearchBar from "../SearchBar/SearchBar";
 
