@@ -14,7 +14,11 @@ import ApiRoutes from "../../utils/const/ApiRoutes";
 import Switch from "../Switch/Switch";
 import background from "../../assets/img/maison_interieur.jpg";
 
-const Container = styled.div``;
+const Container = styled.div`
+`
+const Text = styled.div`
+font-weight: bold;
+`;
 const Head = styled.div`
   width: 100%;
   height: 730px;
@@ -208,7 +212,7 @@ const ForSale = () => {
         <ContHeader>
           <div class="col-12 col-sm-10 col-md-8 col-lg-7 mx-auto mt-5">
             <HeadH1 className="text-center">Estimer votre bien</HeadH1>
-            <div>
+            <Text>
               Une méthode fiable, fondée sur les données du marché et sur le
               savoir-faire de votre conseiller Sous Mon Toit :
               <ul>
@@ -216,7 +220,8 @@ const ForSale = () => {
                 <li>Compréhension des points forts de votre bien</li>
                 <li>Analyse du marché</li>
               </ul>
-            </div>
+              {/* <h5>À TRÈS VITE DANS NOTRE AGENCE ! </h5> */}
+            </Text>
           </div>
         </ContHeader>
       </Head>
@@ -234,7 +239,7 @@ const ForSale = () => {
             Merci de compléter le formulaire ci-dessous. Vous serez recontacté(e)
             par mail.
           </p>
-          <h5>À TRÈS VITE DANS NOTRE AGENCE ! </h5>
+          
           <div className="col-md-6">
             <div className="mb-3">
               <ForSaleLabel htmlFor="firstname" className="form-label">

@@ -1,86 +1,152 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import colors from "../../utils/styles/colors";
 import Loader from "../Tools/Loader/Loader";
 
-// fetch('http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/staff').then((response) => {
-//     console.log(response);
-// })
+const NavAccount = styled.div`
+  .navbar {
+    margin: auto;
 
-
-const UserAccountMenu= () => {
-
-    const [staffData, setStaffData] = useState({})
-    const [loading, setLoading] =  useState(true)
-
-        
-useEffect(()=>{
-    axios.get("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/staff")
-    .then(res=>{
-        // console.log('coucou');
-        setStaffData(res.data);
-
-    }).catch(error=>{
-        
-        console.log('coucou 2');
-        console.log(error.message)
-
-    }).finally(()=>{
-
-        setLoading(false);
-
-    })
-},[])
-
-    if(loading){
-
-        return <Loader/>
-
+    .tab {
+      background-color: ${colors.secondaryBtn};
     }
-    return (
-        
-        <div className="container hight">
-            <div className="row">
-                <div className="my-3 text-center">
-                    <h1>Mon compte</h1>
-                </div>
+  }
+`;
+const Ul = styled.ul`
+  list-style: none;
+`;
 
-                {/* <div className="card" > */}
-                    {/* <ul className="list-group list-group-flush">
-                      <a href=""><li className="list-group-item p-3">An item</li></a>  
-                       <a href=""><li className="list-group-item p-3">A second item</li></a> 
-                       <a href=""><li className="list-group-item">A third item</li></a> 
-                    </ul> */}
-                    <div>
-                        <a className="text-decoration-none text-dark" href="/my-account/detail">
-                            <div className="border border-dark m-auto col-6 p-3">
-                                <div className="text-center">Detail de mon compte</div> 
-                            </div>
-                        </a>
-                        <a className="text-decoration-none text-dark" href="">
-                            <div className="border border-dark m-auto mt-4 col-6 p-3">
-                                <div className="text-center">Mes recherches enregistrées</div>
-                            </div>
-                        </a>
-                        <a className="text-decoration-none text-dark" href="/liste-des-biens">
-                            <div className="border border-dark m-auto mt-4 col-6 p-3">
-                                <div className="text-center">Mes biens favoris</div>
-                            </div>
-                        </a>
-                        <a className="text-decoration-none text-dark" href="">
-                            <div className="border border-dark m-auto mt-4 col-6 p-3">
-                                <div className="text-center">Card footer</div>
-                            </div>
-                        </a>
-                        
-                    </div>
-                {/* </div> */}
+const TitleH3 = styled.h3`
+  color: ${colors.primaryBtn};
+`;
+// const NavAccount = styled.nav`
+
+// .navbar{ background-color: ${colors.backgroundSecondary};}
+
+// `
+
+const UserAccount = () => {
+  const [customerData, setCustomerData] = useState({});
+  const [customerTypeData, setCustomerTypeData] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  axios.defaults.headers.common = {
+    
+    Authorization: `Bearer ${localStorage["token"]}`,
+  };
+  if(!localStorage["userId"]){
+    localStorage.clear();
+  }
+  console.log(localStorage["userId"]);
+
+  useEffect(() => {
+    if (localStorage["token"] != null) {
+      axios
+        .get(
+          "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/customer/c/" +
+            localStorage["userId"]
+        )
+        .then((res) => {
+          console.log("coucou");
+          setCustomerData(res.data);
+        })
+        .catch((error) => {
+          // alert('coucou 2');
+          console.log(error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+
+      axios
+        .get(
+          "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/describe_customer_type/joinCustomer/2"
+        )
+        .then((res) => {
+          console.log("coucou");
+          setCustomerTypeData(res.data);
+        })
+        .catch((error) => {
+          // alert('coucou 2');
+          console.log(error.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+  return (
+    <div className="container-fluid">
+      <nav className="navbar navbar-expand-lg ">
+        <div className="container ">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <NavAccount className="navbar-nav navbar m-auto">
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div className="navbar-nav navbar">
+                <a className="nav-link active" aria-current="page" href="#">
+                  <div className="border border-light p-3 tab rounded-pill text-white">
+                    <b>Mes informations</b>
+                  </div>
+                </a>
+                {/* <a className="nav-link active" aria-current="page" href="#"><div className="border border-light p-3 tab rounded-pill text-white"><b>Mes recherches</b></div></a>
+                                <a className="nav-link active" aria-current="page" href="#"><div className="border border-light p-3 tab rounded-pill text-white"><b>Mes biens sauvegardés</b></div></a> */}
+              </div>
             </div>
-        </div> 
-            
-      
-  
-    );
+          </NavAccount>
+        </div>
+      </nav>
+
+      <div className="card col-lg-4 m-auto">
+        <div className="card-body">
+          <TitleH3 className="card-title text-center text-decoration-underline">
+            Mes infos
+          </TitleH3>
+          <Ul>
+            <li className="mt-2">
+              <b>Prénom: </b> {customerData.firstname}
+            </li>
+            <li className="mt-2">
+              <b>Nom:</b> {customerData.lastname}
+            </li>
+            <li className="mt-2">
+              <b>Mail:</b> {customerData.mail}
+            </li>
+            <li className="mt-2">
+              <b>Date de naissance:</b> {customerData.birthdate}
+            </li>
+            <li className="mt-2">
+              <b>Télèphone:</b> {customerData.phone}
+            </li>
+            <li className="mt-2">
+              <b>Adresse:</b> {customerData.address}
+            </li>
+          </Ul>
+          {/* <a href="/update-user" className="btn btn-primary m-1">
+            Modifier
+          </a> */}
+          <a href="/delete-user" className="btn btn-danger m-1">
+            Désactiver mon compte
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default UserAccountMenu
+export default UserAccount;

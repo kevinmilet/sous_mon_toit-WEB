@@ -69,8 +69,8 @@ const Topbar = () => {
     return (
         <Container className="container-fluid">
             <RowHeader className="row rowHeader">
-                <Link to="/" className="col-sm-12 col-md-6 d-flex justify-content-center">
-                    <Logo src={logo} className="logo" alt="Logo Sous Mon Toit"/>
+                <Link to="/" className="col-sm-6 col-md-6 d-flex justify-content-center">
+                    <Logo  src={logo} className="logo " alt="Logo Sous Mon Toit"/>
                 </Link>
                 <LinkCol className="col-sm-12 col-md-6 linkCol d-flex justify-content-center">
                     {localStorage['token'] != null ?

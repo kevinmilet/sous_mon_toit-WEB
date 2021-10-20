@@ -4,7 +4,7 @@ import EstateCard from "./components/Estate/EstateCard";
 import Agency from "./screens/Agency/AgencyView";
 import {BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import UserAccountView from './screens/UserAccount/UserAccountView';
-import DetailUser from './screens/UserAccount/UserDetailsView';
+
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import {Context} from "./utils/context/Context";
@@ -70,9 +70,7 @@ const App = () => {
                             <Route exact path="/my-account">
                                 <UserAccountView/>
                             </Route>
-                            <Route exact path="/my-account/detail">
-                                <DetailUser/>
-                            </Route>
+                            
                             <Route exact path="/connexion">
                                 <Redirect to="/my-account"/>
                             </Route>

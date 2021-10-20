@@ -7,9 +7,18 @@ import ApiRoutes from "../../utils/const/ApiRoutes";
 import PropTypes from "prop-types";
 import Loader from "../Tools/Loader/Loader";
 import styled from "styled-components";
-const TitleList = styled.h4`
-  font-weight: bolder;
+import colors from "../../utils/styles/colors";
+const Title = styled.h2`
+  color: ${colors.primaryBtn};
 `;
+const TitleH1 = styled.h1`
+  color: ${colors.secondaryBtn};
+`;
+const TitleH5 = styled.h5`
+  font-weight: bolder;
+  text-decoration: underline;
+`;
+
 const Container = styled.div``;
 const Close = styled.div`
   display: inline;
@@ -22,6 +31,11 @@ const LiStyle = styled.div`
   position: relative;
   font-weight: bolder;
 `;
+// const ImgTitle= styled.img`
+//   display: inline;
+//   position: relative;
+//   font-weight: bolder;
+// `;
 const List = styled.div`
   text: center;
 `;
@@ -50,64 +64,79 @@ const Agency = () => {
     <Container className="container ">
       <div className="row">
         <div className="my-3 text-center mx-auto">
-          <h1>Notre agence</h1>
+          <TitleH1>Notre agence</TitleH1>
         </div>
 
-        <div className="col-md-8  mx-auto">
-          <img className=" " src="our_agency.jpg" alt="Photo de l'agence" />
+        <img
+          className="img-fluid mx-auto col-8"
+          src="our_agency.jpg"
+          alt="Photo de l'agence"
+        />
+
+        <div className="text-center col-md-7 mx-auto mt-3">
+          L’ambition de Sous Mon Toit est de devenir la marque de référence de
+          l’immobilier avec pour mission d’accompagner les clients dans la
+          réalisation de leurs projets en mettant l’humain au coeur de la
+          relation avec une approche digitale et disruptive. Distingué par de
+          nombreux prix dont celui de « Marque Préférée des Amienois », « Agence
+          immobilière de l’année 2020-2021 » et « Agence immobilière de l’année
+          2021-2022 », l'agence a démontré la pertinence de son positionnement
+          original.
         </div>
-        <div className="col-md-12">
-          <div className="text-center">
-            L’ambition de Sous Mon Toit est de devenir la marque de référence de
-            l’immobilier avec pour mission d’accompagner les clients dans la
-            réalisation de leurs projets en mettant l’humain au coeur de la
-            relation avec une approche digitale et disruptive. Distingué par de
-            nombreux prix dont celui de « Marque Préférée des Amienois », «
-            Agence immobilière de l’année 2020-2021 » et « Agence immobilière de
-            l’année 2021-2022 », l'agence a démontré la pertinence de son
-            positionnement original.
+
+        <Title className="font-weight-bold text-center mt-5">
+          Notre agence vous accueille
+        </Title>
+        <div className="col-md-12 d-md-flex mt-5 justify-content-center">
+         
+            <List className="col-md-5">
+              <TitleH5 className=" col-md-6">Nos horaires</TitleH5>
+              <ul className="col-md-12 mt-4">
+                <li>
+                  Lundi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
+                </li>
+                <li>
+                  Mardi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
+                </li>
+                <li>
+                  Mercredi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
+                </li>
+                <li>
+                  jeudi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
+                </li>
+                <li>
+                  Vendredi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
+                </li>
+                <li>
+                  Samedi : <LiStyle>9h-13h</LiStyle>
+                </li>
+                <li>
+                  Dimanche :<Close> Fermé</Close>
+                </li>
+              </ul>
+            </List>
+       
+
+          <div className="col-md-5 mt-5 mt-lg-0">
+            <TitleH5 className="col-md-6">Notre adresse</TitleH5>
+
+            <div>72 rue des jacobins, 80000 Amiens</div>
+            <div className="m-auto col-10 mt-4" >
+              <img className="img-fluid  " src="adresse.png" alt="plan d'accés" />
+            </div>
           </div>
-          <List className="mt-5">
-          <TitleList className="font-weight-bold text-center">
-            Notre agence vous accueil 
-          </TitleList>
-          <h5>Horaires</h5>
-            <ul className="mx-auto">
-              <li>
-                Lundi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
-              </li>
-              <li>
-                Mardi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
-              </li>
-              <li>
-                Mercredi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
-              </li>
-              <li>
-                jeudi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
-              </li>
-              <li>
-                Vendredi : <LiStyle>9h-12h30 / 14h-19h</LiStyle>
-              </li>
-              <li>
-                Samedi : <LiStyle>9h-13h</LiStyle>
-              </li>
-              <li>
-                Dimanche :<Close> Fermé</Close>
-              </li>
-            </ul>
-          </List>
         </div>
 
-        <div className="my-3 text-center">
-          <h1>Notre équipe</h1>
+        <div className="my-3 text-center mt-5">
+          <Title>Notre équipe</Title>
         </div>
 
         {!loading &&
           staffData.map((item) => (
-            <div className="card m-auto col-10 col-md-2">
+            <div className="card m-auto col-10 col-md-2  mt-3 mt-md-0">
               <img
                 src={item.avatar}
-                className="card-img-top img-fluid"
+                className="card-img-top img-fluid "
                 alt="Photo staff"
               />
               <div className="card-body">
