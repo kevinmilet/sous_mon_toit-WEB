@@ -122,7 +122,7 @@ const SearchBar = () => {
     const API_URL = useContext(Context).apiUrl;
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
-    const [cityList, setCityList] = useState('');
+    // const [cityList, setCityList] = useState('');
 
     //false = 'Achat', true = 'Location'
     const [checked, setChecked] = useState(false);
@@ -130,26 +130,26 @@ const SearchBar = () => {
     const formik = useFormik({
         initialValues: {
             city: '',
-            estateType: '',
-            nbRooms: '',
-            budget: undefined,
+            id_estate_type: '',
+            nb_rooms: '',
+            price: undefined,
         },
         validationSchema : Yup.object({
             city: Yup.string()
                 .trim()
                 .matches(/^[a-zA-Z\-'.\s]+$/),
-            estatesTypes: Yup.string()
+            id_estate_type: Yup.string()
                 .trim()
-                .matches(/^[a-zA-Z]+$/),
-            nbRooms: Yup.string()
+                .matches(/^[0-9]+$/),
+            nb_rooms: Yup.string()
                 .trim()
                 .matches(/^[1-5]{1,1}$/),
-            budget: Yup.number()
+            price: Yup.number()
                 .min(0),
-            buyOrRent: Yup.boolean().isRequired
+            buy_or_rent: Yup.boolean().isRequired
         }),
         onSubmit: async (values) =>{
-            values = {...values, buyOrRent:checked}
+            values = {...values, buy_or_rent:checked ? 'Location' : 'Achat'}
             await new Promise(() => {
                 search(values)
             })
@@ -158,14 +158,14 @@ const SearchBar = () => {
 
     const search = (values) => {
         console.log(values);
-        alert(JSON.stringify(values, null, 2));
-        // axios.get(API_URL + ApiRoutes.search, values)
-        //     .then(res => {
-        //         console.log(res)
-        //     //    faire une redirection vers page de résultats
-        //     }).catch(error => {
-        //         console.log(error.message);
-        // })
+        // axios.get(API_URL + ApiRoutes.search +'/', values)
+        axios.post('http://localhost:8000/estates/search/', values)
+            .then(res => {
+                console.log(res)
+            //    faire une redirection vers page de résultats
+            }).catch(error => {
+                console.log(error.message);
+        })
     }
 
     useEffect(() => {
@@ -178,14 +178,14 @@ const SearchBar = () => {
         })
     }, [API_URL])
 
-    useEffect((city) => {
-        axios.get('https://geo.api.gouv.fr/communes?nom=' + city + '&fields=departement&limit=5')
-            .then(response => {
-                setCityList(response.data);
-            }).catch(error => {
-            console.log(error.message)
-        })
-    },[formik.values.city])
+    // useEffect((city) => {
+    //     axios.get('https://geo.api.gouv.fr/communes?nom=' + city + '&fields=departement&limit=5')
+    //         .then(response => {
+    //             setCityList(response.data);
+    //         }).catch(error => {
+    //         console.log(error.message)
+    //     })
+    // },[formik.values.city])
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -202,14 +202,14 @@ const SearchBar = () => {
                     />
                 </div>
                 <SelectDiv className="col-12 col-md-3">
-                    <Select name="estateType" id="estateType" className="form-select" value={formik.values.estateType} onChange={formik.handleChange} onBlur={formik.handleBlur}>
+                    <Select name="id_estate_type" id="id_estate_type" className="form-select" value={formik.values.id_estate_type} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                         <Option value="">Type de bien</Option>
                         {!loading && estatesTypes.map(item => (
-                            <Option value={item.estates_type_name} key={item.id}>{item.estate_type_name}</Option>))}
+                            <Option value={item.id} key={item.id}>{item.estate_type_name}</Option>))}
                     </Select>
                 </SelectDiv>
                 <SelectDiv className="col-12 col-md-3">
-                    <Select name="nbRooms" id="nbRooms" className="form-select" value={formik.values.nbRooms} onChange={formik.handleChange} onBlur={formik.handleBlur}>
+                    <Select name="nb_rooms" id="nb_rooms" className="form-select" value={formik.values.nb_rooms} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                         <Option value="">Nombre de pièces</Option>
                         <Option value="1">1</Option>
                         <Option value="2">2</Option>
@@ -220,9 +220,9 @@ const SearchBar = () => {
                 </SelectDiv>
                 <div className="col-12 col-md-3">
                     <Budget type="text"
-                            placeholder="Budget"
-                            name="budget"
-                            value={formik.values.budget}
+                            placeholder="Budget max."
+                            name="price"
+                            value={formik.values.price}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                     />
@@ -231,10 +231,10 @@ const SearchBar = () => {
             <div className="row">
                 <div className="col d-flex justify-content-center">
                     <Switch
-                        name="buyOrRent"
+                        name="buy_or_rent"
                         isOn={checked}
                         handleChange={() => setChecked(!checked)}
-                        value={formik.values.buyOrRent}
+                        value={formik.values.buy_or_rent}
                     />
                 </div>
                 <div className="col d-flex justify-content-center">
@@ -249,19 +249,19 @@ const SearchBar = () => {
 SearchBar.propTypes = {
     estates_types_name: PropTypes.string.isRequired,
     city: PropTypes.string,
-    estateType: PropTypes.string,
-    nbRooms: PropTypes.string,
-    budget: PropTypes.number,
-    buyOrRent: PropTypes.bool
+    id_estate_type: PropTypes.string,
+    nb_rooms: PropTypes.string,
+    price: PropTypes.number,
+    buy_or_rent: PropTypes.bool
 }
 
 SearchBar.defaultProps = {
     estates_types_name: '',
     city: '',
-    estateType: '',
-    nbRooms: '',
-    budget: undefined,
-    buyOrRent: false
+    id_estate_type: '',
+    nb_rooms: '',
+    price: undefined,
+    buy_or_rent: false
 }
 
 export default SearchBar;

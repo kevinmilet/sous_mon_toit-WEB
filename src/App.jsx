@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import HomeView from "./screens/Home/HomeView";
-import EstateCard from "./components/Estate/EstateCard";
 import Agency from "./screens/Agency/AgencyView";
 import {BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import UserAccountView from './screens/UserAccount/UserAccountView';
@@ -45,7 +44,7 @@ const App = () => {
                     <Route exact path="/liste-des-biens">
                         <EstatesListView/>
                     </Route>
-                    <Route exact path="/detail_biens">
+                    <Route exact path="/detail-biens/:id">
                         <DetailEstateView/>
                     </Route>
                     <Route exact path="/our-agency">
