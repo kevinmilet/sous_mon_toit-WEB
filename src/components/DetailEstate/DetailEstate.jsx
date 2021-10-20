@@ -6,6 +6,7 @@ import Loader from "../Tools/Loader/Loader";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import { Context } from '../../utils/context/Context';
 import check from '../../assets/icons/check-square-regular.svg';
+import { Redirect, useParams } from 'react-router-dom';
 
 const DivDetail = styled.div`
     background-color: ${colors.backgroundPrimary};
@@ -33,31 +34,30 @@ const Icons = styled.img`
 
 const DetailEstate = () => {
 
-    var idEstate = 1 // a changer
-
+    var {id} = useParams()
     const [oneEstateData, setOneEstateData] = useState({})
     const [pictureCover, setPictureCover] = useState({})
     const [picturesList, setPicturesList] = useState({})
     const [loading, setLoading] = useState(true);
     const API_URL = useContext(Context).apiUrl;
 
-
-    // Récupération des données de l'estate
-    // axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
     useEffect(()=>{
 
-        //Donnée du bien 
-        axios.get("http://localhost:8000/estates/" + idEstate)
-        // axios.get(API_URL + ApiRoutes.estates + "/" + idEstate)
+        // Récupération des données de l'estate
+        axios.get("http://localhost:8000/estates/" + id)
+        // axios.get(API_URL + ApiRoutes.estates + "/" + id)
         .then(res => {
+            if(res.data == "aucun resultat"){
+                return window.location.href = '/liste-des-biens'
+            }
             setOneEstateData(res.data)
         }).catch(error => {
             console.log(error.message)
         })
         
         //Image de couverture du bien
-        axios.get("http://localhost:8000/estates_pictures/cover/" + idEstate)
-        // axios.get(API_URL + ApiRoutes.estates_cover + "/" + idEstate)
+        axios.get("http://localhost:8000/estates_pictures/cover/" + id)
+        // axios.get(API_URL + ApiRoutes.estates_cover + "/" + id)
         .then(res => {
             setPictureCover(res.data[0])
         }).catch(error => {
@@ -65,8 +65,8 @@ const DetailEstate = () => {
         })
 
         // liste des images du bien
-        axios.get("http://localhost:8000/estates_pictures/" + idEstate)
-        // axios.get(API_URL + ApiRoutes.estates_pictures + "/" + idEstate)
+        axios.get("http://localhost:8000/estates_pictures/" + id)
+        // axios.get(API_URL + ApiRoutes.estates_pictures + "/" + id)
         .then(res => {
             setPicturesList(res.data)
         }).catch(error => {
@@ -88,9 +88,9 @@ const DetailEstate = () => {
                     <p className="d-flex justify-content-between">Reference du biens : {oneEstateData.reference} <b className="text-danger fs-3">{oneEstateData.price}€</b></p>
                 </div>
                 <div className="row px-lg-5 pb-lg-5">
-                    <img src={(pictureCover.folder + pictureCover.name) ?? ""} className="img-fluid img-thumbnail" alt={oneEstateData.title}/>
+                    <img src={(pictureCover ? pictureCover.folder : "") + (pictureCover ? pictureCover.name : "") } className="img-fluid img-thumbnail" alt={oneEstateData.title}/>
                     {picturesList.map((picture, index) =>
-                        <img id={index} src={(picture.folder + picture.name) ?? ""} className="col-4 col-lg-2 img-fluid img-thumbnail" alt={oneEstateData.title}/>
+                        <img key={index} src={(picture.folder ?? "") + (picture.name ?? "")} className="col-4 col-lg-2 img-fluid img-thumbnail" alt={oneEstateData.title}/>
                     )}
                 </div>
                 <div className="row">
@@ -148,9 +148,8 @@ const DetailEstate = () => {
                         <H2><A href="/contact" >Contactez l'agence</A></H2>
                         <p>Ce bien vous a tapé dans l'oeil ? Vous n'en dormez plus la nuit ? 
                             N'hesitez plus et contactez votre agence dès maintenant !</p>
-                        <p> Appeler directement au 03 21 15 87 99
-                            Ou ecrivez nous a : <a href="mailto:laforet.gerard.smt@gmail.com">laforet.gerard.smt@gmail.com</a>
-                        </p>
+                        <p>Appeler directement au <b>03 21 15 87 99</b></p>
+                        <p>Ou ecrivez nous a : <a href="mailto:laforet.gerard.smt@gmail.com">laforet.gerard.smt@gmail.com</a></p>
                     </div>
                 </div>
             </DivDetail>
