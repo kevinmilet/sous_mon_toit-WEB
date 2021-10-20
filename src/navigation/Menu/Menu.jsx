@@ -22,6 +22,9 @@ const Container = styled.div`
 
     }
 `
+const MenuBurger = styled.button`
+   background-color: ${colors.secondary};
+`
 const MenuItems = styled.ul`
     margin: 0 auto;
 `
@@ -47,11 +50,11 @@ const Menu = () => {
     return (
         <Navbar className="navbar navbar-expand-lg navbar-MenuItemght bg-MenuItemght">
             <Container className="container-fluid bottom">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                <MenuBurger className="navbar-toggler " type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"/>
-                </button>
+                    <span className="navbar-toggler-icon">=</span>
+                </MenuBurger>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <MenuItems className="navbar-nav me-auto mb-2 mb-lg-0">
                         <MenuItem className="nav-item">
