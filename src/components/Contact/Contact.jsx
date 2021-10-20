@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
 import PropTypes from "prop-types";
 import {StyledBtnPrimary, StyledInput, StyledTextarea} from '../../utils/styles/Atoms';
+import ApiRoutes from "../../utils/const/ApiRoutes";
+import {Context} from "../../utils/context/Context";
 
 const ContactForm = styled.form`
     background-color: ${colors.backgroundPrimary};
@@ -25,6 +27,7 @@ const ContactEtoile = styled.span`
     color:${colors.secondary};
 `
 const Contact = () => {
+    const API_URL = useContext(Context).apiUrl;
 
     // Données de l'utilisateur connecté
     const [userData, setUserData] = useState({})
@@ -42,7 +45,7 @@ const Contact = () => {
     useEffect(()=>{
         if(localStorage["token"] != null  ){
 
-            axios.post("http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/api/c/me")
+            axios.post(API_URL + ApiRoutes.me)
             .then(res=>{
                 setUserData(res.data);
                 setFirstname(res.data.firstname)

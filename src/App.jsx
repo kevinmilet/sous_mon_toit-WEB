@@ -15,6 +15,7 @@ import SignUpView from './screens/SignUp/SignUpView';
 import DetailEstateView from './screens/Estates/DetailEstateView';
 
 import ForSaleView from './screens/ForSale/ForSaleView';
+import EstatesListView from "./screens/Estates/EstatesListView";
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
@@ -42,7 +43,7 @@ const App = () => {
                         <HomeView/>
                     </Route>
                     <Route exact path="/liste-des-biens">
-                        <EstateCard/>
+                        <EstatesListView/>
                     </Route>
                     <Route exact path="/detail_biens">
                         <DetailEstateView/>

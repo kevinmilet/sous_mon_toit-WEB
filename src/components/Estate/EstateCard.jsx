@@ -9,14 +9,24 @@ import ApiRoutes from "../../utils/const/ApiRoutes";
 import Loader from "../Tools/Loader/Loader";
 import defaultCover from '../../assets/img/estate_default.jpg';
 
+const Card = styled.div`
+    width: 18em;
+    height: 375px;
+`
+
+const CardLink = styled.a`
+    text-decoration: none;
+`
+
 const CardBody = styled.p`
     font-size: 13px;
-    color: ${colors.primary}
+    color: ${colors.primary};
 `
 
 const EstateRef = styled.span`
     color: ${colors.secondary};
-    font-weight: 700 
+    font-weight: 700;
+    text-transform: uppercase
 `
 
 const EstateCard = ({estateData}) => {
@@ -40,13 +50,13 @@ const EstateCard = ({estateData}) => {
 
             estateData.map((item, i) => {
                 return (<div className='col-sm-12 col-md-4 col-lg-4'>
-                    <a className={"cardLink"} href="#" key={i}>
-                        <div className="my-3 card shadow-sm text-center" style={{width: 18 + 'rem'}}>
+                    <CardLink href="#" key={i}>
+                        <Card className="my-3 card shadow-sm text-center">
                             <img src={estateCover} alt="" className="card-img-top img-fluid" height="200px"/>
                             <CardBody>
                                 <div className="card-body">
                                     <div className={"d-flex justify-content-between"}>
-                                        <EstateRef>{item.reference}</EstateRef> {item.price} €
+                                        <EstateRef>{item.reference}</EstateRef>
                                         <FavoriteButton>
                                             <label className="add-fav">
                                                 <input type="checkbox"/>
@@ -56,14 +66,21 @@ const EstateCard = ({estateData}) => {
                                             </label>
                                         </FavoriteButton>
                                     </div>
-                                    <p className={"m-2"}>{item.zipcode} {item.city}</p>
-                                    <p className={"m-2"}>
-                                        {item.title} {item.living_surface} m<sup>2</sup>
-                                    </p>
+                                    <div className="mt-2">
+                                        <p className="text-lg-start">
+                                            {item.title} {item.living_surface} m<sup>2</sup>
+                                        </p>
+                                        <p className="text-lg-start">
+                                            {item.zipcode} {item.city}
+                                        </p>
+                                        <p className="text-lg-end fw-bold">
+                                            {item.price} €
+                                        </p>
+                                    </div>
                                 </div>
                             </CardBody>
-                        </div>
-                    </a>
+                        </Card>
+                    </CardLink>
                 </div>)
             })
     )

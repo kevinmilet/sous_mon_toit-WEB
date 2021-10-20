@@ -23,8 +23,10 @@ const EstatesRnd = () => {
         }).finally(() => {
             setLoading(false)
         })
-    }, [])
+    }, [API_URL])
+
     return (
+
         loading ? <Loader/> :
 
             <CardContainer className="d-flex flex-row flex-md-row justify-content-evenly">

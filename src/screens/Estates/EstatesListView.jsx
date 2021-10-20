@@ -54,11 +54,6 @@ const BlockListing = styled.div`
             grid-template-columns: repeat(2,auto);
             grid-gap: 20px;
         }
-
-        .cardLink {
-            text-decoration: none;
-            color: black;
-        }
   }
 `
 

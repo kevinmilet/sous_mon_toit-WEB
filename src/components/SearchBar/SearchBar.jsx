@@ -4,8 +4,10 @@ import colors from "../../utils/styles/colors";
 import axios from "axios";
 import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
-import Switch from "../Switch/Switch";
+import Switch from "../Tools/Switch/Switch";
 import PropTypes from "prop-types";
+import {useFormik} from "formik";
+import * as Yup from "yup";
 
 const SearchContainer = styled.div`
     width: 1000px;
@@ -72,26 +74,17 @@ const Select = styled.select`
     color: ${colors.backgroundPrimary};
     &:focus {
         outline: none;
+        box-shadow: none;
+        border-color: none
     }
     &:focus-visible {
         outline: none;
     }
 `
 const Option = styled.option`
-    margin: 15px 0;
-    min-height: 100px;
-    display:flex;
-    align-items:center;
-    top:15px;
-    width: 100%;
-    overflow:hidden;
-    white-space:nowrap;
-    color: ${colors.primary};
-    &:hover {
-        color: ${colors.backgroundPrimary};
-        background-color: ${colors.secondaryBtn};
-    }
+  color: ${colors.secondaryBtn};
 `
+
 const Budget = styled.input`
     width: 100%;
     height: 65px;
@@ -129,9 +122,51 @@ const SearchBar = () => {
     const API_URL = useContext(Context).apiUrl;
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
+    const [cityList, setCityList] = useState('');
 
-    //false = 'Acheter', true = 'Louer'
+    //false = 'Achat', true = 'Location'
     const [checked, setChecked] = useState(false);
+
+    const formik = useFormik({
+        initialValues: {
+            city: '',
+            estateType: '',
+            nbRooms: '',
+            budget: undefined,
+        },
+        validationSchema : Yup.object({
+            city: Yup.string()
+                .trim()
+                .matches(/^[a-zA-Z\-'.\s]+$/),
+            estatesTypes: Yup.string()
+                .trim()
+                .matches(/^[a-zA-Z]+$/),
+            nbRooms: Yup.string()
+                .trim()
+                .matches(/^[1-5]{1,1}$/),
+            budget: Yup.number()
+                .min(0),
+            buyOrRent: Yup.boolean().isRequired
+        }),
+        onSubmit: async (values) =>{
+            values = {...values, buyOrRent:checked}
+            await new Promise(() => {
+                search(values)
+            })
+        }
+    })
+
+    const search = (values) => {
+        console.log(values);
+        alert(JSON.stringify(values, null, 2));
+        // axios.get(API_URL + ApiRoutes.search, values)
+        //     .then(res => {
+        //         console.log(res)
+        //     //    faire une redirection vers page de résultats
+        //     }).catch(error => {
+        //         console.log(error.message);
+        // })
+    }
 
     useEffect(() => {
         axios.get(API_URL + ApiRoutes.estates_types).then(response => {
@@ -143,21 +178,38 @@ const SearchBar = () => {
         })
     }, [API_URL])
 
+    useEffect((city) => {
+        axios.get('https://geo.api.gouv.fr/communes?nom=' + city + '&fields=departement&limit=5')
+            .then(response => {
+                setCityList(response.data);
+            }).catch(error => {
+            console.log(error.message)
+        })
+    },[formik.values.city])
+
     return (
-        <form>
+        <form onSubmit={formik.handleSubmit}>
             <SearchContainer className="row">
                 <div className="col-12 col-md-3">
-                    <Sector type="text" placeholder="Secteur recherché" name="estateSector" id="estateSector"/>
+                    <Sector type="text" 
+                            placeholder="Secteur recherché" 
+                            name="city"
+                            id="city"
+                            value={formik.values.city}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+
+                    />
                 </div>
                 <SelectDiv className="col-12 col-md-3">
-                    <Select name="estateType" id="estateType" className="form-select">
+                    <Select name="estateType" id="estateType" className="form-select" value={formik.values.estateType} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                         <Option value="">Type de bien</Option>
                         {!loading && estatesTypes.map(item => (
-                            <Option value={item.id} key={item.id}>{item.estate_type_name}</Option>))}
+                            <Option value={item.estates_type_name} key={item.id}>{item.estate_type_name}</Option>))}
                     </Select>
                 </SelectDiv>
                 <SelectDiv className="col-12 col-md-3">
-                    <Select name="nbRooms" id="nbRooms" className="form-select">
+                    <Select name="nbRooms" id="nbRooms" className="form-select" value={formik.values.nbRooms} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                         <Option value="">Nombre de pièces</Option>
                         <Option value="1">1</Option>
                         <Option value="2">2</Option>
@@ -167,14 +219,22 @@ const SearchBar = () => {
                     </Select>
                 </SelectDiv>
                 <div className="col-12 col-md-3">
-                    <Budget type="text" placeholder="Budget"/>
+                    <Budget type="text"
+                            placeholder="Budget"
+                            name="budget"
+                            value={formik.values.budget}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                    />
                 </div>
             </SearchContainer>
             <div className="row">
                 <div className="col d-flex justify-content-center">
                     <Switch
+                        name="buyOrRent"
                         isOn={checked}
                         handleChange={() => setChecked(!checked)}
+                        value={formik.values.buyOrRent}
                     />
                 </div>
                 <div className="col d-flex justify-content-center">
@@ -187,11 +247,21 @@ const SearchBar = () => {
 };
 
 SearchBar.propTypes = {
-    estates_types_name: PropTypes.string.isRequired
+    estates_types_name: PropTypes.string.isRequired,
+    city: PropTypes.string,
+    estateType: PropTypes.string,
+    nbRooms: PropTypes.string,
+    budget: PropTypes.number,
+    buyOrRent: PropTypes.bool
 }
 
 SearchBar.defaultProps = {
-    estates_types_name: ''
+    estates_types_name: '',
+    city: '',
+    estateType: '',
+    nbRooms: '',
+    budget: undefined,
+    buyOrRent: false
 }
 
 export default SearchBar;

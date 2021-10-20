@@ -1,6 +1,6 @@
 import React from "react";
 import './switch.scss';
-import colors from "../../utils/styles/colors";
+import colors from "../../../utils/styles/colors";
 
 const Switch = ({ isOn, handleChange }) => {
 

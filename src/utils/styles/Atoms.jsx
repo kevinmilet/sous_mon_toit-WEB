@@ -135,7 +135,7 @@ export const FavoriteButton = styled.div`
       color: #E85A70;
       .fa-plus-circle {
         opacity: 0;
-        transition: all .5s ease-in-out;
+        transition: all .2s ease-in-out;
       }
     }
   }
