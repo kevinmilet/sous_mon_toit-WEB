@@ -11,7 +11,7 @@ import {
 
 import { Context } from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
-import Switch from "../Switch/Switch";
+// import Switch from "../Switch/Switch";
 import background from "../../assets/img/maison_interieur.jpg";
 
 const Container = styled.div`

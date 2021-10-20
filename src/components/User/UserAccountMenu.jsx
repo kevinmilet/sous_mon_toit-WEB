@@ -62,7 +62,7 @@ const UserAccount = () => {
 
       axios
         .get(
-          "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/describe_customer_type/joinCustomer/2"
+          "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/describe_customer_type/joinCustomer/"+localStorage["userId"]
         )
         .then((res) => {
           console.log("coucou");
