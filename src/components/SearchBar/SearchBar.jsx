@@ -122,7 +122,8 @@ const SearchBar = () => {
     const API_URL = useContext(Context).apiUrl;
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
-    // const [cityList, setCityList] = useState('');
+    const [cityList, setCityList] = useState('');
+    const [cityQuery, setCityQuery] = useState('');
 
     //false = 'Achat', true = 'Location'
     const [checked, setChecked] = useState(false);
@@ -158,8 +159,7 @@ const SearchBar = () => {
 
     const search = (values) => {
         console.log(values);
-        // axios.get(API_URL + ApiRoutes.search +'/', values)
-        axios.post('http://localhost:8000/estates/search/', values)
+        axios.post(API_URL + ApiRoutes.search +'/', values)
             .then(res => {
                 console.log(res)
             //    faire une redirection vers page de résultats
@@ -178,14 +178,16 @@ const SearchBar = () => {
         })
     }, [API_URL])
 
-    // useEffect((city) => {
-    //     axios.get('https://geo.api.gouv.fr/communes?nom=' + city + '&fields=departement&limit=5')
-    //         .then(response => {
-    //             setCityList(response.data);
-    //         }).catch(error => {
-    //         console.log(error.message)
-    //     })
-    // },[formik.values.city])
+    useEffect((city) => {
+        console.log(cityQuery);
+        axios.get('https://geo.api.gouv.fr/communes?nom=' + cityQuery + '&fields=departement&limit=5')
+            .then(response => {
+                console.log(cityQuery);
+                // setCityList(response.data);
+            }).catch(error => {
+            console.log(error.message)
+        })
+    },[formik.values.city])
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -198,11 +200,17 @@ const SearchBar = () => {
                             value={formik.values.city}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-
+                            // onKeyUp={setCityQuery(this.values.bind(this))}
                     />
                 </div>
                 <SelectDiv className="col-12 col-md-3">
-                    <Select name="id_estate_type" id="id_estate_type" className="form-select" value={formik.values.id_estate_type} onChange={formik.handleChange} onBlur={formik.handleBlur}>
+                    <Select name="id_estate_type"
+                            id="id_estate_type"
+                            className="form-select"
+                            value={formik.values.id_estate_type}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                    >
                         <Option value="">Type de bien</Option>
                         {!loading && estatesTypes.map(item => (
                             <Option value={item.id} key={item.id}>{item.estate_type_name}</Option>))}
