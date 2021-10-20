@@ -82,13 +82,13 @@ const SignupForm = () => {
   const InsertCustomer = (values)=>{
 
       console.log(values);
-      var firstname = values.firstname; 
-      var lastname = values.lastname; 
-      var mail = values.mail;
-      var password = values.password; 
-      var phone = "0874545555"; 
-      var gender = "F";
-      var first_met = false;
+      const firstname = values.firstname;
+      const lastname = values.lastname;
+      const mail = values.mail;
+      const password = values.password;
+      const phone = "0874545555";
+      const gender = "F";
+      const first_met = false;
 
       axios.post(API_URL + ApiRoutes.create_customer, { lastname , firstname , mail , phone ,gender,first_met ,password})
       // axios.post("http://localhost:8000/customer/create", { lastname , firstname , mail , phone ,gender,first_met ,password})
@@ -98,10 +98,10 @@ const SignupForm = () => {
           // window.location.href = '/connexion';
 
       }).catch(error => {
-          if (error.response.data.mail == "The mail has already been taken."){
+          if (error.response.data.mail === "The mail has already been taken."){
               setErrorMail("Cette adresse mail est déja prise.");
           }
-          if (error.response.data.password == "The password format is invalid."){
+          if (error.response.data.password === "The password format is invalid."){
               setErrorPassword("Le mot de passe doit comporter au minimum 8 caractères (dont masjuscule, minuscule , chiffre et caractères spéciaux).")
           }
       })

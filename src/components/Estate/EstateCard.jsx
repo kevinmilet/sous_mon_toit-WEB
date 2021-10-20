@@ -36,8 +36,14 @@ const EstateCard = ({estateData}) => {
 
     useEffect(() => {
         axios.get(API_URL + ApiRoutes.estates_cover + "/" + estateData.id).then(res => {
-            setEstateCover(res.data)
+            if (res.data.length !== 0) {
+                console.log(res.data)
+                setEstateCover(res.data.name)
+            } else {
+                setEstateCover(defaultCover);
+            }
         }).catch(error => {
+            console.log('coucou')
             setEstateCover(defaultCover);
             console.log(error.message)
         }).finally(() => {
@@ -48,9 +54,9 @@ const EstateCard = ({estateData}) => {
     return (
         loading ? <Loader/> :
 
-            estateData.map((item, i) => {
+            estateData.map((item) => {
                 return (<div className='col-sm-12 col-md-4 col-lg-4'>
-                    <CardLink href="#" key={i}>
+                    <CardLink href="#" key={item.id}>
                         <Card className="my-3 card shadow-sm text-center">
                             <img src={estateCover} alt="" className="card-img-top img-fluid" height="200px"/>
                             <CardBody>
