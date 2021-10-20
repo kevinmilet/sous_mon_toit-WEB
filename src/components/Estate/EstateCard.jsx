@@ -8,14 +8,11 @@ import axios from "axios";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import Loader from "../Tools/Loader/Loader";
 import defaultCover from '../../assets/img/estate_default.jpg';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
 const Card = styled.div`
     width: 18em;
     height: 375px;
-`
-
-const CardLink = styled.a`
-    text-decoration: none;
 `
 
 const CardBody = styled.p`
@@ -36,14 +33,8 @@ const EstateCard = ({estateData}) => {
 
     useEffect(() => {
         axios.get(API_URL + ApiRoutes.estates_cover + "/" + estateData.id).then(res => {
-            if (res.data.length !== 0) {
-                console.log(res.data)
-                setEstateCover(res.data.name)
-            } else {
-                setEstateCover(defaultCover);
-            }
+            setEstateCover(res.data)
         }).catch(error => {
-            console.log('coucou')
             setEstateCover(defaultCover);
             console.log(error.message)
         }).finally(() => {
@@ -54,9 +45,9 @@ const EstateCard = ({estateData}) => {
     return (
         loading ? <Loader/> :
 
-            estateData.map((item) => {
+            estateData.map((item, i) => {
                 return (<div className='col-sm-12 col-md-4 col-lg-4'>
-                    <CardLink href="#" key={item.id}>
+                    <Link className='text-decoration-none' to={`/detail-biens/${item.id}`} key={i}>
                         <Card className="my-3 card shadow-sm text-center">
                             <img src={estateCover} alt="" className="card-img-top img-fluid" height="200px"/>
                             <CardBody>
@@ -86,7 +77,7 @@ const EstateCard = ({estateData}) => {
                                 </div>
                             </CardBody>
                         </Card>
-                    </CardLink>
+                    </Link>
                 </div>)
             })
     )
