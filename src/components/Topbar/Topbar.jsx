@@ -19,8 +19,7 @@ const RowHeader = styled.div`
     margin: 0;
 `
 const Logo = styled.img`
-    width: auto;
-    height: auto;
+    
     z-index: 20;
 `
 const LinkCol = styled.div`
@@ -62,8 +61,7 @@ const Topbar = () => {
          var sourceLogo =   logo ;
     }
     function reportWindowSize(){
-        alert("debugger");
-        debugger;
+
         const largeur = window.innerWidth;
         if(largeur <= 375){
            return sourceLogo = logoMobile ;
@@ -90,8 +88,8 @@ const Topbar = () => {
     return (
         <Container className="container-fluid">
             <RowHeader className="row rowHeader">
-                <Link to="/" className="col-12 col-md-6 d-flex justify-content-center">
-                    <Logo  src={sourceLogo} className="logo " alt="Logo Sous Mon Toit"/>
+                <Link to="/" className="col-12  d-flex">
+                    <Logo  src={sourceLogo} className="logo col-2" alt="Logo Sous Mon Toit"/>
                 </Link>
                 <LinkCol className="col-sm-12 col-md-6 linkCol d-flex justify-content-center">
                     {localStorage['token'] != null ?
