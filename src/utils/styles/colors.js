@@ -4,7 +4,7 @@ const colors = {
     primary: '#454552', // gris foncé
     secondary: '#E85A70', // rose
     backgroundPrimary: '#FFF', // blanc
-    backgroundSecondary: '#EAEAEA' // gris clair
+    backgroundSecondary: '#F5F5F5' // gris clair
 }
 
 export default colors

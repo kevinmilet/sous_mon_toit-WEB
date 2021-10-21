@@ -6,14 +6,11 @@ import axios from "axios";
 import Loader from "../../components/Tools/Loader/Loader";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import {Context} from "../../utils/context/Context";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const BlockListing = styled.div`
   .listing {
-    zoom: 1;
-    clear: both;
-    padding: 0;
     position: relative;
-    z-index: 1;
 
         &:before {
             content: "";
@@ -31,28 +28,6 @@ const BlockListing = styled.div`
 
         .leaflet-container {
             height: 100vh;
-        }
-
-        .left-side {
-            height: calc(100vh);
-            float: left;
-            width: 41.66666667%;
-
-            img {
-                max-width: 135px;
-                float: left;
-                margin-right: 8px;
-            }
-        }
-
-        .right-side {
-            height: calc(100vh);
-            border: 1px solid #E85A70;
-            border-radius: 1px;
-            overflow: auto;
-            display: grid;
-            grid-template-columns: repeat(2,auto);
-            grid-gap: 20px;
         }
   }
 `
@@ -73,20 +48,24 @@ const EstatesListView = () => {
     }, [API_URL])
 
     return (
-        loading ? <Loader/> :
 
-        <div>
-            <BlockListing>
-                <div className="listing">
-                    <div className="left-side">
+        loading ? (<Loader/>) : (
+            <>
+                <div className="row mt-0 mb-4">
+                    <SearchBar/>
+                </div>
+                <BlockListing className="row m-3">
+                    <div className="col-sm-12 col-md-4 col-lg-4 listing">
                         <EstateMap estateData={estateData}/>
                     </div>
-                    <div className="left-side">
-                        <EstateCard estateData={estateData}/>
+                    <div className="col-sm-12 col-md-8 col-lg-8">
+                        <div className="row">
+                            <EstateCard estateData={estateData}/>
+                        </div>
                     </div>
-                </div>
-            </BlockListing>
-        </div>
+                </BlockListing>
+            </>
+        )
     );
 };
 
