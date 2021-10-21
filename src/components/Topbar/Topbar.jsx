@@ -67,8 +67,9 @@ const Topbar = () => {
                     setTokenIsValid(false)
                 }
             }
+            return Promise.reject(error);
         })
-        axios.get(API_URL + ApiRoutes.customer + "/c/" + localStorage["userId"])
+        axios.get(API_URL + ApiRoutes.customer + "/c/1")
     }, []);
 
     const logout = () => {
