@@ -37,8 +37,6 @@ const Contact = () => {
     const [mail, setMail] = useState("")
     const [phone, setPhone] = useState("")
     const [message, setMessage] = useState("")
-    const [newsletter, setNewsletter] = useState(false) // fonctionnalité a développer
-    // const [notRobot, setNotRobot] = useState(false)
 
     // Récupération des données de l'utilisateur connecté
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
@@ -76,7 +74,7 @@ const Contact = () => {
     // Fonction au submit du formulaire
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (document.getElementById("notRobot").checked === true)
+        if (document.getElementById("agree").checked === true)
         {
             if(isMail() && message){
                 sendMsg( "template_y77xg6s" , {
@@ -96,7 +94,7 @@ const Contact = () => {
                 }
             }
         }else{
-            document.querySelector('.form-message').innerHTML = "Merci de cocher la case indiquant que vous n'êtes pas un robot !"  
+            document.querySelector('.form-message').innerHTML = "Merci d'accepter les conditions"  
         }
     }
 
@@ -117,11 +115,9 @@ const Contact = () => {
             setMail(""); 
             setPhone(""); 
             setMessage(""); 
-            setNewsletter(false);
             document.querySelector('.mail-error').innerHTML = "";
             document.querySelector('.form-message').innerHTML = "";
-            document.getElementById("newsletter").checked = false;
-            document.getElementById("notRobot").checked = false;
+            document.getElementById("agree").checked = false;
 
         })
         .catch(
@@ -164,12 +160,8 @@ const Contact = () => {
                         <StyledTextarea className="form-control" id="message" name="message" rows="5" value={message} onChange={(e) => setMessage(e.target.value)} required />
                     </div>
                     <div className="mb-3 form-check">
-                        <StyledInput type="checkbox" className="form-check-input text-light" id="newsletter" onChange={(e)=> setNewsletter(e.target.value)} name="newsletter"/>
-                        <label className="form-check-label text-dark" htmlFor="newsletter" >J’accepte de recevoir les lettres d’information de la société Sous Mon Toit.</label>
-                    </div>
-                    <div className="mb-3 form-check">
-                        <StyledInput type="checkbox" className="form-check-input text-light" id="notRobot" name="notRobot" required/>
-                        <label className="form-check-label text-dark" htmlFor="notRobot" >Je confirme que je ne suis pas un robot<ContactEtoile>*</ContactEtoile></label>
+                        <StyledInput type="checkbox" className="form-check-input text-light" id="agree" name="agree" required/>
+                        <label className="form-check-label text-dark" htmlFor="agree" >J'ai bien noté que les informations personnelles communiquées sont utilisées uniquement pour traiter ma demande et ne sont jamais cédées à des tiers. Pour exercer mon droit d'accès, je peux joindre Sous Mon Toit par courrier postal.<ContactEtoile>*</ContactEtoile></label>
                     </div>
                     <div className="text-danger fs-6"><ContactEtoile>*</ContactEtoile>Champs obligatoires</div>
                     <StyledBtnPrimary type="submit" onClick={handleSubmit} className="btn float-end">Envoyer</StyledBtnPrimary>

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState , useEffect} from 'react';
 import styled from "styled-components";
 import logo from '../../assets/img/logo_sousMonToit_Long.png'
 import colors from '../../utils/styles/colors';
@@ -53,7 +53,24 @@ const Logout = styled.a`
 
 const Topbar = () => {
     const API_URL = useContext(Context).apiUrl;
+    const [tokenIsValid, setTokenIsValid] = useState(true);
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
+
+    // Test de la validité du token
+    useEffect(() => {
+        axios.interceptors.response.use(function (response) {
+            return response
+        }, function (error) {
+            if (error.response) {
+                if (error.response.status === 401) {
+                    localStorage.clear()
+                    setTokenIsValid(false)
+                }
+            }
+            return Promise.reject(error);
+        })
+        axios.get(API_URL + ApiRoutes.customer + "/c/1")
+    }, []);
 
     const logout = () => {
         axios.post(API_URL + ApiRoutes.logout)
@@ -73,7 +90,7 @@ const Topbar = () => {
                     <Logo  src={logo} className="logo " alt="Logo Sous Mon Toit"/>
                 </Link>
                 <LinkCol className="col-sm-12 col-md-6 linkCol d-flex justify-content-center">
-                    {localStorage['token'] != null ?
+                    {tokenIsValid === true ?
                         <span>
                             <ConnectLink href="/my-account" type="button"
                                          className="connectLink">Mon compte</ConnectLink>

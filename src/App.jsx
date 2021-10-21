@@ -78,6 +78,9 @@ const App = () => {
                             <Route exact path="/inscription">
                                 <SignUpView/>
                             </Route>
+                            <Route exact path="/my-account">
+                                <SignInView/>
+                            </Route>
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
