@@ -41,7 +41,7 @@ const EstateMap = ({estateData}) => {
                 scrollWheelZoom={false}
                 style={{height: 500, width: 500}}
                 placeholder={<MapPlaceholder/>}>
-                >
+
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
