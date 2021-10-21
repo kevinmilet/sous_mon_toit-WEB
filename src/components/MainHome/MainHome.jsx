@@ -24,11 +24,14 @@ const Slogan = styled.p`
 
 `
 
-const MainHome = () => {
+const MainHome = (props) => {
+
+    const {search} = props;
+
     return (
         <Main className="container-fluid" style={{backgroundImage: `url(${background}`}}>
             <Slogan>La bonne adresse pour trouver la votre !</Slogan>
-            <SearchBar/>
+            <SearchBar search={search}/>
         </Main>
     );
 };

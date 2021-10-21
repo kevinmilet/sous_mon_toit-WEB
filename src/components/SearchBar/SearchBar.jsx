@@ -8,7 +8,7 @@ import Switch from "../Tools/Switch/Switch";
 import PropTypes from "prop-types";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {useHistory} from "react-router-dom";
+import {Redirect, Router, useHistory} from "react-router-dom";
 
 const SearchContainer = styled.div`
     width: 1000px;
@@ -119,18 +119,15 @@ const SearchBtn = styled.button`
     line-height: 2;
 `
 
-const SearchBar = () => {
+const SearchBar = (props) => {
     const API_URL = useContext(Context).apiUrl;
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
     const [estatesData, setEstatesData] = useState({});
     const [cityList, setCityList] = useState('');
     const [cityQuery, setCityQuery] = useState('');
-    let history = useHistory();
 
-    function handleclick() {
-        history.push('/liste-des-biens');
-    }
+    const {search} = props;
 
     //false = 'Achat', true = 'Location'
     const [checked, setChecked] = useState(false);
@@ -159,23 +156,12 @@ const SearchBar = () => {
         onSubmit: async (values) =>{
             values = {...values, buy_or_rent:checked ? 'Location' : 'Achat'}
             await new Promise(() => {
+                // La fonction search() est dans App.jsx
+                // pour passer les values dans le state
                 search(values)
             })
         }
     })
-
-    const search = (values) => {
-        console.log(values);
-        axios.post('http://localhost:8000/estates/search', values)
-        // axios.post(API_URL + ApiRoutes.search +'/', values)
-            .then(res => {
-                console.log(res.data);
-                setEstatesData(res.data);
-            //    faire une redirection vers page de résultats
-            }).catch(error => {
-                console.log(error.message);
-        })
-    }
 
     useEffect(() => {
         axios.get(API_URL + ApiRoutes.estates_types).then(response => {
@@ -255,7 +241,7 @@ const SearchBar = () => {
                     />
                 </div>
                 <div className="col d-flex justify-content-center">
-                    <SearchBtn type="submit" className="btn" onClick={handleclick}><i className="fas fa-search"/></SearchBtn>
+                    <SearchBtn type="submit" className="btn"><i className="fas fa-search"/></SearchBtn>
                 </div>
             </div>
         </form>

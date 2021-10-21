@@ -49,9 +49,9 @@ const EstateCard = ({estateData}) => {
     return (
         loading ? <Loader/> :
 
-            estateData.map((item, i) => {
+            estateData.map((item) => {
                 return (<div className='col-sm-12 col-md-4 col-lg-4'>
-                    <Link className='text-decoration-none' to={`/detail-biens/${item.id}`} key={i}>
+                    <Link className='text-decoration-none' to={`/detail-biens/${item.id}`} key={item.id}>
                         <Card className="my-3 card shadow-sm text-center">
                             <img src={estateCover} alt="" className="card-img-top img-fluid" height="200px"/>
                             <CardBody>

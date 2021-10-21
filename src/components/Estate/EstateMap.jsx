@@ -32,7 +32,7 @@ function MapPlaceholder() {
 const EstateMap = ({estateData}) => {
     const position = [49.894067, 2.295753];
     const zoom = 8.5;
-
+    const markerPos = [];
     return (
         <Map>
             <MapContainer
@@ -40,27 +40,29 @@ const EstateMap = ({estateData}) => {
                 zoom={zoom}
                 scrollWheelZoom={false}
                 style={{height: 500, width: 500}}
-                placeholder={<MapPlaceholder />}>
-            >
+                placeholder={<MapPlaceholder/>}>
+                >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {estateData.map((item) => {
-                    const markerPosition = [item.estate_latitude, item.estate_longitude];
-                    console.log(markerPosition)
+                        markerPos.push([item.estate_latitude, item.estate_longitude])
                         return (
                             <div key={item.id}>
-                                <Marker
-                                    icon={myIcon}
-                                    position={markerPosition}
-                                >
-                                    <Popup>
-                                        {/*<img src="https://i.ibb.co/rf2TbH8/home-office-5006842-1280.png" alt=""/>*/}
-                                        <p>{item.title} {item.living_surface} m<sup>2</sup></p>
-                                        <p>{item.price} €</p>
-                                    </Popup>
-                                </Marker>
+                                {markerPos.map((mark) => {
+                                    console.log(mark)
+                                    return (
+                                    <Marker icon={myIcon} position={mark}>
+                                        <Popup>
+                                            {/*<img src="https://i.ibb.co/rf2TbH8/home-office-5006842-1280.png" alt=""/>*/}
+                                            <p>{item.title} {item.living_surface} m<sup>2</sup></p>
+                                            <p>{item.price} €</p>
+                                        </Popup>
+                                    </Marker>
+                                    )
+                                })}
+
                             </div>
                         )
                     }
@@ -73,13 +75,17 @@ const EstateMap = ({estateData}) => {
 EstateCard.propTypes = {
     price: PropTypes.number.isRequired,
     zipcode: PropTypes.string.isRequired,
-    living_surface: PropTypes.number.isRequired
+    living_surface: PropTypes.number.isRequired,
+    estate_latitude: PropTypes.number.isRequired,
+    estate_longitude: PropTypes.number.isRequired
 }
 
 EstateCard.defaultProps = {
     price: 0,
     zipcode: '',
-    living_surface: 0
+    living_surface: 0,
+    estate_latitude: 0,
+    estate_longitude: 0
 }
 
 export default EstateMap;
