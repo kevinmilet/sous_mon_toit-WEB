@@ -1,6 +1,7 @@
 import React, {useContext, useState , useEffect} from 'react';
 import styled from "styled-components";
 import logo from '../../assets/img/logo_sousMonToit_Long.png'
+import logoMobile from '../../assets/img/apple-icon-152x152.png'
 import colors from '../../utils/styles/colors';
 import axios from "axios";
 import ApiRoutes from "../../utils/const/ApiRoutes";
@@ -10,7 +11,7 @@ import {Link} from "react-router-dom";
 const Container = styled.div`
     padding: 0;
     margin: 0;
-    height: 80px;
+    // height: 80px;
     background-color: ${colors.backgroundPrimary};
     border-bottom: 1px solid ${colors.backgroundSecondary};
 `
@@ -18,8 +19,9 @@ const RowHeader = styled.div`
     margin: 0;
 `
 const Logo = styled.img`
-    width: 275px;
+    width: auto;
     height: auto;
+    z-index: 20;
 `
 const LinkCol = styled.div`
     margin: auto 0;
@@ -52,6 +54,25 @@ const Logout = styled.a`
 `
 
 const Topbar = () => {
+      
+    const largeur = window.innerWidth;
+    if(largeur <= 375){
+        var sourceLogo =   logoMobile ;
+    }else{
+         var sourceLogo =   logo ;
+    }
+    function reportWindowSize(){
+        alert("debugger");
+        debugger;
+        const largeur = window.innerWidth;
+        if(largeur <= 375){
+           return sourceLogo = logoMobile ;
+        }else{
+            return sourceLogo = logo ;
+        }
+    }
+     window.addEventListener('resize',reportWindowSize );
+
     const API_URL = useContext(Context).apiUrl;
     const [tokenIsValid, setTokenIsValid] = useState(true);
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
@@ -86,8 +107,8 @@ const Topbar = () => {
     return (
         <Container className="container-fluid">
             <RowHeader className="row rowHeader">
-                <Link to="/" className="col-sm-6 col-md-6 d-flex justify-content-center">
-                    <Logo  src={logo} className="logo " alt="Logo Sous Mon Toit"/>
+                <Link to="/" className="col-12 col-md-6 d-flex justify-content-center">
+                    <Logo  src={sourceLogo} className="logo " alt="Logo Sous Mon Toit"/>
                 </Link>
                 <LinkCol className="col-sm-12 col-md-6 linkCol d-flex justify-content-center">
                     {tokenIsValid === true ?

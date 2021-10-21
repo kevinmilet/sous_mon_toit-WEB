@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 import {StyledBtnPrimary, StyledInput, StyledTextarea,} from "../../utils/styles/Atoms";
 import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
+
+//  import Switch from "../Switch/Switch";
+
 import background from "../../assets/img/maison_interieur.jpg";
 
 const Container = styled.div`

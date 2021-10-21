@@ -8,22 +8,21 @@ import Switch from "../Tools/Switch/Switch";
 import PropTypes from "prop-types";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {Redirect, Router, useHistory} from "react-router-dom";
 
 const SearchContainer = styled.div`
-    width: 1000px;
-    height: 55px;
+    // width: 1000px;
+    // height: 55px;
     background-color: ${colors.secondaryBtn};
     border: none;
     border-radius: 50px;
     margin: 50px auto;
 `
 const Sector = styled.input`
-    width: 100%;
-    height: 55px;
+     // width: 100%;
+     height: 65px;
     background: transparent;
     border: none;
-    border-right: 2px solid ${colors.backgroundPrimary};
+    // border-right: 2px solid ${colors.backgroundPrimary};
     text-align: center;
     color: ${colors.backgroundPrimary};
     font-weight: bold;
@@ -40,35 +39,35 @@ const Sector = styled.input`
     }
 `
 const SelectDiv = styled.div`
-    position: relative;
-    border-right: 2px solid ${colors.backgroundPrimary};
-    &:after {
-        content: '>';
-        font-family: "Consolas", monospace;
-        font-size: inherit;
-        font-weight: bold;
-        color: ${colors.backgroundPrimary};
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-        right: 20px;
-        top: 18px;
-        padding: 0 0 2px;
-        position: absolute;
-        pointer-events: none;
-    }
+    // position: relative;
+    // border-right: 2px solid ${colors.backgroundPrimary};
+    // &:after {
+    //     content: '>';
+    //     font-family: "Consolas", monospace;
+    //     font-size: inherit;
+    //     font-weight: bold;
+    //     color: ${colors.backgroundPrimary};
+    //     -webkit-transform: rotate(90deg);
+    //     -moz-transform: rotate(90deg);
+    //     -ms-transform: rotate(90deg);
+    //     transform: rotate(90deg);
+    //     right: 20px;
+    //     top: 18px;
+    //     padding: 0 0 2px;
+    //     position: absolute;
+    //     pointer-events: none;
+    // }
 `
 const Select = styled.select`
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: block;
-    float: right;
-    padding: 0px 24px;
+    // -webkit-appearance: none;
+    // -moz-appearance: none;
+    // appearance: none;
+    // display: block;
+    // float: right;
+    // padding: 0px 24px;
     line-height: 1.75;
     width: 100%;
-    height: 55px;
+    height: 65px;
     border: none;
     background: transparent;
     font-weight: bold;
@@ -87,8 +86,8 @@ const Option = styled.option`
 `
 
 const Budget = styled.input`
-    width: 100%;
-    height: 55px;
+    // width: 100%;
+     height: 65px;
     text-align: center;
     background: transparent;
     border: none;
@@ -185,11 +184,11 @@ const SearchBar = (props) => {
     },[cityQuery, formik.values.city])
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <SearchContainer className="row">
-                <div className="col-12 col-md-3">
-                    <Sector type="text"
-                            placeholder="Secteur recherché"
+        <form className="container-fluid" onSubmit={formik.handleSubmit}>
+            <SearchContainer className="row col-10 justify-content-center">
+                <div className=" col-md-3">
+                    <Sector type="text" 
+                            placeholder="Secteur recherché" 
                             name="city"
                             id="city"
                             value={formik.values.city}
@@ -198,22 +197,22 @@ const SearchBar = (props) => {
                             // onKeyUp={setCityQuery(this.values.bind(this))}
                     />
                 </div>
-                <SelectDiv className="col-12 col-md-3">
+                <SelectDiv className="  col-md-3">
                     <Select name="id_estate_type"
                             id="id_estate_type"
-                            className="form-select"
+                            className="form-select text-center"
                             value={formik.values.id_estate_type}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                     >
-                        <Option value="">Type de bien</Option>
+                        <Option className="text-center" value="">Type de bien</Option>
                         {!loading && estatesTypes.map(item => (
                             <Option value={item.id} key={item.id}>{item.estate_type_name}</Option>))}
                     </Select>
                 </SelectDiv>
                 <SelectDiv className="col-12 col-md-3">
                     <Select name="nb_rooms" id="nb_rooms" className="form-select" value={formik.values.nb_rooms} onChange={formik.handleChange} onBlur={formik.handleBlur}>
-                        <Option value="">Nombre de pièces</Option>
+                        <Option className="text-center" value="">Nombre de pièces</Option>
                         <Option value="1">1</Option>
                         <Option value="2">2</Option>
                         <Option value="3">3</Option>
@@ -241,7 +240,7 @@ const SearchBar = (props) => {
                     />
                 </div>
                 <div className="col d-flex justify-content-center">
-                    <SearchBtn type="submit" className="btn"><i className="fas fa-search"/></SearchBtn>
+                    <SearchBtn type="submit" className="btn mt-3 mt-lg-0"><i className="fas fa-search"/></SearchBtn>
                 </div>
             </div>
         </form>
