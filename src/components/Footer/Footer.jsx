@@ -31,11 +31,15 @@ const Footer = () => {
         <FooterContainer className="bottom-0">
             <div className="container-fluid ">
                 <RowFooter className="row">
-                    <div className="col-12 col-md-6 d-flex justify-content-center">
+                    <div className="col-12 col-md-4 d-flex justify-content-center">
                         <NewsLetter/>
+               
                     </div>
-
-                    <SocialsCol className="col-12 col-md-6 d-flex justify-content-center">
+                    <div className="col-12 col-md-4 d-flex justify-content-center">
+                        <a href="/contact">Contactez-nous</a>
+                    </div>
+                    
+                    <SocialsCol className="col-12 col-md-4 d-flex justify-content-center">
                         <Socials className="socials"/>
                     </SocialsCol>
                     <Copyright>2021 Sous mon toit</Copyright>
