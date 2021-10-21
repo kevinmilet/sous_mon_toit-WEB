@@ -187,7 +187,7 @@ const SearchBar = () => {
             }).catch(error => {
             console.log(error.message)
         })
-    },[formik.values.city])
+    },[cityQuery, formik.values.city])
 
     return (
         <form onSubmit={formik.handleSubmit}>

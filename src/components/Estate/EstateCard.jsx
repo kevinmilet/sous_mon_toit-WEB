@@ -8,7 +8,7 @@ import axios from "axios";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import Loader from "../Tools/Loader/Loader";
 import defaultCover from '../../assets/img/estate_default.jpg';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
+import {Link} from "react-router-dom"
 
 const Card = styled.div`
     width: 18em;
@@ -33,14 +33,18 @@ const EstateCard = ({estateData}) => {
 
     useEffect(() => {
         axios.get(API_URL + ApiRoutes.estates_cover + "/" + estateData.id).then(res => {
-            setEstateCover(res.data)
+            if (res.data.length !== 0) {
+                setEstateCover(res.data.name)
+            } else {
+                setEstateCover(defaultCover);
+            }
         }).catch(error => {
             setEstateCover(defaultCover);
             console.log(error.message)
         }).finally(() => {
             setLoading(false)
         })
-    }, [API_URL, estateData.id])
+    }, [API_URL, estateData.id, estateData.length])
 
     return (
         loading ? <Loader/> :
