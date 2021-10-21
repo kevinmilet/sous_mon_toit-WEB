@@ -11,14 +11,14 @@ import * as Yup from "yup";
 
 const SearchContainer = styled.div`
     // width: 1000px;
-    // height: 65px;
+    // height: 55px;
     background-color: ${colors.secondaryBtn};
     border: none;
     border-radius: 50px;
     margin: 50px auto;
 `
 const Sector = styled.input`
-    // width: 100%;
+     // width: 100%;
      height: 65px;
     background: transparent;
     border: none;
@@ -111,19 +111,22 @@ const SearchBtn = styled.button`
     font-size: 30px;
     margin: 0 auto;
     background-color: ${colors.primaryBtn};
-    padding-top: 5px;
+    padding-top: 0;
     width: 80px;
-    height: 65px;
+    height: 55px;
     border-radius: 50px;
     line-height: 2;
 `
 
-const SearchBar = () => {
+const SearchBar = (props) => {
     const API_URL = useContext(Context).apiUrl;
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
+    const [estatesData, setEstatesData] = useState({});
     const [cityList, setCityList] = useState('');
     const [cityQuery, setCityQuery] = useState('');
+
+    const {search} = props;
 
     //false = 'Achat', true = 'Location'
     const [checked, setChecked] = useState(false);
@@ -152,21 +155,12 @@ const SearchBar = () => {
         onSubmit: async (values) =>{
             values = {...values, buy_or_rent:checked ? 'Location' : 'Achat'}
             await new Promise(() => {
+                // La fonction search() est dans App.jsx
+                // pour passer les values dans le state
                 search(values)
             })
         }
     })
-
-    const search = (values) => {
-        console.log(values);
-        axios.post(API_URL + ApiRoutes.search +'/', values)
-            .then(res => {
-                console.log(res)
-            //    faire une redirection vers page de résultats
-            }).catch(error => {
-                console.log(error.message);
-        })
-    }
 
     useEffect(() => {
         axios.get(API_URL + ApiRoutes.estates_types).then(response => {
@@ -250,8 +244,7 @@ const SearchBar = () => {
                 </div>
             </div>
         </form>
-    )
-        ;
+    );
 };
 
 SearchBar.propTypes = {

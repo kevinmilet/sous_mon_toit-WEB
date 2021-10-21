@@ -6,14 +6,12 @@ import axios from "axios";
 import Loader from "../../components/Tools/Loader/Loader";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import {Context} from "../../utils/context/Context";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import colors from "../../utils/styles/colors";
 
 const BlockListing = styled.div`
   .listing {
-    zoom: 1;
-    clear: both;
-    padding: 0;
     position: relative;
-    z-index: 1;
 
         &:before {
             content: "";
@@ -32,62 +30,72 @@ const BlockListing = styled.div`
         .leaflet-container {
             height: 100vh;
         }
-
-        .left-side {
-            height: calc(100vh);
-            float: left;
-            width: 41.66666667%;
-
-            img {
-                max-width: 135px;
-                float: left;
-                margin-right: 8px;
-            }
-        }
-
-        .right-side {
-            height: calc(100vh);
-            border: 1px solid #E85A70;
-            border-radius: 1px;
-            overflow: auto;
-            display: grid;
-            grid-template-columns: repeat(2,auto);
-            grid-gap: 20px;
-        }
   }
 `
 
-const EstatesListView = () => {
+const Title = styled.div`
+    text-align: center;
+    color: ${colors.primaryBtn};
+    margin: 2em auto 0 auto
+`
+
+const EstatesListView = (props) => {
+    const {search, estateSearch} = props;
     const API_URL = useContext(Context).apiUrl;
     const [estateData, setEstateData] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(API_URL + ApiRoutes.estates).then(res => {
-            setEstateData(res.data)
-        }).catch(error => {
-            console.log(error.message)
-        }).finally(() => {
+        if (!estateSearch) {
+            axios.get(API_URL + ApiRoutes.estates).then(res => {
+                setEstateData(res.data)
+            }).catch(error => {
+                console.log(error.message)
+            }).finally(() => {
+                setLoading(false)
+            })
+        } else {
+            setEstateData(estateSearch);
             setLoading(false)
-        })
-    }, [API_URL])
+        }
+    }, [API_URL, estateSearch])
 
-    return (
-        loading ? <Loader/> :
-
-        <div>
-            <BlockListing>
-                <div className="listing">
-                    <div className="left-side">
-                        <EstateMap estateData={estateData}/>
+    if (estateData.length !== 0) {
+        return (
+            loading ? (<Loader/>) : (
+                <>
+                    <Title>
+                        <h4>Nous avons trouvé {estateData.length} bien(s) correspondant(s) à votre recherche.</h4>
+                    </Title>
+                    <div className="row mb-4">
+                        <SearchBar search={search}/>
                     </div>
-                    <div className="left-side">
-                        <EstateCard estateData={estateData}/>
-                    </div>
+                    <BlockListing className="row m-3">
+                        <div className="col-sm-12 col-md-4 col-lg-4 listing">
+                            <EstateMap estateData={estateData}/>
+                        </div>
+                        <div className="col-sm-12 col-md-8 col-lg-8">
+                            <div className="row">
+                                <EstateCard estateData={estateData}/>
+                            </div>
+                        </div>
+                    </BlockListing>
+                </>
+            )
+        );
+    } else {
+        return (
+            <>
+                <Title>
+                    <h4>La recherche n'a donnée aucun résultat.</h4>
+                </Title>
+                <div className="row mb-4">
+                    <SearchBar search={search}/>
                 </div>
-            </BlockListing>
-        </div>
-    );
+            </>
+        )
+    }
+
 };
 
 export default EstatesListView;

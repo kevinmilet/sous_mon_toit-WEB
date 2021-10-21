@@ -33,49 +33,53 @@ const UserAccount = () => {
   const [loading, setLoading] = useState(true);
 
   axios.defaults.headers.common = {
-    
+
     Authorization: `Bearer ${localStorage["token"]}`,
   };
-  if(!localStorage["userId"]){
-    localStorage.clear();
-  }
-  console.log(localStorage["userId"]);
 
   useEffect(() => {
-    if (localStorage["token"] != null) {
-      axios
-        .get(
-          "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/customer/c/" +
-            localStorage["userId"]
-        )
-        .then((res) => {
-          console.log("coucou");
-          setCustomerData(res.data);
-        })
-        .catch((error) => {
-          // alert('coucou 2');
-          console.log(error.message);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
 
-      axios
-        .get(
-          "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/describe_customer_type/joinCustomer/"+localStorage["userId"]
-        )
-        .then((res) => {
-          console.log("coucou");
-          setCustomerTypeData(res.data);
-        })
-        .catch((error) => {
-          // alert('coucou 2');
-          console.log(error.message);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
+    // Test de la validité du token
+    axios.interceptors.response.use(function (response) {
+        return response
+    }, function (error) {
+        if (error.response) {
+            if (error.response.status === 401) {
+                localStorage.clear()
+                return window.location='/connexion' // redirect to login page
+            }
+        }
+    })
+
+    axios
+      .get(
+        "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/customer/c/" +
+        localStorage["userId"]
+      )
+      .then((res) => {
+        setCustomerData(res.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+
+    axios
+      .get(
+        "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/describe_customer_type/joinCustomer/" + localStorage["userId"]
+      )
+      .then((res) => {
+        setCustomerTypeData(res.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+
   }, []);
 
   if (loading) {
@@ -140,9 +144,10 @@ const UserAccount = () => {
           {/* <a href="/update-user" className="btn btn-primary m-1">
             Modifier
           </a> */}
-          <a href="/delete-user" className="btn btn-danger m-1">
+          {/* <a href="/delete-user" className="btn btn-danger m-1">
             Désactiver mon compte
-          </a>
+          </a> */}
+          <p>Si vous souhaitez modifier ou supprimer les informations de votre compte envoyez nous votre demande par courrier à : sousmontoit-service@gmail.com </p>
         </div>
       </div>
     </div>

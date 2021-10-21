@@ -15,11 +15,14 @@ import DetailEstateView from './screens/Estates/DetailEstateView';
 
 import ForSaleView from './screens/ForSale/ForSaleView';
 import EstatesListView from "./screens/Estates/EstatesListView";
+import axios from "axios";
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const [estateList, setEstateList] = useState(null);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -33,16 +36,27 @@ const App = () => {
         return <></>;
     }
 
+    const search = (values) => {
+        axios.post('http://localhost:8000/estates/search', values)
+            // axios.post(API_URL + ApiRoutes.search +'/', values)
+            .then(res => {
+                setEstateList(res.data);
+            }).catch(error => {
+            console.log(error.message);
+        })
+    }
+
     return (
         <Context.Provider value={{apiUrl, setApiUrl}}>
             <div>
                 <Router>
+                    {estateList ? <Redirect to={{ pathname: "/liste-des-biens"}}/> : null }
                     <Header/>
                     <Route exact path="/">
-                        <HomeView/>
+                        <HomeView search={search}/>
                     </Route>
                     <Route exact path="/liste-des-biens">
-                        <EstatesListView/>
+                        <EstatesListView search={search} estateSearch={estateList}/>
                     </Route>
                     <Route exact path="/detail-biens/:id">
                         <DetailEstateView/>
@@ -63,6 +77,9 @@ const App = () => {
                             </Route>
                             <Route exact path="/inscription">
                                 <SignUpView/>
+                            </Route>
+                            <Route exact path="/my-account">
+                                <SignInView/>
                             </Route>
                         </React.Fragment>
                     ) : (
