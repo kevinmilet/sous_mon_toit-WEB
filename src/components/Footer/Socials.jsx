@@ -15,9 +15,9 @@ const Text = styled.p`
 `
 const SocialList = styled.ul`
     list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    // margin: 0;
+    // padding: 0;
+    // overflow: hidden;
 `
 const SocialItem = styled.li`
     float: left;
@@ -32,8 +32,8 @@ const Socials = () => {
     return (
         <div>
             <Text>Suivez-nous sur</Text>
-            <SocialList>
-                <SocialItem>
+            <SocialList className="col-6 col-md-12 m-auto">
+                <SocialItem className="text">
                     <a href="https://facebook.fr" target="_blank" rel="noreferrer"><Logo src={facebook} alt="Logo Facebook"/></a>
                 </SocialItem>
                 <SocialItem>

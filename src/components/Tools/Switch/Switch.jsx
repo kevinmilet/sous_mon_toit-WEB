@@ -14,7 +14,7 @@ const Switch = ({ isOn, handleChange }) => {
 
     return (
 		<div className={styleBtn} onClick={handleChange}>
-			<input className="switch-button-checkbox" type="checkbox"/>
+			<input className="switch-button-checkbox " type="checkbox"/>
 			<label className="switch-button-label" htmlFor="">
 				<span className="switch-button-label-span" style={!isOn ? {color: colors.backgroundPrimary} : {color: colors.secondary}}>Acheter</span>
 			</label>

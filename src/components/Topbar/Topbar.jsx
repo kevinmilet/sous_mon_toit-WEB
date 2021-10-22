@@ -58,9 +58,9 @@ const Topbar = () => {
 
     const largeur = window.innerWidth;
     if(largeur <= 375){
-        sourceLogo = logoMobile
+        var sourceLogo = logoMobile
     }else{
-         var sourceLogo =   logo ;
+         sourceLogo =   logo ;
     }
     function reportWindowSize(){
 
@@ -93,7 +93,7 @@ console.log(sourceLogo);
             return Promise.reject(error);
         })
         axios.get(API_URL + ApiRoutes.customer + "/c/1")
-    }, []);
+    }, [API_URL]);
 
     const logout = () => {
         axios.post(API_URL + ApiRoutes.logout)
