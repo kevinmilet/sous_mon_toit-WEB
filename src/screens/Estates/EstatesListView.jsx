@@ -45,6 +45,10 @@ const EstatesListView = (props) => {
     const [estateData, setEstateData] = useState({});
     const [loading, setLoading] = useState(true);
 
+    // const [page, setPage] = useState(null);
+    // const [currentPage, setCurrentPage] = useState(0);
+    // const [totalPage, setTotalPage] = useState(null);
+
     useEffect(() => {
         if (!estateSearch) {
             axios.get(API_URL + ApiRoutes.estates).then(res => {
@@ -80,6 +84,26 @@ const EstatesListView = (props) => {
                             </div>
                         </div>
                     </BlockListing>
+                    {/*{estateData.length > 6 ?*/}
+                    {/*    <nav className="mt-3">*/}
+                    {/*        <ul className="pagination pagination-sm justify-content-center">*/}
+                    {/*            <li className="page-item ">*/}
+                    {/*                <a className="page-link" href="?page=<?=$currentPage - 1 ?>"*/}
+                    {/*                   tabIndex="-1">Précedent</a>*/}
+                    {/*            </li>*/}
+                    {/*            /!*<?php for ($page = 1; $page <= $total_pages; $page++): ?>*!/*/}
+                    {/*            <li className="page-item">*/}
+                    {/*                <a href="?page=<?= $page ?>" className="page-link">page</a>*/}
+                    {/*            </li>*/}
+                    {/*            /!*<?php endfor ?>*!/*/}
+                    {/*            <li className="page-item">*/}
+                    {/*                <a className="page-link"*/}
+                    {/*                   href="?page=<?=$currentPage + 1 ?>">Suivant</a>*/}
+                    {/*            </li>*/}
+                    {/*        </ul>*/}
+                    {/*    </nav> : null*/}
+                    {/*}*/}
+
                 </>
             )
         );

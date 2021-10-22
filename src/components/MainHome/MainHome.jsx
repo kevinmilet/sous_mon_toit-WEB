@@ -28,7 +28,7 @@ const Slogan = styled.p`
 `
 
 const MainHome = (props) => {
-    const search = {props};
+    const {search} = props;
 
     return (
         <Main className="container-fluid" style={{backgroundImage: `url(${background}`}}>

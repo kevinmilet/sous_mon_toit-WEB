@@ -33,6 +33,7 @@ const EstateMap = ({estateData}) => {
     const position = [49.894067, 2.295753];
     const zoom = 8.5;
     const markerPos = [];
+
     return (
         <Map>
             <MapContainer
@@ -47,17 +48,21 @@ const EstateMap = ({estateData}) => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {estateData.map((item) => {
-                        markerPos.push([item.estate_latitude, item.estate_longitude])
+
+                        markerPos.push({title: item.title,
+                                        surface: item.living_surface,
+                                        price: item.price,
+                                        position:[item.estate_latitude, item.estate_longitude]
+                        })
+
                         return (
                             <div key={item.id}>
                                 {markerPos.map((mark) => {
-                                    console.log(mark)
                                     return (
-                                    <Marker icon={myIcon} position={mark}>
+                                    <Marker icon={myIcon} position={mark.position}>
                                         <Popup>
-                                            {/*<img src="https://i.ibb.co/rf2TbH8/home-office-5006842-1280.png" alt=""/>*/}
-                                            <p>{item.title} {item.living_surface} m<sup>2</sup></p>
-                                            <p>{item.price} €</p>
+                                            <p>{mark.title} {mark.surface} m<sup>2</sup></p>
+                                            <p>{mark.price} €</p>
                                         </Popup>
                                     </Marker>
                                     )
