@@ -73,7 +73,6 @@ const Topbar = () => {
     }
     window.onresize = window.addEventListener('resize',reportWindowSize );
     
-console.log(sourceLogo);
     const API_URL = useContext(Context).apiUrl;
     const [tokenIsValid, setTokenIsValid] = useState(true);
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
