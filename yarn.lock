@@ -9715,11 +9715,6 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-laravel-paginex@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/react-laravel-paginex/-/react-laravel-paginex-2.0.8.tgz#c37a095b38ba778e4c4900a8c593f2d23bc02028"
-  integrity sha512-wbGGy49x14YoUZVNESYro6vIyBM9uqP70mtvp+FRiXQCphaBBh4RsmcEUC5p8Et5hEBSB4AlYJqfgAkVTExE4g==
-
 react-leaflet@^3.2.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-3.2.2.tgz#3d779662c32a1d8729e73d24e8ad96ee5b38beef"
