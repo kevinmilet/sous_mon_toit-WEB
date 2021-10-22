@@ -53,26 +53,29 @@ const DetailEstate = () => {
             setOneEstateData(res.data)
         }).catch(error => {
             console.log(error.message)
-        })
-        
-        //Image de couverture du bien
-        // axios.get("http://localhost:8000/estates_pictures/cover/" + id)
-        axios.get(API_URL + ApiRoutes.estates_cover + "/" + id)
-        .then(res => {
-            setPictureCover(res.data[0])
-        }).catch(error => {
-            console.log(error.message)
-        })
-
-        // liste des images du bien
-        // axios.get("http://localhost:8000/estates_pictures/" + id)
-        axios.get(API_URL + ApiRoutes.estates_pictures + "/" + id)
-        .then(res => {
-            setPicturesList(res.data)
-        }).catch(error => {
-            console.log(error.message)
         }).finally(() => {
-            setLoading(false)
+            
+            //Image de couverture du bien
+            // axios.get("http://localhost:8000/estates_pictures/cover/" + id)
+            axios.get(API_URL + ApiRoutes.estates_cover + "/" + id)
+            .then(res => {
+                setPictureCover(res.data[0])
+            }).catch(error => {
+                console.log(error.message)
+            }).finally(() => {
+                
+                // liste des images du bien
+                // axios.get("http://localhost:8000/estates_pictures/" + id)
+                axios.get(API_URL + ApiRoutes.estates_pictures + "/" + id)
+                .then(res => {
+                    setPicturesList(res.data)
+                }).catch(error => {
+                    console.log(error.message)
+                }).finally(() => {
+                    setLoading(false)
+                })
+
+            })
         })
         
     },[API_URL,id])
