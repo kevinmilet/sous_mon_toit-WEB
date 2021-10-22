@@ -103,7 +103,7 @@ const UserAccount = () => {
           <NavAccount className="navbar-nav navbar m-auto">
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav navbar">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/my-account">
                   <div className="border border-light p-3 tab rounded-pill text-white">
                     <b>Mes informations</b>
                   </div>
