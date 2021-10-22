@@ -37,28 +37,35 @@ const Sector = styled.input`
             color: transparent;
         }
     }
-`
-const SelectDiv = styled.div`
-    position: relative;
-    border-right: 2px solid ${colors.backgroundPrimary};
-    &:after {
-        content: '>';
-        font-family: "Consolas", monospace;
-        font-size: inherit;
-        font-weight: bold;
-        color: ${colors.backgroundPrimary};
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-        right: 20px;
-        top: 18px;
-        padding: 0 0 2px;
-        position: absolute;
-        pointer-events: none;
+    @media screen and (min-width: 823px){
+        border-right: 2px solid ${colors.backgroundPrimary};;
     }
 `
+const SelectDiv = styled.div`
+    // position: relative;
+    @media screen and (min-width: 823px){
+        border-right: 2px solid ${colors.backgroundPrimary};;
+    }
+    // border-right: 2px solid ${colors.backgroundPrimary};
+    // &:after {
+    //     content: '>';
+    //     font-family: "Consolas", monospace;
+    //     font-size: inherit;
+    //     font-weight: bold;
+    //     color: ${colors.backgroundPrimary};
+    //     -webkit-transform: rotate(90deg);
+    //     -moz-transform: rotate(90deg);
+    //     -ms-transform: rotate(90deg);
+    //     transform: rotate(90deg);
+    //     right: 20px;
+    //     top: 18px;
+    //     padding: 0 0 2px;
+    //     position: absolute;
+    //     pointer-events: none;
+    // }
+`
 const Select = styled.select`
+
     // -webkit-appearance: none;
     // -moz-appearance: none;
     // appearance: none;
@@ -105,6 +112,7 @@ const Budget = styled.input`
             color: transparent;
         }
     }
+    
 `
 const SearchBtn = styled.button`
     color: ${colors.backgroundPrimary};
@@ -186,7 +194,7 @@ const SearchBar = (props) => {
 
     return (
         <form className="container-fluid" onSubmit={formik.handleSubmit}>
-            <SearchContainer className="row col-10 col-md-11  justify-content-center">
+            <SearchContainer className="row col-10 col-md-9   justify-content-center">
                 <div className="col-md-5 col-lg-3">
                     <Sector type="text" 
                     

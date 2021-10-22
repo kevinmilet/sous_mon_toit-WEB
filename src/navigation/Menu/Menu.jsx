@@ -24,12 +24,24 @@ const Container = styled.div`
 `
 const MenuBurger = styled.button`
    background-color: ${colors.secondary};
+  
+}
 `
 const MenuItems = styled.ul`
     margin: 0 auto;
+    @media screen and (max-width: 991px){
+        background-color: ${colors.backgroundSecondary};
+        z-index: 70;
+        margin-top : 10%;
+    }
 `
 const MenuItem = styled.li`
     margin: 0 35px;
+    @media screen and (max-width: 991px){
+        background-color: ${colors.backgroundSecondary};
+        z-index: 70;
+        margin-top : 10px;
+    }
 `
 const MenuItemLink = styled.a`
     color: ${colors.secondary};
@@ -44,6 +56,9 @@ const MenuItemLink = styled.a`
 const Icons = styled.img`
     width: 40px;
     height: 40px;
+    @media screen and (max-width: 991px){
+        display: none;
+    }
 `
 
 const Menu = () => {

@@ -57,7 +57,7 @@ const EstateCard = ({estateData}) => {
             estateData.map((item) => {
                 return (<div className='col-sm-12 col-md-4 col-lg-4 justify-content-center'>
                     <Link className='text-decoration-none ' to={`/detail-biens/${item.id}`} key={item.id}>
-                        <Card className="my-3 col-sm-8 m-auto card shadow-sm text-center">
+                        <Card className="my-3 col-sm-8 col-md-auto m-auto card shadow-sm text-center">
                             <img src={estateCover} alt="" className="card-img-top img-fluid" height="200px"/>
                             <CardBody>
                                 <div className="card-body">
