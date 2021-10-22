@@ -8,37 +8,45 @@ import PropTypes from "prop-types";
 import Loader from "../Tools/Loader/Loader";
 import styled from "styled-components";
 import colors from "../../utils/styles/colors";
+
 const Title = styled.h2`
-  color: ${colors.primaryBtn};
-`;
+  color: ${colors.primaryBtn}
+`
+
 const TitleH1 = styled.h1`
-  color: ${colors.secondaryBtn};
-`;
+  color: ${colors.secondaryBtn}  
+`
+
 const TitleH5 = styled.h5`
   font-weight: bolder;
-  text-decoration: underline;
-`;
+  text-decoration: underline
+`
 
-const Container = styled.div``;
+const Container = styled.div``
+
 const Close = styled.div`
   display: inline;
   position: relative;
   color: red;
-  font-weight: bolder;
-`;
+  font-weight: bolder
+`
+
 const LiStyle = styled.div`
   display: inline;
   position: relative;
-  font-weight: bolder;
-`;
+  font-weight: bolder
+`
+
 // const ImgTitle= styled.img`
 //   display: inline;
 //   position: relative;
 //   font-weight: bolder;
-// `;
+// `
+
 const List = styled.div`
-  text: center;
-`;
+  text: center
+`
+
 const Agency = () => {
   const [staffData, setStaffData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -119,7 +127,6 @@ const Agency = () => {
 
           <div className="col-md-5 mt-5 mt-lg-0">
             <TitleH5 className="col-md-6">Notre adresse</TitleH5>
-
             <div>72 rue des jacobins, 80000 Amiens</div>
             <div className="m-auto col-10 mt-4" >
               <img className="img-fluid  " src="adresse.png" alt="plan d'accés" />

@@ -164,7 +164,6 @@ const Contact = () => {
                 </div>
                 <div className="form-message text-danger fs-5 text-center" />
             </ContactForm>
-
         </div>
     );
 };

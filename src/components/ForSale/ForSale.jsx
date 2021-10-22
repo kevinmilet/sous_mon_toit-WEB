@@ -7,23 +7,21 @@ import {StyledBtnPrimary, StyledInput, StyledTextarea,} from "../../utils/styles
 import {Context} from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 
-//  import Switch from "../Switch/Switch";
-
 import background from "../../assets/img/maison_interieur.jpg";
 
 const Container = styled.div`
 `
 const Text = styled.div`
 font-weight: bold;
-`;
+`
 const Head = styled.div`
   width: 100%;
   height: 730px;
   background: no-repeat;
-`;
+`
 const HeadH1 = styled.h1`
   color: ${colors.primaryBtn};
-`;
+`
 const Select = styled.select`
   border-radius: 50px;
   border: 2px solid ${colors.secondaryBtn};
@@ -34,34 +32,34 @@ const Select = styled.select`
 `;
 const Option = styled.option`
   color: ${colors.secondaryBtn};
-`;
+`
 
 const ForSaleForm = styled.form`
   background-color: ${colors.backgroundPrimary};
   -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-`;
+`
 const ContHeader = styled.form`
   background-color: "${colors.backgroundPrimary}";
   -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-`;
+`
 const ForSaleSuccess = styled.p`
   color: green;
   font-size: 2rem;
-`;
+`
 const ForSaleH1 = styled.h2`
   color: ${colors.secondary};
-`;
+`
 
 const ForSaleLabel = styled.label`
   color: ${colors.secondaryBtn};
-`;
+`
 const ForSaleEtoile = styled.span`
   color: ${colors.secondary};
-`;
+`
 const ForSale = () => {
   const API_URL = useContext(Context).apiUrl;
   const [loading, setLoading] = useState(true);

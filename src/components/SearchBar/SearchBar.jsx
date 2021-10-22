@@ -47,25 +47,24 @@ const SelectDiv = styled.div`
         border-right: 2px solid ${colors.backgroundPrimary};;
     }
     // border-right: 2px solid ${colors.backgroundPrimary};
-    // &:after {
-    //     content: '>';
-    //     font-family: "Consolas", monospace;
-    //     font-size: inherit;
-    //     font-weight: bold;
-    //     color: ${colors.backgroundPrimary};
-    //     -webkit-transform: rotate(90deg);
-    //     -moz-transform: rotate(90deg);
-    //     -ms-transform: rotate(90deg);
-    //     transform: rotate(90deg);
-    //     right: 20px;
-    //     top: 18px;
-    //     padding: 0 0 2px;
-    //     position: absolute;
-    //     pointer-events: none;
-    // }
+    &:after {
+        content: '>';
+        font-family: "Consolas", monospace;
+        font-size: inherit;
+        font-weight: bold;
+        color: ${colors.backgroundPrimary};
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        right: 20px;
+        top: 18px;
+        padding: 0 0 2px;
+        position: absolute;
+        pointer-events: none;
+    }
 `
 const Select = styled.select`
-
     // -webkit-appearance: none;
     // -moz-appearance: none;
     // appearance: none;
@@ -130,9 +129,9 @@ const SearchBar = (props) => {
     const API_URL = useContext(Context).apiUrl;
     const [loading, setLoading] = useState(true);
     const [estatesTypes, setEstatesTypes] = useState({});
-    const [estatesData, setEstatesData] = useState({});
-    const [cityList, setCityList] = useState('');
-    const [cityQuery, setCityQuery] = useState('');
+    // const [estatesData, setEstatesData] = useState({});
+    // const [cityList, setCityList] = useState('');
+    // const [cityQuery, setCityQuery] = useState('');
 
     const {search} = props;
 
@@ -180,18 +179,17 @@ const SearchBar = (props) => {
         })
     }, [API_URL])
 
-    useEffect((city) => {
-        console.log(cityQuery);
-        axios.get('https://geo.api.gouv.fr/communes?nom=' + cityQuery + '&fields=departement&limit=5')
-            .then(response => {
-                console.log(cityQuery);
-                // setCityList(response.data);
-            }).catch(error => {
-            console.log(error.message)
-        })
-    },[cityQuery, formik.values.city])
+    // useEffect((city) => {
+    //     console.log(cityQuery);
+    //     axios.get('https://geo.api.gouv.fr/communes?nom=' + cityQuery + '&fields=departement&limit=5')
+    //         .then(response => {
+    //             console.log(cityQuery);
+    //             // setCityList(response.data);
+    //         }).catch(error => {
+    //         console.log(error.message)
+    //     })
+    // },[cityQuery, formik.values.city])
     
-
     return (
         <form className="container-fluid" onSubmit={formik.handleSubmit}>
             <SearchContainer className="row col-10 col-md-9   justify-content-center">

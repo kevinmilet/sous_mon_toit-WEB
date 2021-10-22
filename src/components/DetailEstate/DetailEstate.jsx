@@ -15,26 +15,25 @@ const DivDetail = styled.div`
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `
 const H2 = styled.h2`
-
     color: ${colors.secondary};
-    text-decoration: underline;
+    text-decoration: underline
 `
 const A = styled.a`
     color: ${colors.secondary};
-    text-decoration: underline;
+    text-decoration: underline
 `
 
 const H3 = styled.h3`
-    color: ${colors.secondaryBtn};
+    color: ${colors.secondaryBtn}
 `
 const Icons = styled.img`
     width: 40px;
-    height: 40px;
+    height: 40px
 `
 
 const DetailEstate = () => {
 
-    var {id} = useParams()
+    const {id} = useParams();
     const [oneEstateData, setOneEstateData] = useState({})
     const [pictureCover, setPictureCover] = useState({})
     const [picturesList, setPicturesList] = useState({})
