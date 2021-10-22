@@ -56,7 +56,7 @@ const SignIn = () => {
     };
 
     return (
-        <div className="w-25 mx-auto mt-5">
+        <div className="container col-12 col-sm-10 col-md-8 col-lg-4 mx-auto mt-5">
             <ConnexionForm onSubmit={formik.handleSubmit} className="p-4 rounded">
                 <ConnexiontH1 className="text-center">Connectez-vous</ConnexiontH1>
                 <div className="mb-3">

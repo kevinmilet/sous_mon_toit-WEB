@@ -37,8 +37,8 @@ const App = () => {
     }
 
     const search = (values) => {
-        axios.post('http://localhost:8000/estates/search', values)
-            // axios.post(API_URL + ApiRoutes.search +'/', values)
+        // axios.post('http://localhost:8000/estates/search', values)
+        axios.post(apiUrl + ApiRoutes.search, values)
             .then(res => {
                 setEstateList(res.data);
             }).catch(error => {

@@ -29,8 +29,6 @@ const ContactEtoile = styled.span`
 const Contact = () => {
     const API_URL = useContext(Context).apiUrl;
 
-    // Données de l'utilisateur connecté
-    const [userData, setUserData] = useState({})
     // Données du formulaire
     const [firstname, setFirstname] = useState("")
     const [lastname, setLastname] = useState("")
@@ -45,7 +43,6 @@ const Contact = () => {
 
             axios.post(API_URL + ApiRoutes.me)
             .then(res=>{
-                setUserData(res.data);
                 setFirstname(res.data.firstname)
                 setLastname(res.data.lastname)
                 setMail(res.data.mail)
@@ -55,7 +52,7 @@ const Contact = () => {
                 console.log(error.message);
             })
         }
-    },[])
+    },[API_URL])
 
     //Fonction de contrôle de la validité de l'adresse mail
     const isMail = () =>{

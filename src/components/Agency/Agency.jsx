@@ -70,7 +70,7 @@ const Agency = () => {
         <img
           className="img-fluid mx-auto col-8"
           src="our_agency.jpg"
-          alt="Photo de l'agence"
+          alt="Locaux de l'agence Sous Mon Toit"
         />
 
         <div className="text-center col-md-7 mx-auto mt-3">
@@ -137,7 +137,7 @@ const Agency = () => {
               <img
                 src={item.avatar}
                 className="card-img-top img-fluid "
-                alt="Photo staff"
+                alt={item.firstname + item.lastname}
               />
               <div className="card-body">
                 <h5 className="card-title" key={item.id}>
