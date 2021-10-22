@@ -19,8 +19,7 @@ const RowHeader = styled.div`
     margin: 0;
 `
 const Logo = styled.img`
-    width: auto;
-    height: auto;
+    
     z-index: 20;
 `
 const LinkCol = styled.div`
@@ -54,16 +53,17 @@ const Logout = styled.a`
 `
 
 const Topbar = () => {
-      
+  
+   
+
     const largeur = window.innerWidth;
     if(largeur <= 375){
-        var sourceLogo =   logoMobile ;
+        sourceLogo = logoMobile
     }else{
          var sourceLogo =   logo ;
     }
     function reportWindowSize(){
-        alert("debugger");
-        debugger;
+
         const largeur = window.innerWidth;
         if(largeur <= 375){
            return sourceLogo = logoMobile ;
@@ -71,8 +71,9 @@ const Topbar = () => {
             return sourceLogo = logo ;
         }
     }
-     window.addEventListener('resize',reportWindowSize );
-
+    window.onresize = window.addEventListener('resize',reportWindowSize );
+    
+console.log(sourceLogo);
     const API_URL = useContext(Context).apiUrl;
     const [tokenIsValid, setTokenIsValid] = useState(true);
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
@@ -80,6 +81,7 @@ const Topbar = () => {
     // Test de la validité du token
     useEffect(() => {
         axios.interceptors.response.use(function (response) {
+           
             return response
         }, function (error) {
             if (error.response) {
@@ -107,19 +109,19 @@ const Topbar = () => {
     return (
         <Container className="container-fluid">
             <RowHeader className="row rowHeader">
-                <Link to="/" className="col-12 col-md-6 d-flex justify-content-center">
-                    <Logo  src={sourceLogo} className="logo " alt="Logo Sous Mon Toit"/>
+                <Link to="/" className="col-12 col-md-7 text-center text-md-start">
+                    <Logo  src={sourceLogo} className="logo col-6" alt="Logo Sous Mon Toit"/>
                 </Link>
-                <LinkCol className="col-sm-12 col-md-6 linkCol d-flex justify-content-center">
+                <LinkCol className="col-12 col-md-5 linkCol  ">
                     {tokenIsValid === true ?
                         <span>
                             <ConnectLink href="/my-account" type="button"
-                                         className="connectLink">Mon compte</ConnectLink>
-                            <Logout className="fas fa-sign-out-alt ms-3"
+                                         className="connectLink ">Mon compte</ConnectLink>
+                            <Logout className="fas fa-sign-out-alt ms-3 "
                                     onClick={logout}/>
                         </span>
                         :
-                        <ConnectLink href="/connexion" type="button" className="connectLink">Se
+                        <ConnectLink href="/connexion" type="button" className="connectLink col-5 ">Se
                             connecter</ConnectLink>
                     }
                 </LinkCol>

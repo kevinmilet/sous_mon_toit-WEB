@@ -182,12 +182,14 @@ const SearchBar = (props) => {
             console.log(error.message)
         })
     },[cityQuery, formik.values.city])
+    
 
     return (
         <form className="container-fluid" onSubmit={formik.handleSubmit}>
-            <SearchContainer className="row col-10 justify-content-center">
-                <div className=" col-md-3">
+            <SearchContainer className="row col-10 col-md-11  justify-content-center">
+                <div className="col-md-5 col-lg-3">
                     <Sector type="text" 
+                    
                             placeholder="Secteur recherché" 
                             name="city"
                             id="city"
@@ -197,20 +199,20 @@ const SearchBar = (props) => {
                             // onKeyUp={setCityQuery(this.values.bind(this))}
                     />
                 </div>
-                <SelectDiv className="  col-md-3">
+                <SelectDiv className="  col-md-5 col-lg-3">
                     <Select name="id_estate_type"
                             id="id_estate_type"
-                            className="form-select text-center"
+                            className="form-select "
                             value={formik.values.id_estate_type}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                     >
-                        <Option className="text-center" value="">Type de bien</Option>
+                        <Option className="text-center " value="">Type de bien</Option>
                         {!loading && estatesTypes.map(item => (
                             <Option value={item.id} key={item.id}>{item.estate_type_name}</Option>))}
                     </Select>
                 </SelectDiv>
-                <SelectDiv className="col-12 col-md-3">
+                <SelectDiv className="col-12 col-md-5 col-lg-3">
                     <Select name="nb_rooms" id="nb_rooms" className="form-select" value={formik.values.nb_rooms} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                         <Option className="text-center" value="">Nombre de pièces</Option>
                         <Option value="1">1</Option>
@@ -220,7 +222,7 @@ const SearchBar = (props) => {
                         <Option value="5">5+</Option>
                     </Select>
                 </SelectDiv>
-                <div className="col-12 col-md-3">
+                <div className="col-12 col-md-5 col-lg-3">
                     <Budget type="text"
                             placeholder="Budget max."
                             name="price"

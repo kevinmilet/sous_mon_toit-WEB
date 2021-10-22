@@ -11,8 +11,8 @@ import defaultCover from '../../assets/img/estate_default.jpg';
 import {Link} from "react-router-dom"
 
 const Card = styled.div`
-    width: 18em;
-    height: 375px;
+    // width: 18em;
+    // height: 375px;
 `
 
 const CardBody = styled.p`
@@ -50,9 +50,9 @@ const EstateCard = ({estateData}) => {
         loading ? <Loader/> :
 
             estateData.map((item) => {
-                return (<div className='col-sm-12 col-md-4 col-lg-4'>
-                    <Link className='text-decoration-none' to={`/detail-biens/${item.id}`} key={item.id}>
-                        <Card className="my-3 card shadow-sm text-center">
+                return (<div className='col-sm-12 col-md-4 col-lg-4 justify-content-center'>
+                    <Link className='text-decoration-none ' to={`/detail-biens/${item.id}`} key={item.id}>
+                        <Card className="my-3 col-sm-8 m-auto card shadow-sm text-center">
                             <img src={estateCover} alt="" className="card-img-top img-fluid" height="200px"/>
                             <CardBody>
                                 <div className="card-body">
