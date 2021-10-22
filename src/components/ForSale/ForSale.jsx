@@ -24,9 +24,6 @@ const Head = styled.div`
 const HeadH1 = styled.h1`
   color: ${colors.primaryBtn};
 `;
-const SelectDiv = styled.div`
-  color: ${colors.secondaryBtn};
-`;
 const Select = styled.select`
   border-radius: 50px;
   border: 2px solid ${colors.secondaryBtn};
@@ -69,9 +66,6 @@ const ForSale = () => {
   const API_URL = useContext(Context).apiUrl;
   const [loading, setLoading] = useState(true);
   const [estatesTypes, setEstatesTypes] = useState({});
-
-  //false = 'Acheter', true = 'Louer'
-  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     axios
@@ -118,7 +112,6 @@ const ForSale = () => {
   const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
-  const [newsletter, setNewsletter] = useState(false); // fonctionnalité a développer
   // const [notRobot, setNotRobot] = useState(false)
 
   //Fonction de contrôle de la validité de l'adresse mail
@@ -190,10 +183,8 @@ const ForSale = () => {
         setCountry("");
         setEstateType("");
         setPostalCode("");
-        setNewsletter(false);
         document.querySelector(".mail-error").innerHTML = "";
         document.querySelector(".form-message").innerHTML = "";
-        document.getElementById("newsletter").checked = false;
         document.getElementById("notRobot").checked = false;
       })
       .catch((err) => {
@@ -374,22 +365,6 @@ const ForSale = () => {
               <StyledInput
                 type="checkbox"
                 className="form-check-input text-light"
-                id="newsletter"
-                onChange={(e) => setNewsletter(e.target.value)}
-                name="newsletter"
-              />
-              <label
-                className="form-check-label text-dark"
-                htmlFor="newsletter"
-              >
-                J’accepte de recevoir les lettres d’information de la société
-                Sous Mon Toit.
-              </label>
-            </div>
-            <div className="mb-3 form-check">
-              <StyledInput
-                type="checkbox"
-                className="form-check-input text-light"
                 id="notRobot"
                 name="notRobot"
                 required
@@ -427,7 +402,6 @@ ForSale.propTypes = {
   address: PropTypes.string,
   country: PropTypes.string,
   postalCode: PropTypes.string,
-  newsletter: PropTypes.bool.isRequired,
 };
 
 ForSale.defaultProps = {
@@ -440,7 +414,6 @@ ForSale.defaultProps = {
   address: "",
   country: "",
   postalCode: "",
-  newsletter: false,
 };
 
 export default ForSale;

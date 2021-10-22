@@ -1,5 +1,5 @@
-import React, { useContext, useEffect,  useState } from "react";
-import { Formik, Field, Form, useField, useFormikContext } from "formik";
+import React, { useContext, useState } from "react";
+import { Formik, Field, Form, useField} from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
@@ -7,7 +7,6 @@ import axios from 'axios';
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import {Context} from "../../utils/context/Context";
 import {StyledBtnPrimary, StyledInput} from "../../utils/styles/Atoms";
-import { Redirect } from "react-router-dom";
 
 const InscriptionFormDiv = styled.div`
     background-color: ${colors.backgroundPrimary};
@@ -53,27 +52,6 @@ const MyCheckbox = ({ children, ...props }) => {
   );
 };
 
-// Styled components ....
-
-const StyledErrorMessage = styled.div`
-  font-size: 12px;
-  color: var(--red-600);
-  width: 400px;
-  margin-top: 0.25rem;
-  &:before {
-    content: "❌ ";
-    font-size: 10px;
-  }
-  @media (prefers-color-scheme: dark) {
-    color: var(--red-300);
-  }
-`;
-
-const StyledLabel = styled.label`
-  margin-top: 1rem;
-`;
-
-// And now we can use these
 const SignupForm = () => {
 
   const [errorMail, setErrorMail] = useState("");
@@ -109,7 +87,7 @@ const SignupForm = () => {
   }
   return (
     <>
-      <div className="w-25 mx-auto mt-5">   
+      <div className="container col-12 col-sm-10 col-md-8 col-lg-4 mx-auto mt-5">   
         <Formik
           initialValues={{
             gender:'',

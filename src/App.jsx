@@ -16,7 +16,6 @@ import DetailEstateView from './screens/Estates/DetailEstateView';
 import ForSaleView from './screens/ForSale/ForSaleView';
 import EstatesListView from "./screens/Estates/EstatesListView";
 import axios from "axios";
-import API_URL from "./utils/const/ApiRoutes";
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
@@ -38,8 +37,8 @@ const App = () => {
     }
 
     const search = (values) => {
-        axios.post('http://localhost:8000/estates/search', values)
-        //     axios.post(apiUrl + ApiRoutes.search, values)
+        // axios.post('http://localhost:8000/estates/search', values)
+        axios.post(apiUrl + ApiRoutes.search, values)
             .then(res => {
                 setEstateList(res.data);
             }).catch(error => {

@@ -6,7 +6,7 @@ import Loader from "../Tools/Loader/Loader";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 import { Context } from '../../utils/context/Context';
 import check from '../../assets/icons/check-square-regular.svg';
-import { Redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const DivDetail = styled.div`
     background-color: ${colors.backgroundPrimary};
@@ -44,10 +44,10 @@ const DetailEstate = () => {
     useEffect(()=>{
 
         // Récupération des données de l'estate
-        axios.get("http://localhost:8000/estates/" + id)
-        // axios.get(API_URL + ApiRoutes.estates + "/" + id)
+        // axios.get("http://localhost:8000/estates/" + id)
+        axios.get(API_URL + ApiRoutes.estates + "/" + id)
         .then(res => {
-            if(res.data == "aucun resultat"){
+            if(res.data === "aucun resultat"){
                 return window.location.href = '/liste-des-biens'
             }
             setOneEstateData(res.data)
@@ -56,8 +56,8 @@ const DetailEstate = () => {
         })
         
         //Image de couverture du bien
-        axios.get("http://localhost:8000/estates_pictures/cover/" + id)
-        // axios.get(API_URL + ApiRoutes.estates_cover + "/" + id)
+        // axios.get("http://localhost:8000/estates_pictures/cover/" + id)
+        axios.get(API_URL + ApiRoutes.estates_cover + "/" + id)
         .then(res => {
             setPictureCover(res.data[0])
         }).catch(error => {
@@ -65,8 +65,8 @@ const DetailEstate = () => {
         })
 
         // liste des images du bien
-        axios.get("http://localhost:8000/estates_pictures/" + id)
-        // axios.get(API_URL + ApiRoutes.estates_pictures + "/" + id)
+        // axios.get("http://localhost:8000/estates_pictures/" + id)
+        axios.get(API_URL + ApiRoutes.estates_pictures + "/" + id)
         .then(res => {
             setPicturesList(res.data)
         }).catch(error => {
@@ -75,9 +75,7 @@ const DetailEstate = () => {
             setLoading(false)
         })
         
-    },[])
-    console.log(pictureCover)
-    console.log(picturesList)
+    },[API_URL,id])
 
     return (
 
