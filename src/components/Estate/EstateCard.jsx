@@ -32,19 +32,24 @@ const EstateCard = ({estateData}) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(API_URL + ApiRoutes.estates_cover + "/" + estateData.id).then(res => {
-            if (res.data.length !== 0) {
-                setEstateCover(res.data.name)
-            } else {
+        // estateData.map((item) => {
+            axios.get(API_URL + ApiRoutes.estates_cover + "/" + estateData.id)
+                .then(res => {
+                    console.log(res.data[0])
+                if (res.data[0].length !== 0) {
+                    setEstateCover(res.data[0].folder + res.data[0].name)
+                } else {
+                    setEstateCover(defaultCover);
+                }
+            }).catch(error => {
                 setEstateCover(defaultCover);
-            }
-        }).catch(error => {
-            setEstateCover(defaultCover);
-            console.log(error.message)
-        }).finally(() => {
-            setLoading(false)
-        })
-    }, [API_URL, estateData.id, estateData.length])
+                console.log(error.message)
+            }).finally(() => {
+                setLoading(false)
+            })
+        }, [API_URL])
+        // })
+
 
     return (
         loading ? <Loader/> :
