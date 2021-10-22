@@ -39,24 +39,24 @@ const Sector = styled.input`
     }
 `
 const SelectDiv = styled.div`
-    // position: relative;
-    // border-right: 2px solid ${colors.backgroundPrimary};
-    // &:after {
-    //     content: '>';
-    //     font-family: "Consolas", monospace;
-    //     font-size: inherit;
-    //     font-weight: bold;
-    //     color: ${colors.backgroundPrimary};
-    //     -webkit-transform: rotate(90deg);
-    //     -moz-transform: rotate(90deg);
-    //     -ms-transform: rotate(90deg);
-    //     transform: rotate(90deg);
-    //     right: 20px;
-    //     top: 18px;
-    //     padding: 0 0 2px;
-    //     position: absolute;
-    //     pointer-events: none;
-    // }
+    position: relative;
+    border-right: 2px solid ${colors.backgroundPrimary};
+    &:after {
+        content: '>';
+        font-family: "Consolas", monospace;
+        font-size: inherit;
+        font-weight: bold;
+        color: ${colors.backgroundPrimary};
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        right: 20px;
+        top: 18px;
+        padding: 0 0 2px;
+        position: absolute;
+        pointer-events: none;
+    }
 `
 const Select = styled.select`
     // -webkit-appearance: none;

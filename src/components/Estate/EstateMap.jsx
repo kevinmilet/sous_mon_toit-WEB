@@ -44,8 +44,8 @@ const EstateMap = ({estateData}) => {
                 placeholder={<MapPlaceholder/>}>
 
                 <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
+                    url='https://api.mapbox.com/styles/v1/kevinmilet/ckv2b21ds3khm15mvtc1unq2w/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoia2V2aW5taWxldCIsImEiOiJja3YyYjUyZXUwMXQwMnJsN3BpcWhxMzczIn0.tcbq_llXemVpe7NowZSboA'
                 />
                 {estateData.map((item) => {
 
@@ -67,7 +67,6 @@ const EstateMap = ({estateData}) => {
                                     </Marker>
                                     )
                                 })}
-
                             </div>
                         )
                     }

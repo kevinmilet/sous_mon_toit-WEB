@@ -103,7 +103,6 @@ const EstatesListView = (props) => {
                     {/*        </ul>*/}
                     {/*    </nav> : null*/}
                     {/*}*/}
-
                 </>
             )
         );
