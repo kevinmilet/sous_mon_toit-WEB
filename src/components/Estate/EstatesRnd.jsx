@@ -7,7 +7,7 @@ import EstateCard from "./EstateCard";
 import {Context} from "../../utils/context/Context";
 
 const CardContainer = styled.div`
-    margin: 25px
+    margin: 50px
 `
 
 const EstatesRnd = () => {
@@ -29,9 +29,9 @@ const EstatesRnd = () => {
 
         loading ? <Loader/> :
 
-            <CardContainer className="d-flex flex-row flex-md-row justify-content-evenly">
-                <div className="row">
-                    <EstateCard estateData={estateData}/>
+            <CardContainer className="d-flex flex-row justify-content-evenly">
+                <div className="row ">
+                    <EstateCard  estateData={estateData}/>
                 </div>
             </CardContainer>
     );
