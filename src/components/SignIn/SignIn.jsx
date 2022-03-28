@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import styled from "styled-components";
 import colors from '../../utils/styles/colors';
 import axios from 'axios';
@@ -23,6 +23,8 @@ const ConnexionLabel = styled.label`
 
 const SignIn = () => {
     const API_URL = useContext(Context).apiUrl;
+    const [errorLogin, setErrorLogin] = useState("");
+
     const formik = useFormik({
         initialValues: {
             mail: '',
@@ -43,6 +45,7 @@ const SignIn = () => {
     })
 
     const login = (values) => {
+        setErrorLogin("");
         console.log(values);
         axios.post(API_URL + ApiRoutes.login, values)
             .then(res => {
@@ -51,7 +54,10 @@ const SignIn = () => {
                 localStorage['userId'] = res.data.user.id; // neregistrement de l'id user
                 window.location.href = '/';
             }).catch(error => {
-            console.log(error.message);
+            console.log(error);
+            if (error.response.data.message == "Unauthorized"){
+                setErrorLogin("Login ou mot de passe incorrect");
+            }
         })
     };
 
@@ -84,8 +90,8 @@ const SignIn = () => {
                     />
                 </div>
                 {formik.errors.password ? <div style={{color: "#E85A70", fontStyle: 'italic'}} className="mb-2">{formik.errors.password}</div> : null}
-
-                <StyledBtnPrimary type="submit" className="btn">Connexion</StyledBtnPrimary>
+                <div className="error" style={{ color: "#E85A70", fontStyle: 'italic' }}>{errorLogin}</div>
+                <StyledBtnPrimary type="submit" className="btn mt-3">Connexion</StyledBtnPrimary>
                 <p className="mt-4">Pas encore inscrit ? <a href="/inscription"> Inscrivez-vous !</a></p>
             </ConnexionForm>
         </div>
