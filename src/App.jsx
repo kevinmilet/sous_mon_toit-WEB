@@ -3,7 +3,7 @@ import HomeView from "./screens/Home/HomeView";
 import Agency from "./screens/Agency/AgencyView";
 import {BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import UserAccountView from './screens/UserAccount/UserAccountView';
-
+import UserUpdateAccountView from './screens/UserAccount/UserUpdateAccountView';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import {Context} from "./utils/context/Context";
@@ -86,6 +86,9 @@ const App = () => {
                         <React.Fragment>
                             <Route exact path="/my-account">
                                 <UserAccountView/>
+                            </Route>
+                            <Route exact path="/update-my-account">
+                                <UserUpdateAccountView/>
                             </Route>
                             
                             <Route exact path="/connexion">
