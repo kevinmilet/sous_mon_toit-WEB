@@ -30,7 +30,7 @@ const EstatesRnd = () => {
         loading ? <Loader/> :
 
             <CardContainer className="d-flex flex-row justify-content-evenly">
-                <div className="row col-8">
+                <div className="row col-12  col-md-10">
                     <EstateCard  estateData={estateData}/>
                 </div>
             </CardContainer>

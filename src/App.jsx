@@ -16,6 +16,8 @@ import DetailEstateView from './screens/Estates/DetailEstateView';
 import ForSaleView from './screens/ForSale/ForSaleView';
 import EstatesListView from "./screens/Estates/EstatesListView";
 import axios from "axios";
+import FourOFourView from "./screens/404View/404Viex";
+import Switch from "react-router-dom/es/Switch";
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
@@ -37,7 +39,6 @@ const App = () => {
     }
 
     const search = (values) => {
-        // axios.post('http://localhost:8000/estates/search', values)
         axios.post(apiUrl + ApiRoutes.search, values)
             .then(res => {
                 setEstateList(res.data);
@@ -50,57 +51,59 @@ const App = () => {
         <Context.Provider value={{apiUrl, setApiUrl}}>
             <div>
                 <Router>
-                    {estateList ? <Redirect to={{ pathname: "/liste-des-biens"}}/> : null }
                     <Header/>
-                    <Route exact path="/">
-                        <HomeView search={search}/>
-                    </Route>
-                    <Route exact path="/liste-des-biens">
-                        <EstatesListView search={search} estateSearch={estateList}/>
-                    </Route>
-                    <Route exact path="/detail-biens/:id">
-                        <DetailEstateView/>
-                    </Route>
-                    <Route exact path="/our-agency">
-                        <Agency/>
-                    </Route>
-                    <Route exact path="/for-sale">
-                        <ForSaleView/>
-                    </Route>
-                    <Route exact path="/contact">
-                        <ContactView/>
-                    </Route>
-                    {token === null ? (
-                        <React.Fragment>
-                            <Route exact path="/connexion">
-                                <SignInView/>
-                            </Route>
-                            <Route exact path="/inscription">
-                                <SignUpView/>
-                            </Route>
-                            <Route exact path="/my-account">
-                                <SignInView/>
-                            </Route>
-                        </React.Fragment>
-                    ) : (
-                        <React.Fragment>
-                            <Route exact path="/my-account">
-                                <UserAccountView/>
-                            </Route>
-                            <Route exact path="/update-my-account">
-                                <UserUpdateAccountView/>
-                            </Route>
-                            
-                            <Route exact path="/connexion">
-                                <Redirect to="/my-account"/>
-                            </Route>
-                            <Route exact path="/inscription">
-                                <Redirect to="/my-account"/>
-                            </Route>
-                        </React.Fragment>
-                    )}
-                    <Footer/>
+                    <Switch>
+                        {estateList ? <Redirect to={{pathname: "/liste-des-biens"}}/> : null}
+                        <Route exact path="/">
+                            <HomeView search={search}/>
+                        </Route>
+                        <Route exact path="/liste-des-biens">
+                            <EstatesListView search={search} estateSearch={estateList}/>
+                        </Route>
+                        <Route exact path="/detail-biens/:id">
+                            <DetailEstateView/>
+                        </Route>
+                        <Route exact path="/our-agency">
+                            <Agency/>
+                        </Route>
+                        <Route exact path="/for-sale">
+                            <ForSaleView/>
+                        </Route>
+                        <Route exact path="/contact">
+                            <ContactView/>
+                        </Route>
+                        {token === null ? (
+                            <>
+                                <Route exact path="/connexion">
+                                    <SignInView/>
+                                </Route>
+                                <Route exact path="/inscription">
+                                    <SignUpView/>
+                                </Route>
+                                <Route exact path="/my-account">
+                                    <SignInView/>
+                                </Route>
+                            </>
+                        ) : (
+                            <>
+                                <Route exact path="/my-account">
+                                    <UserAccountView/>
+                                </Route>
+                                <Route exact path="/connexion">
+                                    <Redirect to="/my-account"/>
+                                </Route>
+                                <Route exact path="/update-my-account">
+                                    <UserUpdateAccountView/>
+                                </Route>
+                                <Route exact path="/inscription">
+                                    <Redirect to="/my-account"/>
+                                </Route>
+                            </>
+                        )}
+                        <Route path="*" component={FourOFourView}/>
+                    </Switch>
                 </Router>
+                <Footer/>
             </div>
         </Context.Provider>
     );

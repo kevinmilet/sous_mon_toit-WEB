@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ForSale from "../../components/ForSale/ForSale";
+
 const ForSaleView = () => {
     return (
         <div>

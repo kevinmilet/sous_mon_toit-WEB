@@ -32,7 +32,7 @@ const Socials = () => {
     return (
         <div>
             <Text>Suivez-nous sur</Text>
-            <SocialList className="col-6 col-md-12 m-auto">
+            <SocialList className="col-12 col-md-12 m-auto">
                 <SocialItem className="text">
                     <a href="https://facebook.fr" target="_blank" rel="noreferrer"><Logo src={facebook} alt="Logo Facebook"/></a>
                 </SocialItem>
