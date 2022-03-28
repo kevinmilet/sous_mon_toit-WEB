@@ -16,6 +16,26 @@ const FooterContainer = styled.footer`
 const RowFooter = styled.div`
     margin: 0 auto;
 `
+
+const ContactButton = styled.a`
+    width: 175px;
+    height: 50px;
+    color: ${colors.backgroundPrimary};
+    border-radius: 50px;
+    background: ${colors.primaryBtn};
+    padding-top: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    &:hover {
+        color: ${colors.primaryBtn};
+        background: ${colors.backgroundPrimary};
+        border: 2px solid ${colors.primaryBtn};
+    }
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+`
+
 const SocialsCol = styled.div`
     // margin: 0 auto;
 `
@@ -32,15 +52,15 @@ const Footer = () => {
             <div className="container-fluid ">
                 <RowFooter className="row">
                     <div className="col-12 col-md-4 d-flex mt-3 text-center justify-content-center">
-                        <NewsLetter/>
+                        <NewsLetter />
                     </div>
                     <div className="col-12 col-md-4 d-flex mt-3 text-center justify-content-center">
-                        <a href="/contact">Contactez-nous</a>
+                        <ContactButton href="/contact" className='btn mt-3'>Contactez-nous</ContactButton>
                     </div>
                     <SocialsCol className="col-12 col-md-4 d-flex mt-3 text-center justify-content-center">
-                        <Socials/>  
+                        <Socials />
                     </SocialsCol>
-                    <Copyright>2021 Sous mon toit</Copyright>
+                    <Copyright>2022 Sous mon toit</Copyright>
                 </RowFooter>
             </div>
         </FooterContainer>

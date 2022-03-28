@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import colors from "../../utils/styles/colors";
 import axios from "axios";
 import PropTypes from "prop-types";
-import {StyledBtnPrimary, StyledInput, StyledTextarea,} from "../../utils/styles/Atoms";
-import {Context} from "../../utils/context/Context";
+import { StyledBtnPrimary, StyledInput, StyledTextarea, } from "../../utils/styles/Atoms";
+import { Context } from "../../utils/context/Context";
 import ApiRoutes from "../../utils/const/ApiRoutes";
 
 import background from "../../assets/img/maison_interieur.jpg";
@@ -215,7 +215,7 @@ const ForSale = () => {
         <ForSaleSuccess className="text-center" id="msgSuccess" />
         <ForSaleForm className="p-4 rounded row">
           <ForSaleH1 className="text-center">Contactez nous pour une estimation</ForSaleH1>
-        
+
           <p className="text-dark">
             « Recevez une estimation personnalisée de votre bien par l'agence
             Sous Mon Toit à Amiens, ayant une parfaite connaissance de votre
@@ -225,7 +225,7 @@ const ForSale = () => {
             Merci de compléter le formulaire ci-dessous. Vous serez recontacté(e)
             par mail.
           </p>
-          
+
           <div className="col-md-6">
             <div className="mb-3">
               <ForSaleLabel htmlFor="firstname" className="form-label">
@@ -342,6 +342,8 @@ const ForSale = () => {
                 name="Phone"
               />
             </div>
+          </div>
+          <div className="col-md-12">
             <div className="mb-3">
               <ForSaleLabel
                 htmlFor="message"
