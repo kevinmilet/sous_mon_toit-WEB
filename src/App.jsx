@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import HomeView from "./screens/Home/HomeView";
 import Agency from "./screens/Agency/AgencyView";
-import {BrowserRouter as Router, Redirect, Route} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import UserAccountView from './screens/UserAccount/UserAccountView';
 
 import Header from "./components/Header/Header";
@@ -16,8 +16,7 @@ import DetailEstateView from './screens/Estates/DetailEstateView';
 import ForSaleView from './screens/ForSale/ForSaleView';
 import EstatesListView from "./screens/Estates/EstatesListView";
 import axios from "axios";
-import FourOFourView from "./screens/404View/404Viex";
-import Switch from "react-router-dom/es/Switch";
+import FourOFourView from "./screens/404/404View";
 
 const App = () => {
     const [apiUrl, setApiUrl] = useState(ApiRoutes.API_URL);
@@ -49,7 +48,6 @@ const App = () => {
 
     return (
         <Context.Provider value={{apiUrl, setApiUrl}}>
-            <div>
                 <Router>
                     <Header/>
                     <Switch>
@@ -73,7 +71,7 @@ const App = () => {
                             <ContactView/>
                         </Route>
                         {token === null ? (
-                            <>
+                            <Switch>
                                 <Route exact path="/connexion">
                                     <SignInView/>
                                 </Route>
@@ -83,9 +81,10 @@ const App = () => {
                                 <Route exact path="/my-account">
                                     <SignInView/>
                                 </Route>
-                            </>
+                                <Route component={FourOFourView}/>
+                            </Switch>
                         ) : (
-                            <>
+                            <Switch>
                                 <Route exact path="/my-account">
                                     <UserAccountView/>
                                 </Route>
@@ -95,13 +94,12 @@ const App = () => {
                                 <Route exact path="/inscription">
                                     <Redirect to="/my-account"/>
                                 </Route>
-                            </>
+                                <Route component={FourOFourView}/>
+                            </Switch>
                         )}
-                        <Route path="*" component={FourOFourView}/>
                     </Switch>
                 </Router>
                 <Footer/>
-            </div>
         </Context.Provider>
     );
 };
