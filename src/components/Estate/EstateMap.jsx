@@ -1,10 +1,12 @@
 import React from 'react';
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from 'leaflet';
 import marker from "../../assets/icons/marker.png";
 import PropTypes from "prop-types";
 import EstateCard from "./EstateCard";
 import styled from 'styled-components';
+import {Link} from "react-router-dom"
+
 
 const myIcon = new L.icon({
     iconUrl: marker,
@@ -14,10 +16,10 @@ const myIcon = new L.icon({
 });
 
 const Map = styled.div`
-    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.16);
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    width: 90%;
+    // -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    // -moz-box-shadow:    0px 3px 6px rgba(0, 0, 0, 0.16);
+    // box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    // width: 90%;
 `
 
 function MapPlaceholder() {
@@ -29,7 +31,7 @@ function MapPlaceholder() {
     )
 }
 
-const EstateMap = ({estateData}) => {
+const EstateMap = ({ estateData }) => {
     const position = [49.894067, 2.295753];
     const zoom = 8.5;
     const markerPos = [];
@@ -40,20 +42,27 @@ const EstateMap = ({estateData}) => {
                 center={position}
                 zoom={zoom}
                 scrollWheelZoom={false}
-                style={{height: 500, width: 500}}
-                placeholder={<MapPlaceholder/>}>
-
+                style={{
+                    height: "60vh",
+                    // width: "500",
+                    boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.16)",
+                }}
+                placeholder={<MapPlaceholder />}
+                className='mx-auto'
+            >
                 <TileLayer
                     attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
                     url='https://api.mapbox.com/styles/v1/kevinmilet/ckv2b21ds3khm15mvtc1unq2w/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoia2V2aW5taWxldCIsImEiOiJja3YyYjUyZXUwMXQwMnJsN3BpcWhxMzczIn0.tcbq_llXemVpe7NowZSboA'
                 />
                 {estateData.map(item => {
 
-                        markerPos.push({title: item.title,
-                                        surface: item.living_surface,
-                                        price: item.price,
-                                        position:[item.estate_latitude, item.estate_longitude]
-                        })
+                    markerPos.push({
+                        id: item.id_estate,
+                        title: item.title,
+                        surface: item.living_surface,
+                        price: item.price,
+                        position: [item.estate_latitude, item.estate_longitude]
+                    })
 
                         return (
                             <div key={item.id}>
@@ -63,13 +72,14 @@ const EstateMap = ({estateData}) => {
                                         <Popup>
                                             <p>{mark.title} {mark.surface} m<sup>2</sup></p>
                                             <p>{mark.price} €</p>
+                                            <Link className='text-decoration-none' to={`/detail-biens/${mark.id}`}>Voir les details du bien </Link>
                                         </Popup>
                                     </Marker>
-                                    )
-                                })}
-                            </div>
-                        )
-                    }
+                                )
+                            })}
+                        </div>
+                    )
+                }
                 )}
             </MapContainer>
         </Map>

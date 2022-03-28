@@ -76,10 +76,10 @@ const EstatesListView = (props) => {
                         <SearchBar search={search}/>
                     </div>
                     <BlockListing className="row m-3">
-                        <div className="col-sm-12 col-md-4 col-lg-4 listing">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-4 listing">
                             <EstateMap estateData={estateData}/>
                         </div>
-                        <div className="col-sm-12 col-md-8 col-lg-8">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-8">
                             <div className="row">
                                 <EstateCard estateData={estateData}/>
                             </div>
