@@ -50,8 +50,8 @@ const App = () => {
         <Context.Provider value={{apiUrl, setApiUrl}}>
                 <Router>
                     <Header/>
-                    <Switch>
                         {estateList ? <Redirect to={{pathname: "/liste-des-biens"}}/> : null}
+                    <Switch>
                         <Route exact path="/">
                             <HomeView search={search}/>
                         </Route>
