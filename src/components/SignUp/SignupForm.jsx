@@ -192,7 +192,7 @@ const SignupForm = () => {
                                 <MyCheckbox name="acceptedTerms">
                                     J'accepte les conditions d'utilisations du site SousMonToit
                                 </MyCheckbox>
-                                <StyledBtnPrimary type="submit" className="btn">Inscription</StyledBtnPrimary>
+                                <StyledBtnPrimary type="submit" className="btn mt-3">Inscription</StyledBtnPrimary>
                             </Form>
                         </InscriptionFormDiv>
                     </div>

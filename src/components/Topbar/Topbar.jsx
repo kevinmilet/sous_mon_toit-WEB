@@ -74,13 +74,15 @@ const Topbar = () => {
     window.onresize = window.addEventListener('resize',reportWindowSize );
     
     const API_URL = useContext(Context).apiUrl;
-    const [tokenIsValid, setTokenIsValid] = useState(true);
+    const [tokenIsValid, setTokenIsValid] = useState(false);
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
 
     // Test de la validité du token
     useEffect(() => {
         axios.interceptors.response.use(function (response) {
-           
+            if (response) {
+                setTokenIsValid(true);
+            }
             return response
         }, function (error) {
             if (error.response) {
@@ -91,17 +93,19 @@ const Topbar = () => {
             }
             return Promise.reject(error);
         })
-        axios.get(API_URL + ApiRoutes.customer + "/c/1")
+
     }, [API_URL]);
 
     const logout = () => {
         axios.post(API_URL + ApiRoutes.logout)
             .then(() => {
+                setTokenIsValid(false);
                 localStorage.removeItem('token');
                 localStorage.removeItem('userId');
-                window.location.href = '/';
             }).catch(e => {
-            console.log(e.message);
+                console.log(e.message);
+            }).finally(() => {
+                window.location.href = '/';
         })
     };
 

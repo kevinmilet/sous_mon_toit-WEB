@@ -1,10 +1,8 @@
-import React, {useContext} from "react";
-import {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import styled from "styled-components";
 import colors from "../../utils/styles/colors";
 import Loader from "../Tools/Loader/Loader";
-import {Context} from "../../utils/context/Context";
 
 const NavAccount = styled.div`
   .navbar {
@@ -29,12 +27,10 @@ const UserAccount = () => {
     const [loading, setLoading] = useState(true);
 
     axios.defaults.headers.common = {
-
         Authorization: `Bearer ${localStorage["token"]}`,
     };
 
     useEffect(() => {
-
         // Test de la validité du token
         axios.interceptors.response.use(function (response) {
             return response
