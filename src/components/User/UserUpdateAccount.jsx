@@ -223,7 +223,7 @@ const UserUpdateAccount = () => {
                         placeholder=""
                     />
                    
-                    <StyledBtnPrimary type="submit" className="btn">Inscription</StyledBtnPrimary>
+                    <StyledBtnPrimary type="submit" className="btn">Envoyer</StyledBtnPrimary>
                 </Form>
             </InscriptionFormDiv>
         </Formik>

@@ -157,6 +157,7 @@ const SignupForm = () => {
                                     </label>
                                 </div>
                                 <MyTextInput
+                                
                                     label="Prénom"
                                     name="firstname"
                                     type="text"
