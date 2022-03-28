@@ -71,6 +71,39 @@ const TitleH3 = styled.h3`
 `
 
 const UserUpdateAccount = () => {
+
+    const UpdateCustomer = (values) => {
+
+        // On reset les messages d'erreurs
+      
+
+        //On set les valeurs a envoyer
+        const firstname = values.firstname;
+        const lastname = values.lastname;
+        const mail = values.mail;
+        // const password = values.password;
+        // const gender = values.gender;
+        // const phone = values.phone;
+        // //Valeurs par défaut
+        // const first_met = false;
+
+        axios.put(API_URL + "customer/c/update/" + localStorage["userId"]
+        , { lastname, firstname, mail})
+            // axios.post("http://localhost:8000/customer/create", { lastname , firstname , mail , phone ,gender,first_met ,password})
+            .then(res => {
+                // Message de succès
+                window.scrollTo(0, 0);
+                document.getElementById('msgSuccess').style.cssText = "display: flex;";
+                document.getElementById('msgSuccess').innerHTML = "Vous êtes inscrit avec succès ! Vous allez être redirigé vers la page de connexion ...";
+                setTimeout(() => {
+                    // document.getElementById('msgSuccess').innerHTML = "";
+                    window.location.href = '/connexion';
+                }, 10000);
+
+            }).catch(error => {
+                
+            })
+    }
     
     const [errorMail, setErrorMail] = useState("");
     const [errorPassword, setErrorPassword] = useState("")
@@ -86,6 +119,7 @@ const UserUpdateAccount = () => {
     };
 
     useEffect(() => {
+
 
         // Test de la validité du token
         axios.interceptors.response.use(function (response) {
@@ -127,6 +161,8 @@ const UserUpdateAccount = () => {
                 setLoading(false);
             });
 
+            
+
     }, []);
 
     if (loading) {
@@ -136,7 +172,7 @@ const UserUpdateAccount = () => {
         <div className="container col-12 col-sm-10 col-md-8 col-lg-4 mx-auto mt-5">
         <Formik
             initialValues={{
-                gender: customerData.gender,
+                // gender: customerData.gender,
                 firstname: customerData.firstname,
                 lastname: customerData.lastname,
                 mail: customerData.mail,
@@ -144,8 +180,7 @@ const UserUpdateAccount = () => {
                 // acceptedTerms: false, // added for our checkbox
             }}
             validationSchema={Yup.object({
-                gender: Yup.string()
-                    .required("Champs requis"),
+             
                 firstname: Yup.string()
                     .max(15, "15 caractères maximum")
                     .required("Champs requis"),
@@ -155,62 +190,39 @@ const UserUpdateAccount = () => {
                 mail: Yup.string()
                     .email("Adresse mail invalide")
                     .required("Champs requis"),
-                password: Yup.string()
-                    .required("Champs requis"),
-                acceptedTerms: Yup.boolean()
-                    .required("Champs requis")
-                    .oneOf([true], "Vous devez accepter les conditions d'utilisation"),
+               
             })}
             onSubmit={async (values, {setSubmitting}) => {
                 await new Promise(r => setTimeout(r, 500));
                 setSubmitting(false);
-                // InsertCustomer(values);
+                UpdateCustomer(values);
             }}
         >
             <InscriptionFormDiv className="p-4 rounded">
                 <Form>
                     <InscriptionH1 className="text-center">Modification</InscriptionH1>
-                    <InscriptionLabel className="form-label">Civilité</InscriptionLabel><br/>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <Field type="radio" className="form-check-input" name="gender" value="F"/>
-                            Madame
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                            <Field type="radio" className="form-check-input" name="gender" value="H"/>
-                            Monsieur
-                        </label>
-                    </div>
                     <MyTextInput
-                   
+                   value={customerData.firstname}
                         label="Prénom"
                         name="firstname"
                         type="text"
                         placeholder=""
                     />
                     <MyTextInput
+                    value={customerData.lastname}
                         label="Nom"
                         name="lastname"
                         type="text"
                         placeholder=""
                     />
                     <MyTextInput
+                    value={customerData.mail}
                         label="Adresse mail"
                         name="mail"
                         type="mail"
                         placeholder=""
                     />
-                    <div className="error" style={{color: "#E85A70", fontStyle: 'italic'}}>{errorMail}</div>
-                    <MyTextInput
-                        label="Mot de passe"
-                        name="password"
-                        type="password"
-                        placeholder=""
-                    />
-                    <div className="error" style={{color: "#E85A70", fontStyle: 'italic'}}>{errorPassword}</div>
-                    
+                   
                     <StyledBtnPrimary type="submit" className="btn">Inscription</StyledBtnPrimary>
                 </Form>
             </InscriptionFormDiv>
