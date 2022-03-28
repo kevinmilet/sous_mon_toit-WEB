@@ -31,16 +31,14 @@ const Footer = () => {
         <FooterContainer className="bottom-0">
             <div className="container-fluid ">
                 <RowFooter className="row">
-                    <div className="col-12 col-md-4 d-md-flex mt-3 text-center justify-content-center">
+                    <div className="col-12 col-md-4 d-flex mt-3 text-center justify-content-center">
                         <NewsLetter/>
-               
                     </div>
-                    <div className="col-12 col-md-4 d-md-flex mt-3 text-center justify-content-center">
+                    <div className="col-12 col-md-4 d-flex mt-3 text-center justify-content-center">
                         <a href="/contact">Contactez-nous</a>
                     </div>
-                    
-                    <SocialsCol className="col-12 col-md-4  d-md-flex mt-3 text-center justify-content-center">
-                        <Socials className="socials mx-auto "/>  
+                    <SocialsCol className="col-12 col-md-4 d-flex mt-3 text-center justify-content-center">
+                        <Socials/>  
                     </SocialsCol>
                     <Copyright>2021 Sous mon toit</Copyright>
                 </RowFooter>
