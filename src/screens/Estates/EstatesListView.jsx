@@ -66,7 +66,8 @@ const EstatesListView = (props) => {
 
     if (estateData.length !== 0) {
         return (
-            loading ? (<Loader/>) : (
+
+        loading ? (<Loader/>) : (
                 <>
                     <Title>
                         <h4>Nous avons trouvé {estateData.length} bien(s) correspondant(s) à votre recherche.</h4>
