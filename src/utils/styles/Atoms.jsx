@@ -6,6 +6,7 @@ export const StyledBtnPrimary = styled.button`
     height: 50px;
     color: ${colors.backgroundPrimary};
     border-radius: 50px;
+    border: none;
     background: ${colors.primaryBtn};
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     &:hover {
