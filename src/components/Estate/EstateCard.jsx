@@ -5,6 +5,7 @@ import {FavoriteButton} from "../../utils/styles/Atoms";
 import colors from "../../utils/styles/colors";
 import defaultCover from '../../assets/img/estate_default.jpg';
 import {Link} from "react-router-dom"
+import ApiRoutes from "../../utils/const/ApiRoutes";
 
 const Card = styled.div`
     // width: 18em;
@@ -30,8 +31,9 @@ const EstateCard = ({estateData}) => {
                     <div className='col-sm-12 col-md-4 col-lg-4 justify-content-center' key={item.id}>
                         <Link className='text-decoration-none ' to={`/detail-biens/${item.id_estate}`}>
                             <Card className="my-3 col-sm-8 col-md-auto m-auto card shadow-sm text-center">
-                                <img src={(item.folder + item.name) ?? defaultCover} alt={item.name ?? defaultCover} className="card-img-top img-fluid"
-                                     height="200px"/>
+                                <img src={(ApiRoutes.IMG_ESTATE_URL + item.name) ?? defaultCover} alt={item.name ?? defaultCover} 
+                                    className="card-img-top img-fluid"
+                                    height="200px"/>
                                 <CardBody>
                                     <div className="card-body">
                                         <div className={"d-flex justify-content-between"}>

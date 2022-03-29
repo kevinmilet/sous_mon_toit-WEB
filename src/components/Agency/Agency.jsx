@@ -142,7 +142,7 @@ const Agency = () => {
           staffData.map((item) => (
             <div className="card m-auto col-10 col-md-2  mt-3 mt-md-0">
               <img
-                src={item.avatar}
+                src={ApiRoutes.AVATAR_BASE_URL + item.avatar}
                 className="card-img-top img-fluid "
                 alt={item.firstname + item.lastname}
               />
