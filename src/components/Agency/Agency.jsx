@@ -84,7 +84,7 @@ const Agency = () => {
         <div className="text-center col-md-7 mx-auto mt-3">
           L’ambition de Sous Mon Toit est de devenir la marque de référence de
           l’immobilier avec pour mission d’accompagner les clients dans la
-          réalisation de leurs projets en mettant l’humain au coeur de la
+          réalisation de leur projet en mettant l’humain au coeur de la
           relation avec une approche digitale et disruptive. Distingué par de
           nombreux prix dont celui de « Marque Préférée des Amienois », « Agence
           immobilière de l’année 2020-2021 » et « Agence immobilière de l’année
@@ -127,9 +127,9 @@ const Agency = () => {
 
           <div className="col-md-5 mt-5 mt-lg-0">
             <TitleH5 className="col-md-6">Notre adresse</TitleH5>
-            <div>72 rue des jacobins, 80000 Amiens</div>
+            <div>70 rue des jacobins, 80000 Amiens</div>
             <div className="m-auto col-10 mt-4" >
-              <img className="img-fluid  " src="adresse.png" alt="plan d'accés" />
+              <img className="img-fluid" src="adresse.png" alt="plan d'accés" />
             </div>
           </div>
         </div>

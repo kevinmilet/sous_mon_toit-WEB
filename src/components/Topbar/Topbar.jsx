@@ -1,4 +1,4 @@
-import React, {useContext, useState , useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import styled from "styled-components";
 import logo from '../../assets/img/logo_sousMonToit_Long.png'
 import logoMobile from '../../assets/img/apple-icon-152x152.png'
@@ -11,7 +11,6 @@ import {Link} from "react-router-dom";
 const Container = styled.div`
     padding: 0;
     margin: 0;
-    // height: 80px;
     background-color: ${colors.backgroundPrimary};
     border-bottom: 1px solid ${colors.backgroundSecondary};
 `
@@ -19,7 +18,6 @@ const RowHeader = styled.div`
     margin: 0;
 `
 const Logo = styled.img`
-    
     z-index: 20;
 `
 const LinkCol = styled.div`
@@ -53,26 +51,25 @@ const Logout = styled.a`
 `
 
 const Topbar = () => {
-  
-   
-
+    let sourceLogo;
     const largeur = window.innerWidth;
-    if(largeur <= 375){
-        var sourceLogo = logoMobile
-    }else{
-         sourceLogo =   logo ;
+    if (largeur <= 375) {
+        sourceLogo = logoMobile;
+    } else {
+        sourceLogo = logo;
     }
-    function reportWindowSize(){
 
+    function reportWindowSize() {
         const largeur = window.innerWidth;
-        if(largeur <= 375){
-           return sourceLogo = logoMobile ;
-        }else{
-            return sourceLogo = logo ;
+        if (largeur <= 375) {
+            return sourceLogo = logoMobile;
+        } else {
+            return sourceLogo = logo;
         }
     }
-    window.onresize = window.addEventListener('resize',reportWindowSize );
-    
+
+    window.onresize = window.addEventListener('resize', reportWindowSize);
+
     const API_URL = useContext(Context).apiUrl;
     const [tokenIsValid, setTokenIsValid] = useState(true);
     axios.defaults.headers.common = {'Authorization': `Bearer ${localStorage["token"]}`}
@@ -109,7 +106,7 @@ const Topbar = () => {
         <Container className="container-fluid">
             <RowHeader className="row rowHeader">
                 <Link to="/" className="col-12 col-md-7 text-center text-md-start">
-                    <Logo  src={sourceLogo} className="logo col-6" alt="Logo Sous Mon Toit"/>
+                    <Logo src={sourceLogo} className="logo col-6" alt="Logo Sous Mon Toit" width="40%"/>
                 </Link>
                 <LinkCol className="col-12 col-md-5 linkCol  ">
                     {tokenIsValid === true ?

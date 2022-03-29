@@ -42,11 +42,11 @@ const Sector = styled.input`
     }
 `
 const SelectDiv = styled.div`
-    // position: relative;
+    position: relative;
     @media screen and (min-width: 823px){
         border-right: 2px solid ${colors.backgroundPrimary};;
     }
-    // border-right: 2px solid ${colors.backgroundPrimary};
+    border-right: 2px solid ${colors.backgroundPrimary};
     &:after {
         content: '>';
         font-family: "Consolas", monospace;
@@ -65,9 +65,9 @@ const SelectDiv = styled.div`
     }
 `
 const Select = styled.select`
-    // -webkit-appearance: none;
-    // -moz-appearance: none;
-    // appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     // display: block;
     // float: right;
     // padding: 0px 24px;
@@ -92,8 +92,7 @@ const Option = styled.option`
 `
 
 const Budget = styled.input`
-    // width: 100%;
-     height: 65px;
+    height: 65px;
     text-align: center;
     background: transparent;
     border: none;
@@ -177,6 +176,7 @@ const SearchBar = (props) => {
         }).finally(() => {
             setLoading(false);
         })
+
     }, [API_URL])
 
     // useEffect((city) => {

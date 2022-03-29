@@ -190,7 +190,7 @@ const SignupForm = () => {
                                 />
                                 <div className="error" style={{ color: "#E85A70", fontStyle: 'italic' }}>{errorPassword}</div>
                                 <MyCheckbox name="acceptedTerms">
-                                    J'accepte les conditions d'utilisations du site SousMonToit
+                                    J'accepte les conditions d'utilisation du site SousMonToit
                                 </MyCheckbox>
                                 <StyledBtnPrimary type="submit" className="btn mt-3">Inscription</StyledBtnPrimary>
                             </Form>
