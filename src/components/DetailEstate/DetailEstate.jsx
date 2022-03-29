@@ -7,6 +7,7 @@ import ApiRoutes from "../../utils/const/ApiRoutes";
 import { Context } from '../../utils/context/Context';
 import check from '../../assets/icons/check-square-regular.svg';
 import { useParams } from 'react-router-dom';
+import defaultCover from '../../assets/img/estate_default.jpg';
 
 const DivDetail = styled.div`
     background-color: ${colors.backgroundPrimary};
@@ -88,9 +89,9 @@ const DetailEstate = () => {
                     <p className="d-flex justify-content-between">Reference du biens : {oneEstateData.reference} <b className="text-danger fs-3">{oneEstateData.price}€</b></p>
                 </div>
                 <div className="row px-lg-5 pb-lg-5">
-                    <img src={(pictureCover ? pictureCover.folder : "") + (pictureCover ? pictureCover.name : "") } className="img-fluid img-thumbnail" alt={oneEstateData.title}/>
+                    <img src={(ApiRoutes.IMG_ESTATE_URL + pictureCover.name) ?? defaultCover} className="img-fluid img-thumbnail" alt={oneEstateData.title}/>
                     {picturesList.map((picture, index) =>
-                        <img key={index} src={(picture.folder ?? "") + (picture.name ?? "")} className="col-4 col-lg-2 img-fluid img-thumbnail" alt={oneEstateData.title}/>
+                        <img key={index} src={ApiRoutes.IMG_ESTATE_URL + (picture.name ?? "")} className="col-4 col-lg-2 img-fluid img-thumbnail" alt={oneEstateData.title}/>
                     )}
                 </div>
                 <div className="row">

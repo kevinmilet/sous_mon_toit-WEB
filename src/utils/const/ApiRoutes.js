@@ -1,5 +1,7 @@
 const API_URL = {
     API_URL: 'http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/',
+    IMG_ESTATE_URL:'http://api-sousmontoit.am.manusien-ecolelamanu.fr/storage/app/public/pictures/estates/',
+    AVATAR_BASE_URL:'http://api-sousmontoit.am.manusien-ecolelamanu.fr/storage/app/public/pictures/avatars/',
     login: 'login/customer',
     logout: 'api/c/logout',
     me: 'api/c/me',
