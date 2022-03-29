@@ -66,6 +66,14 @@ const EstatesListView = (props) => {
         }
     }, [API_URL, estateSearch])
 
+    // const paginate = (data) => {
+    //     let page_size = 6;
+    //     let page_number = data.length / 6;
+    //     // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+    //     console.log(data.slice((page_number - 1) * page_size, page_number * page_size));
+    //     return data.slice((page_number - 1) * page_size, page_number * page_size);
+    // }
+
     if (estateData.length !== 0) {
         return (
 
@@ -88,25 +96,6 @@ const EstatesListView = (props) => {
                             </div>
                         </div>
                     </BlockListing>
-                    {/*{estateData.length > 6 ?*/}
-                    {/*    <nav className="mt-3">*/}
-                    {/*        <ul className="pagination pagination-sm justify-content-center">*/}
-                    {/*            <li className="page-item ">*/}
-                    {/*                <a className="page-link" href="?page=<?=$currentPage - 1 ?>"*/}
-                    {/*                   tabIndex="-1">Précedent</a>*/}
-                    {/*            </li>*/}
-                    {/*            /!*<?php for ($page = 1; $page <= $total_pages; $page++): ?>*!/*/}
-                    {/*            <li className="page-item">*/}
-                    {/*                <a href="?page=<?= $page ?>" className="page-link">page</a>*/}
-                    {/*            </li>*/}
-                    {/*            /!*<?php endfor ?>*!/*/}
-                    {/*            <li className="page-item">*/}
-                    {/*                <a className="page-link"*/}
-                    {/*                   href="?page=<?=$currentPage + 1 ?>">Suivant</a>*/}
-                    {/*            </li>*/}
-                    {/*        </ul>*/}
-                    {/*    </nav> : null*/}
-                    {/*}*/}
                     <Footer/>
                 </>
             )

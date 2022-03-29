@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import HomeView from "./screens/Home/HomeView";
 import Agency from "./screens/Agency/AgencyView";
-import {BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import UserAccountView from './screens/UserAccount/UserAccountView';
 import UserUpdateAccountView from './screens/UserAccount/UserUpdateAccountView';
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import {Context} from "./utils/context/Context";
 import ApiRoutes from "./utils/const/ApiRoutes";
 import SignInView from './screens/SignIn/SignInView';
