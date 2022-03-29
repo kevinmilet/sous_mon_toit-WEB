@@ -23,6 +23,7 @@ const TitleH3 = styled.h3`
 
 const UserAccount = () => {
     const [customerData, setCustomerData] = useState({});
+    // eslint-disable-next-line no-unused-vars
     const [customerTypeData, setCustomerTypeData] = useState({});
     const [loading, setLoading] = useState(true);
 

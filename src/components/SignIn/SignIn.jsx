@@ -55,7 +55,7 @@ const SignIn = () => {
                 window.location.href = '/';
             }).catch(error => {
             console.log(error);
-            if (error.response.data.message == "Unauthorized"){
+            if (error.response.data.message === "Unauthorized"){
                 setErrorLogin("Login ou mot de passe incorrect");
             }
         })
