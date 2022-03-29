@@ -88,7 +88,10 @@ const Topbar = () => {
             }
             return Promise.reject(error);
         })
-        axios.get(API_URL + ApiRoutes.customer + "/c/1")
+      
+            axios.get(API_URL + ApiRoutes.customer + "/c/"  + localStorage["userId"])
+        
+      
     }, [API_URL]);
 
     const logout = () => {
@@ -98,7 +101,7 @@ const Topbar = () => {
                 localStorage.removeItem('userId');
                 window.location.href = '/';
             }).catch(e => {
-            console.log(e.message);
+            // console.log(e.message);
         })
     };
 

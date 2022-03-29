@@ -5,7 +5,7 @@ import styled from "styled-components";
 import colors from "../../utils/styles/colors";
 import Loader from "../Tools/Loader/Loader";
 import {Context} from "../../utils/context/Context";
-import {Formik, Field, Form, useField} from "formik";
+import {Formik,  Form, useField} from "formik";
 import * as Yup from "yup";
 import {StyledBtnPrimary, StyledInput} from "../../utils/styles/Atoms";
 
@@ -38,37 +38,12 @@ const MyTextInput = ({label, ...props}) => {
     );
 };
 
-const MyCheckbox = ({children, ...props}) => {
-    const [field, meta] = useField({...props, type: "checkbox"});
-    return (
-        <>
-            <label className="checkbox">
-                <input {...field} {...props} type="checkbox"/>
-                {children}
-            </label>
-            {meta.touched && meta.error ? (
-                <div className="error" style={{color: "#E85A70", fontStyle: 'italic'}}>{meta.error}</div>
-            ) : null}
-        </>
-    );
-};
 
-const NavAccount = styled.div`
-  .navbar {
-    margin: auto;
 
-    .tab {
-      background-color: ${colors.secondaryBtn};
-    }
-  }
-`;
-const Ul = styled.ul`
-  list-style: none
-`
 
-const TitleH3 = styled.h3`
-  color: ${colors.primaryBtn}
-`
+
+
+
 
 const UserUpdateAccount = () => {
 
@@ -105,12 +80,11 @@ const UserUpdateAccount = () => {
             })
     }
     
-    const [errorMail, setErrorMail] = useState("");
-    const [errorPassword, setErrorPassword] = useState("")
+  
     const API_URL = useContext(Context).apiUrl;
   
     const [customerData, setCustomerData] = useState({});
-    const [customerTypeData, setCustomerTypeData] = useState({});
+    //  const [customerTypeData, setCustomerTypeData] = useState({});
     const [loading, setLoading] = useState(true);
 
     axios.defaults.headers.common = {
@@ -152,7 +126,7 @@ const UserUpdateAccount = () => {
                 "http://api-sousmontoit.am.manusien-ecolelamanu.fr/public/describe_customer_type/joinCustomer/" + localStorage["userId"]
             )
             .then((res) => {
-                setCustomerTypeData(res.data);
+                // setCustomerTypeData(res.data);
             })
             .catch((error) => {
                 console.log(error.message);
