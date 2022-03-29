@@ -140,7 +140,7 @@ const Agency = () => {
 
         {!loading &&
           staffData.map((item) => (
-            <div className="card m-auto col-10 col-md-2  mt-3 mt-md-0">
+            <div className="card m-auto col-10 col-md-2  mt-3 mt-md-0" key={item.id}>
               <img
                 src={item.avatar}
                 className="card-img-top img-fluid "
@@ -160,7 +160,7 @@ const Agency = () => {
 };
 
 Agency.propTypes = {
-  avatar: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
   firstname: PropTypes.string.isRequired,
   lastname: PropTypes.string.isRequired,
 };

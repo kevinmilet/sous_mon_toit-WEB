@@ -196,7 +196,7 @@ const ForSale = () => {
     <Container className="container  ">
       <Head style={{ backgroundImage: `url(${background}` }}>
         <ContHeader>
-          <div class="col-12 col-sm-10 col-md-8 col-lg-7 mx-auto mt-5">
+          <div className="col-12 col-sm-10 col-md-8 col-lg-7 mx-auto mt-5">
             <HeadH1 className="text-center">Estimer votre bien</HeadH1>
             <Text>
               Une méthode fiable, fondée sur les données du marché et sur le
