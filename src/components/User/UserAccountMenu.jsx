@@ -111,11 +111,11 @@ const UserAccount = () => {
                     <TitleH3 className="card-title text-center text-decoration-underline">
                         Mes infos
                     </TitleH3>
-                    <a className="nav-link active" aria-current="page" href="/update-my-account">
+                    {/* <a className="nav-link active" aria-current="page" href="/update-my-account">
                                     <div className=" p-3 tab rounded-pill ">
                                         <b>Modif</b>
                                     </div>
-                                </a>
+                                </a> */}
                     <Ul>
                         <li className="mt-2">
                             <b>Prénom: </b> {customerData.firstname}
