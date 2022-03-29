@@ -49,8 +49,7 @@ const App = () => {
     return (
         <Context.Provider value={{apiUrl, setApiUrl}}>
                 <Router>
-                    <Header/>
-                        {estateList ? <Redirect to={{pathname: "/liste-des-biens"}}/> : null}
+                    {estateList ? <Redirect to={{pathname: "/liste-des-biens"}}/> : null}
                     <Switch>
                         <Route exact path="/">
                             <HomeView search={search}/>
@@ -102,7 +101,6 @@ const App = () => {
                         )}
                     </Switch>
                 </Router>
-                <Footer/>
         </Context.Provider>
     );
 };

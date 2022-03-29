@@ -35,7 +35,7 @@ const EstateMap = ({ estateData }) => {
     const position = [49.894067, 2.295753];
     const zoom = 8.5;
     const markerPos = [];
-
+console.log(estateData);
     return (
         <Map>
             <MapContainer
@@ -52,9 +52,9 @@ const EstateMap = ({ estateData }) => {
             >
                 <TileLayer
                     attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
-                    url='https://api.mapbox.com/styles/v1/kevinmilet/ckv2b21ds3khm15mvtc1unq2w/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoia2V2aW5taWxldCIsImEiOiJja3YyYjUyZXUwMXQwMnJsN3BpcWhxMzczIn0.tcbq_llXemVpe7NowZSboA'
+                    url={process.env.REACT_APP_LEAFTLET_URL}
                 />
-                {estateData.map(item => {
+                {estateData?.map(item => {
 
                     markerPos.push({
                         id: item.id_estate,

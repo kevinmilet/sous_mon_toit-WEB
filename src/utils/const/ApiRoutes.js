@@ -20,7 +20,7 @@ const API_URL = {
     customers_types: 'customer_type',
     estates_pictures: 'estates_pictures',
     estates_cover: 'estates_pictures/cover',
-    search: 'estates/search'
+    search: 'estates/websearch'
 }
 
 export default API_URL;

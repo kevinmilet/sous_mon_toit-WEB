@@ -55,7 +55,6 @@ const DetailEstate = () => {
         }).finally(() => {
             
             //Image de couverture du bien
-            // axios.get("http://localhost:8000/estates_pictures/cover/" + id)
             axios.get(API_URL + ApiRoutes.estates_cover + "/" + id)
             .then(res => {
                 setPictureCover(res.data[0])
@@ -64,7 +63,6 @@ const DetailEstate = () => {
             }).finally(() => {
                 
                 // liste des images du bien
-                // axios.get("http://localhost:8000/estates_pictures/" + id)
                 axios.get(API_URL + ApiRoutes.estates_pictures + "/" + id)
                 .then(res => {
                     setPicturesList(res.data)
@@ -85,7 +83,8 @@ const DetailEstate = () => {
 
             <DivDetail className="container col-12 col-sm-10 col-md-8 col-lg-7 mx-auto mt-5 p-5">
                 <div className="">
-                    <p className="d-flex justify-content-between">Reference du biens : {oneEstateData.reference} <b className="text-danger fs-3">{oneEstateData.price}€</b></p>
+                    <h2 className="d-flex justify-content-between" >{oneEstateData.title} <b className="text-danger fs-3">{oneEstateData.price}€</b></h2>
+                    <p >Reference du bien : {oneEstateData.reference} </p>
                 </div>
                 <div className="row px-lg-5 pb-lg-5">
                     <img src={(pictureCover ? pictureCover.folder : "") + (pictureCover ? pictureCover.name : "") } className="img-fluid img-thumbnail" alt={oneEstateData.title}/>
@@ -94,7 +93,7 @@ const DetailEstate = () => {
                     )}
                 </div>
                 <div className="row">
-                    <h2>{oneEstateData.title}</h2>
+
                     <p>{oneEstateData.description}</p>
                 </div>
                 <div className="row p-3 border border-dark mt-3 rounded">
@@ -102,7 +101,7 @@ const DetailEstate = () => {
                     <div className="col-12 col-md-6">
                         <H3>Général</H3>
                         <p>Année de construction : <b>{oneEstateData.year_of_construction.substring(0, 4)}</b></p>
-                        <p>Surface habitable au sol : <b>{oneEstateData.living_surface}m²</b></p>
+                        <p>Surface : <b>{oneEstateData.living_surface}m²</b></p>
                         <p>Surface habitable ( selon Loi Carrez ) : <b>{oneEstateData.carrez_law}m²</b></p>
                         <p>Superficie du terrain : <b>{oneEstateData.land_surface}m²</b></p>
 
@@ -114,10 +113,10 @@ const DetailEstate = () => {
                     </div>
                     <div className="col-12 col-md-6">
                         <H3>Interieur</H3>
-                        <p>Nombre de pièces : <b>{oneEstateData.nb_rooms} pièces</b></p>
-                        <p>Nombre de salle de bain : <b>{oneEstateData.nb_bathrooms} pièces</b></p>
-                        <p>Nombre de sanitaire : <b>{oneEstateData.nb_sanitary} pièces</b></p>
-                        <p>Nombre de cuisine : <b>{oneEstateData.nb_kitchen} pièces</b></p>
+                        <p>Nombre de pièces : <b>{oneEstateData.nb_rooms}</b></p>
+                        <p>Nombre de salle de bain : <b>{oneEstateData.nb_bathrooms}</b></p>
+                        <p>Nombre de sanitaire : <b>{oneEstateData.nb_sanitary}</b></p>
+                        <p>Nombre de cuisine : <b>{oneEstateData.nb_kitchen}</b></p>
                         <p>Type de cuisine : <b>{oneEstateData.type_kitchen}</b></p>
                         <p>Type de chauffage : <b>{oneEstateData.heaters}</b></p>
 
@@ -142,7 +141,7 @@ const DetailEstate = () => {
                         {oneEstateData.all_in_sewer ? <p><Icons src={check} alt="Check"/> Tout à l'égout</p> : null }
                         {oneEstateData.septik_tank ? <p><Icons src={check} alt="Check"/> Fosse septique</p> : null }
                         {oneEstateData.attic ? <p><Icons src={check} alt="Check"/> Grenier</p> : null }
-                        {oneEstateData.elevator ? <p><Icons src={check} alt="Check"/> Ascensseur</p> : null }
+                        {oneEstateData.elevator ? <p><Icons src={check} alt="Check"/> Ascenseur</p> : null }
                     </div>
                     <div className="col-12 col-md-6 border border-dark p-3 mt-3 rounded">
                         <H2><A href="/contact" >Contactez l'agence</A></H2>

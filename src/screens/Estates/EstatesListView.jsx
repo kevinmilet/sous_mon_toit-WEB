@@ -8,6 +8,8 @@ import ApiRoutes from "../../utils/const/ApiRoutes";
 import {Context} from "../../utils/context/Context";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import colors from "../../utils/styles/colors";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const BlockListing = styled.div`
   .listing {
@@ -69,6 +71,7 @@ const EstatesListView = (props) => {
 
         loading ? (<Loader/>) : (
                 <>
+                    <Header/>
                     <Title>
                         <h4>Nous avons trouvé {estateData.length} bien(s) correspondant(s) à votre recherche.</h4>
                     </Title>
@@ -104,18 +107,21 @@ const EstatesListView = (props) => {
                     {/*        </ul>*/}
                     {/*    </nav> : null*/}
                     {/*}*/}
+                    <Footer/>
                 </>
             )
         );
     } else {
         return (
             <>
+                <Header/>
                 <Title>
                     <h4>La recherche n'a donnée aucun résultat.</h4>
                 </Title>
                 <div className="row mb-4">
                     <SearchBar search={search}/>
                 </div>
+                <Footer/>
             </>
         )
     }

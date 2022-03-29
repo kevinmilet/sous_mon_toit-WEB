@@ -129,7 +129,7 @@ const Contact = () => {
             <ContactSuccess className="text-center" id="msgSuccess" />
             <ContactForm className="p-4 rounded row">
                 <ContactH1 className="text-center">Nous contactez</ContactH1>
-                <p className="text-dark">Merci de compléter le formulaire ci-après. Vous serez recontacté(e) par mail.</p>
+                <p className="text-dark">Merci de compléter le formulaire ci-dessous. Vous serez recontacté par mail.</p>
                 <p className="text-dark">Si votre demande concerne des références particulières, merci de les indiquer.</p>
                 <div className="col-md-6">
                     <div className="mb-3">
