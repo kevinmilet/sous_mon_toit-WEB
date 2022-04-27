@@ -8,6 +8,7 @@ import { Context } from '../../utils/context/Context';
 import check from '../../assets/icons/check-square-regular.svg';
 import { useParams } from 'react-router-dom';
 import defaultCover from '../../assets/img/estate_default.jpg';
+import './DetailEstate.scss';
 
 const DivDetail = styled.div`
     background-color: ${colors.backgroundPrimary};
@@ -88,16 +89,16 @@ const DetailEstate = () => {
                     <p >Reference du bien : {oneEstateData.reference} </p>
                 </div>
                 <div className="row px-lg-5 pb-lg-5">
-                    <img src={(ApiRoutes.IMG_ESTATE_URL + pictureCover.name) ?? defaultCover} className="img-fluid img-thumbnail" alt={oneEstateData.title}/>
+                    <img src={(ApiRoutes.IMG_ESTATE_URL + pictureCover.name) ?? defaultCover} className="img-fluid img-container" alt={oneEstateData.title}/>
                     {picturesList.map((picture, index) =>
-                        <img key={index} src={ApiRoutes.IMG_ESTATE_URL + (picture.name ?? "")} className="col-4 col-lg-2 img-fluid img-thumbnail" alt={oneEstateData.title}/>
+                        <img key={index} src={ApiRoutes.IMG_ESTATE_URL + (picture.name ?? "")} className="col-4 col-lg-2 img-fluid img-container" alt={oneEstateData.title}/>
                     )}
                 </div>
                 <div className="row">
 
                     <p>{oneEstateData.description}</p>
                 </div>
-                <div className="row p-3 border border-dark mt-3 rounded">
+                <div className="row p-3 mt-3 card">
                     <H2 className="">Caractèristiques</H2>
                     <div className="col-12 col-md-6">
                         <H3>Général</H3>
@@ -128,7 +129,7 @@ const DetailEstate = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-md-6 border border-dark p-3 mt-3 rounded">
+                    <div className="col-12 col-md-6 p-3 mt-3 card">
                         <H2 className="">Les plus</H2>
                         
                         {oneEstateData.communal_heating ? <p><Icons src={check} alt="Check"/> Chauffage collectif</p> : null }
@@ -144,7 +145,7 @@ const DetailEstate = () => {
                         {oneEstateData.attic ? <p><Icons src={check} alt="Check"/> Grenier</p> : null }
                         {oneEstateData.elevator ? <p><Icons src={check} alt="Check"/> Ascenseur</p> : null }
                     </div>
-                    <div className="col-12 col-md-6 border border-dark p-3 mt-3 rounded">
+                    <div className="col-12 col-md-6 p-3 mt-3 card">
                         <H2><A href="/contact" >Contactez l'agence</A></H2>
                         <p>Ce bien vous a tapé dans l'oeil ? Vous n'en dormez plus la nuit ? 
                             N'hesitez plus et contactez votre agence dès maintenant !</p>
