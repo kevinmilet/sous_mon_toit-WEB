@@ -31,7 +31,7 @@ const EstateCard = ({estateData}) => {
                     <div className='col-sm-12 col-md-4 col-lg-4 justify-content-center' key={item.id}>
                         <Link className='text-decoration-none ' to={`/detail-biens/${item.id_estate}`}>
                             <Card className="my-3 col-sm-8 col-md-auto m-auto card shadow-sm text-center">
-                                <img src={(ApiRoutes.IMG_ESTATE_URL + item.name) ?? defaultCover} alt={item.name ?? defaultCover} 
+                                <img src={(ApiRoutes.IMG_ESTATE_URL + '/' + item.name) ?? '/estate_default.jpg'} alt={item.name ?? ''}
                                     className="card-img-top img-fluid"
                                     height="200px"/>
                                 <CardBody>

@@ -35,7 +35,7 @@ const EstateMap = ({ estateData }) => {
     const position = [49.894067, 2.295753];
     const zoom = 8.5;
     const markerPos = [];
-console.log(estateData);
+
     return (
         <Map>
             <MapContainer
